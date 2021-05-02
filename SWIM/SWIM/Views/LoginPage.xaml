@@ -5,10 +5,18 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="SWIM.Views.LoginPage"
+             Shell.FlyoutBehavior="Disabled"
              Shell.NavBarIsVisible="False">
     <ContentPage.Content>
-        <StackLayout Padding="10,0,10,0" VerticalOptions="Center">
-            <Button VerticalOptions="Center" Text="Login" Command="{Binding LoginCommand}"/>
+        <StackLayout Padding="10,20,10,20" VerticalOptions="Start" Margin="10, 30, 10, 30">
+            <Label VerticalOptions="Start" Text="SMART WATERING SYSTEM" FontSize="30" 
+                   FontAttributes="Bold" HorizontalTextAlignment="Center"/>
+            <BoxView BackgroundColor="Aqua" HeightRequest="200" Margin="0,20,0,20"/>
+            <Label Text="Sign in"  HorizontalTextAlignment="Center"
+                   FontSize="25"/>
+            <Entry Placeholder="Email"/>
+            <Entry IsPassword="True" Placeholder="Password"/>
+            <Button VerticalOptions="End" Text="Sign in" Clicked="Button_Clicked"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
