@@ -14,7 +14,14 @@ namespace SWIM
             InitializeComponent();
 
             DependencyService.Register<MockDataStore>();
-            MainPage = new AppShell();
+
+            if (!IsUserLoggedIn)
+            {
+                MainPage = new LoginPage();
+            } else
+            {
+                MainPage = new AppShell();
+            }
         }
 
         protected override void OnStart()
