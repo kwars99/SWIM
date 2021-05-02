@@ -17,11 +17,30 @@ namespace SWIM.Views
             InitializeComponent();
         }
 
-
-
         private async void Button_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new DashBoard());
+            var user = new Models.User
+            {
+                Email = emailEntry.Text,
+                Password = passwordEntry.Text
+            };
+
+            var isValid = CredentialCheck(user);
+            if (isValid)
+            {
+                App.IsUserLoggedIn = true;
+                Navigation.InsertPageBefore(new DashBoard(), this);
+                await Navigation.PopAsync();
+            } else
+            {
+                messageLabel.Text = "Login failed";
+                passwordEntry.Text = string.Empty;
+            }
+        }
+
+        bool CredentialCheck (Models.User user)
+        {
+            return user.Email == Models.Constants.Email && user.Password == Models.Constants.Passwword;
         }
     }
 }
