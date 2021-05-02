@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SWIM.Views.MorePage"
+             Title="More">
+    
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Spacing="1">
+                <Frame Padding="15">
+                    <Label Text="My Account" />
+                </Frame>
+                <Frame Padding="15">
+                    <Label Text="Move or Add Property" />
+                </Frame>
+                <Frame Padding="15">
+                    <Label Text="Change Billing Preferences" />
+                </Frame>
+                <Frame Padding="15">
+                    <Label Text="Manage Payment Details" />
+                </Frame>
+                <Frame Padding="15">
+                    <Label Text="Tenant Portal" />
+                </Frame>
+                <Frame Padding="15">
+                    <Label Text="Link to Smart Water Metre" />
+                </Frame>
+                <Frame Padding="15">
+                    <Label Text="About Us" />
+                </Frame>
+                <Frame Padding="15">
+                    <Label Text="FAQ" />
+                </Frame>
+                <Frame Padding="15">
+                    <Label Text="Newsroom" />
+                </Frame>
+                <Frame Padding="15">
+                    <Label Text="Feedback" />
+                </Frame>
+                <Frame Padding="15">
+                    <Label Text="Rate App" />
+                </Frame>
+                <Frame >
+                    <Grid>
+                        <Label HorizontalTextAlignment="Center"
+                               FontSize="Medium"
+                               Text="Connect With Us" />
+                        <Label Grid.Row="1" 
+                               HorizontalTextAlignment="Center"
+                               Text="Social Media Icons go here" /> <!-- Insert Facebook, Email, Twitter Icons -->
+                        <Label Grid.Row="2" 
+                               HorizontalTextAlignment="Center"
+                               FontSize="Medium"
+                               Text="Contact Us:" />
+                        <Label Grid.Row="3"
+                               HorizontalTextAlignment="Center"
+                               Text="Phone Number: (07) 12345678" />
+                        <Label Grid.Row="4"
+                               HorizontalTextAlignment="Center"
+                               Text="Email: company@swim.com.au" />
+                        <Label Grid.Row="5"
+                               HorizontalTextAlignment="Center"
+                               Text="Address: 123 Lamingto Drive, Brisbane, QLD" />
+                    </Grid>
+                </Frame>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

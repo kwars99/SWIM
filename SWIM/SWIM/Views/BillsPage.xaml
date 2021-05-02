@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SWIM.Views.BillsPage"
+             Title="Bill History">
+
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout>
+                <!-- Current Bill -->
+                <Frame BorderColor="Black"
+                   Margin="20">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Column="1" Text="Bill Information"/>
+                        <Label Grid.Column="1" Grid.Row="1" Text="$ Amount Owing" />
+                        <Button Grid.Row="2" Grid.Column="0" Text="Pay Now" />
+                        <Button Grid.Column="3" Grid.Row="2" Text="View Bill" />
+                        <Label Grid.Column="1" Grid.Row="3" Text="$ Direct Debit Active" />
+                    </Grid>
+                </Frame>
+
+                <!--Buttons-->
+                <Button Text="Report Payment" Margin="10, 0, 10, 0"/>
+                <Button Text="Request Extension" Margin="10, 0, 10, 0"/>
+                <Button Text="Manage Payment Options" Margin="10, 0, 10, 0"/>
+                
+                <!-- Latest Bills -->
+                <Frame BorderColor="Black" Margin="20">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="80" />
+                            <ColumnDefinition Width="80" />
+                            <ColumnDefinition Width="80" />
+                            <ColumnDefinition Width="80" />
+                        <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Column="0" Text="Bill Period"/>
+                        <Label Grid.Column="1" Text="Bill Amount"/>
+                        <Label Grid.Column="2" Text="Paid Status"/>
+                        <Label Grid.Column="3" Text="Download"/>
+                        <Label Grid.Row="1" Grid.Column="0" Text="Bill 1"/>
+                        <Label Grid.Row="2" Grid.Column="0" Text="Bill 2"/>
+                        <Label Grid.Row="3" Grid.Column="0" Text="Bill 3"/>
+                        <Label Grid.Row="1" Grid.Column="1" Text="$250"/>
+                        <Label Grid.Row="2" Grid.Column="1" Text="$405"/>
+                        <Label Grid.Row="3" Grid.Column="1" Text="$389"/>
+                        <Label Grid.Row="1" Grid.Column="2" Text="Paid"/>
+                        <Label Grid.Row="2" Grid.Column="2" Text="Paid"/>
+                        <Label Grid.Row="3" Grid.Column="2" Text="Paid"/>
+                        <Button Grid.Row="1" Grid.Column="3" Text="PDF"/>
+                        <Button Grid.Row="2" Grid.Column="3" Text="PDF"/>
+                        <Button Grid.Row="3" Grid.Column="3" Text="PDF"/>
+                    </Grid>
+                </Frame>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+
+</ContentPage>
