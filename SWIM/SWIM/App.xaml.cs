@@ -18,12 +18,11 @@ namespace SWIM
 
             if (!IsUserLoggedIn)
             {
-                MainPage = new NavigationPage(new LoginPage());
+                MainPage = new LoginPage();
             } else
             {
-                MainPage = new NavigationPage(new SWIM.Views.DashBoard());
+                MainPage = new AppShell();
             }
-            //MainPage = new AppShell();
         }
 
         protected override void OnStart()

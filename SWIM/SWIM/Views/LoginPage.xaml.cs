@@ -29,8 +29,8 @@ namespace SWIM.Views
             if (isValid)
             {
                 App.IsUserLoggedIn = true;
-                Navigation.InsertPageBefore(new DashBoard(), this);
-                await Navigation.PopAsync();
+                Application.Current.MainPage = new AppShell();
+                await Shell.Current.GoToAsync("//main");
             } else
             {
                 messageLabel.Text = "Login failed";

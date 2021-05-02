@@ -15,7 +15,7 @@
 
                 </Picker>
 
-                
+
 
                 <Frame Padding="0,0,0,0" Margin="10,0,10,0" BorderColor="Black" HeightRequest="225">
                     <StackLayout>
@@ -29,13 +29,13 @@
                                VerticalTextAlignment="Center" BackgroundColor="LightBlue" Margin="5,0,5,5"/>
 
                     </StackLayout>
-                     
+
                 </Frame>
 
                 <Frame Padding="0,0,0,0" Margin="10,0,10,0" BorderColor="Black" HeightRequest="75">
-                   <Label Text="Weather Updates" HorizontalTextAlignment="Center" 
+                    <Label Text="Weather Updates" HorizontalTextAlignment="Center" 
                                VerticalTextAlignment="Center" BackgroundColor="LightBlue" Margin="5,5,5,5"/>
-                    
+
                 </Frame>
 
                 <Frame Padding="0,0,0,0" Margin="10,0,10,0" BorderColor="Black" HeightRequest="100">
@@ -46,8 +46,6 @@
 
 
             </StackLayout>
-            
-            
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
