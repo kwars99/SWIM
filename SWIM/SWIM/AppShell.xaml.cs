@@ -11,14 +11,11 @@ namespace SWIM
         public AppShell()
         {
             InitializeComponent();
-            Routing.RegisterRoute(nameof(ItemDetailPage), typeof(ItemDetailPage));
-            Routing.RegisterRoute(nameof(NewItemPage), typeof(NewItemPage));
+            Routing.RegisterRoute(nameof(DashBoard), typeof(DashBoard));
             Routing.RegisterRoute(nameof(BillsPage), typeof(BillsPage));
             Routing.RegisterRoute(nameof(UsagePage), typeof(UsagePage));
             Routing.RegisterRoute(nameof(HelpAndSupportPage), typeof(HelpAndSupportPage));
             Routing.RegisterRoute(nameof(MorePage), typeof(MorePage));
-
-
         }
 
     }

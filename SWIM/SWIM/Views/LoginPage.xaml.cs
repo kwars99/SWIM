@@ -31,14 +31,15 @@ namespace SWIM.Views
                 App.IsUserLoggedIn = true;
                 Application.Current.MainPage = new AppShell();
                 await Shell.Current.GoToAsync("//main");
-            } else
+            }
+            else
             {
                 messageLabel.Text = "Login failed";
                 passwordEntry.Text = string.Empty;
             }
         }
 
-        bool CredentialCheck (Models.User user)
+        bool CredentialCheck(Models.User user)
         {
             return user.Email == Models.Constants.Email && user.Password == Models.Constants.Passwword;
         }
