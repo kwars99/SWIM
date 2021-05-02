@@ -29,12 +29,6 @@
         </ResourceDictionary>
     </Shell.Resources>
 
-
-
-    <TabBar FlyoutItemIsVisible="False">
-        <ShellContent Route="LoginPage" ContentTemplate="{DataTemplate local:LoginPage}" />
-    </TabBar>
-    
     <TabBar>
         <ShellContent Title="Usage" Icon="icon_feed.png" Route="UsagePage" ContentTemplate="{DataTemplate local:UsagePage}" /> <!-- Usage page-->
         <ShellContent Title="Bills" Icon="icon_about.png" Route="BillsPage" ContentTemplate="{DataTemplate local:BillsPage}" /> <!-- Bills page-->
@@ -42,10 +36,6 @@
         <ShellContent Title="Help" Icon="icon_feed.png" Route="HelpAndSupportPaage" ContentTemplate="{DataTemplate local:HelpAndSupportPage}" /> <!--Help&Support-->
         <ShellContent Title="More" Icon="icon_about.png" Route="MorePage" ContentTemplate="{DataTemplate local:MorePage}" /> <!-- More -->
         <!--<ShellContent Title="Browse" Icon="icon_feed.png" ContentTemplate="{DataTemplate local:ItemsPage}" />-->
-        <ShellContent Title="About" Icon="icon_about.png" Route="AboutPage" ContentTemplate="{DataTemplate local:AboutPage}" />
-        <ShellContent Title="Browse" Icon="icon_feed.png" ContentTemplate="{DataTemplate local:ItemsPage}" />
-        <ShellContent Title="Dashboard" Icon="icon_feed.png" Route="DashBoard" ContentTemplate="{DataTemplate local:DashBoard}" />
-
     </TabBar>
 
     <!--
@@ -55,8 +45,6 @@
     <TabBar>
         <!--<ShellContent Route="LoginPage" ContentTemplate="{DataTemplate local:LoginPage}" />-->
     </TabBar>
-    
-    
 
 
 </Shell>
