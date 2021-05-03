@@ -40,6 +40,11 @@
                 <Frame Padding="15">
                     <Label Text="Rate App" />
                 </Frame>
+                <Frame Padding="0" >
+                    <Button HorizontalOptions="Fill"
+                            Text="Logout" 
+                            Clicked="OnLogoutButtonClicked" />
+                </Frame>
                 <Frame >
                     <Grid>
                         <Label HorizontalTextAlignment="Center"

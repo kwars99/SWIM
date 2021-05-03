@@ -16,5 +16,12 @@ namespace SWIM.Views
         {
             InitializeComponent();
         }
+
+        async void OnLogoutButtonClicked (object sender, EventArgs e)
+        {
+            App.IsUserLoggedIn = false;
+            Application.Current.MainPage = new AppShell();
+            await Shell.Current.GoToAsync("//LoginPage");
+        }
     }
 }

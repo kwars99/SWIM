@@ -34,9 +34,9 @@
     </TabBar>
     
     <TabBar Route="main">
+        <ShellContent Title="Dashboard" Icon="icon_feed.png" Route="DashBoard" ContentTemplate="{DataTemplate local:DashBoard}" />
         <ShellContent Title="Usage" Icon="icon_feed.png" Route="UsagePage" ContentTemplate="{DataTemplate local:UsagePage}" />
         <ShellContent Title="Bills" Icon="icon_about.png" Route="BillsPage" ContentTemplate="{DataTemplate local:BillsPage}" />
-        <ShellContent Title="Dashboard" Icon="icon_feed.png" Route="DashBoard" ContentTemplate="{DataTemplate local:DashBoard}" />
         <ShellContent Title="Help" Icon="icon_feed.png" Route="HelpAndSupportPaage" ContentTemplate="{DataTemplate local:HelpAndSupportPage}" />
         <ShellContent Title="More" Icon="icon_about.png" Route="MorePage" ContentTemplate="{DataTemplate local:MorePage}" />
     </TabBar>
