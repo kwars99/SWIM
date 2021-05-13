@@ -2,7 +2,8 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="SWIM.Views.HelpAndSupportPage"
-             Title="Help &amp; Support">
+             Title="Help &amp; Support"
+             Style="{StaticResource PageStyle}">
     
     <ContentPage.Content>
         <ScrollView>
@@ -39,7 +40,7 @@
                 <!-- Contact Form -->
                 <Frame Margin="20, 0">
                     <Grid RowDefinitions="*, 20, *, 20, *, 20, *, 20, *">
-                        <Label HorizontalTextAlignment="Center"
+                        <Label HorizontalTextAlignment="Center" FontAttributes="Bold"
                                FontSize="Large" Text="Contact Us" />
                         <Label Grid.Row="1"
                                Text="Full Name:" />
@@ -53,6 +54,7 @@
                         <Label Grid.Row="7" 
                                Text="Enter description:" />
                         <Editor Grid.Row="8" AutoSize="TextChanges" />
+                        <Button Grid.Row="9" Text="Submit"/>
                     </Grid>
                 </Frame>
             </StackLayout>

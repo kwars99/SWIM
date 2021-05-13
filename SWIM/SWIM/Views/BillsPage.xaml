@@ -2,14 +2,14 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="SWIM.Views.BillsPage"
-             Title="Bill History">
+             Title="Bill History"
+             Style="{StaticResource PageStyle}">
 
     <ContentPage.Content>
         <ScrollView>
             <StackLayout>
                 <!-- Current Bill -->
-                <Frame BorderColor="Black"
-                   Margin="20">
+                <Frame Margin="10">
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />
@@ -17,32 +17,31 @@
                             <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="150" />
+                            <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
-                        <Label Grid.Column="1" Text="Bill Information"/>
-                        <Label Grid.Column="1" Grid.Row="1" Text="$ Amount Owing" />
-                        <Button Grid.Row="2" Grid.Column="0" Text="Pay Now" />
-                        <Button Grid.Column="3" Grid.Row="2" Text="View Bill" />
-                        <Label Grid.Column="1" Grid.Row="3" Text="$ Direct Debit Active" />
+                        <Label Grid.Column="1" Text="Amount Due" FontSize="Large" Font="Bold" HorizontalTextAlignment="Center"/>
+                        <Label Grid.Column="1" Grid.Row="1" Text="$217.21" FontSize="Medium" HorizontalTextAlignment="Center"/>
+                        <Button Grid.Row="2" Grid.Column="0" Text="Pay Now" HorizontalOptions="Center"/>
+                        <Button Grid.Column="2" Grid.Row="2" Text="View Bill" />
+                        <Label Grid.Column="1" Grid.Row="3" Text="Direct Debit Active" HorizontalOptions="Center"/>
                     </Grid>
                 </Frame>
 
                 <!--Buttons-->
-                <Button Text="Report Payment" Margin="10, 0, 10, 0"/>
+                <Button Text="Report Payment" Margin="10, -5, 10, 0"/>
                 <Button Text="Request Extension" Margin="10, 0, 10, 0"/>
-                <Button Text="Manage Payment Options" Margin="10, 0, 10, 0"/>
+                <Button Text="Manage Payment Options" Margin="10, 0, 10, -5"/>
                 
                 <!-- Latest Bills -->
-                <Frame BorderColor="Black" Margin="20">
+                <Frame Margin="10">
                     <Grid>
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="20" />
+                            <RowDefinition Height="35" />
+                            <RowDefinition Height="35" />
+                            <RowDefinition Height="35" />
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="80" />
@@ -51,22 +50,28 @@
                             <ColumnDefinition Width="80" />
                         <ColumnDefinition />
                         </Grid.ColumnDefinitions>
-                        <Label Grid.Column="0" Text="Bill Period"/>
-                        <Label Grid.Column="1" Text="Bill Amount"/>
-                        <Label Grid.Column="2" Text="Paid Status"/>
-                        <Label Grid.Column="3" Text="Download"/>
-                        <Label Grid.Row="1" Grid.Column="0" Text="Bill 1"/>
-                        <Label Grid.Row="2" Grid.Column="0" Text="Bill 2"/>
-                        <Label Grid.Row="3" Grid.Column="0" Text="Bill 3"/>
-                        <Label Grid.Row="1" Grid.Column="1" Text="$250"/>
-                        <Label Grid.Row="2" Grid.Column="1" Text="$405"/>
-                        <Label Grid.Row="3" Grid.Column="1" Text="$389"/>
-                        <Label Grid.Row="1" Grid.Column="2" Text="Paid"/>
-                        <Label Grid.Row="2" Grid.Column="2" Text="Paid"/>
-                        <Label Grid.Row="3" Grid.Column="2" Text="Paid"/>
-                        <Button Grid.Row="1" Grid.Column="3" Text="PDF"/>
-                        <Button Grid.Row="2" Grid.Column="3" Text="PDF"/>
-                        <Button Grid.Row="3" Grid.Column="3" Text="PDF"/>
+                        <Label Grid.Column="0" Text="Bill Period" Font="Bold"/>
+                        <Label Grid.Column="1" Text="Bill Amount" Font="Bold"/>
+                        <Label Grid.Column="2" Text="Paid Status" Font="Bold"/>
+                        <Label Grid.Column="3" Text="Download" Font="Bold"/>
+                        <Label Grid.Row="1" Grid.Column="0" Text="28 Jan 21-
+                               27 Apr 21"/>
+                        <Label Grid.Row="2" Grid.Column="0" Text="27 Oct 20-
+                               27 Jan 21"/>
+                        <Label Grid.Row="3" Grid.Column="0" Text="13 Aug 20-
+                               26 Oct 20"/>
+                        <Label Grid.Row="1" Grid.Column="1" Text="$250" HorizontalTextAlignment="Center"/>
+                        <Label Grid.Row="2" Grid.Column="1" Text="$405" HorizontalTextAlignment="Center"/>
+                        <Label Grid.Row="3" Grid.Column="1" Text="$389" HorizontalTextAlignment="Center"/>
+                        <Image Grid.Row="1" Grid.Column="2" Source="green_tick.png" 
+                               Aspect="AspectFit"/>
+                        <Image Grid.Row="2" Grid.Column="2" Source="green_tick.png" 
+                               Aspect="AspectFit"/>
+                        <Image Grid.Row="3" Grid.Column="2" Source="green_tick.png" 
+                               Aspect="AspectFit"/>
+                        <Button Grid.Row="1" Grid.Column="3" Text="PDF" />
+                        <Button Grid.Row="2" Grid.Column="3" Text="PDF" />
+                        <Button Grid.Row="3" Grid.Column="3" Text="PDF" />
                     </Grid>
                 </Frame>
             </StackLayout>

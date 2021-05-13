@@ -2,7 +2,8 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="SWIM.Views.UsagePage"
-             Title="Usage">
+             Title="Usage"
+             Style="{StaticResource PageStyle}">
     
     <ContentPage.Content>
         <ScrollView>
@@ -13,10 +14,12 @@
                         <Grid RowDefinitions="*, 200, *">
                             <Label Grid.Row="0" 
                                    HorizontalTextAlignment="Center"
+                                   FontAttributes="Bold"
                                    FontSize="Medium"
                                    Text="Current Usage" />
-                            <BoxView Grid.Row="1"
-                                     Color="Gray" />
+                            <Image Grid.Row="1"
+                                   Source="chart.png"
+                                   Aspect="Fill"/>
                             <Grid Grid.Row="2">
                                 <RadioButton FontSize="Small"
                                              HorizontalOptions="Center" 
@@ -35,11 +38,11 @@
                     <!-- Monthly Usage -->
                     <Frame Grid.Row="1" Margin="10, 0, 10, 10">
                         <StackLayout>
-                            <Label FontSize="Medium" Text="March:" />
-                            <Label Text="-Usage Information &amp; Cost" />
                             <Label FontSize="Medium" Text="April:" />
                             <Label Text="-Usage Information &amp; Cost" />
-                            <Label FontSize="Medium" Text="May:" />
+                            <Label FontSize="Medium" Text="March:" />
+                            <Label Text="-Usage Information &amp; Cost" />
+                            <Label FontSize="Medium" Text="February:" />
                             <Label Text="-Usage Information &amp; Cost" />
                         </StackLayout>
                     </Frame>
@@ -47,16 +50,32 @@
                     <!-- Previous Quarters -->
                     <Frame Grid.Row="2" Margin="10, 0, 10 , 10">
                         <Grid>
-                            <Label Text="December - February" />
-                            <Label Grid.Column="1" 
-                                   Text="kL" />
-                            <Label Grid.Column="2" 
+                            <Label FontAttributes="Bold" 
+                                   Text="Usage Period" />
+                            <Label FontAttributes="Bold" Grid.Column="1" 
+                                   Text="Usage" />
+                            <Label FontAttributes="Bold" Grid.Column="2" 
                                    Text="Cost" />
-                            <Label Grid.Row="1" 
-                                   Text="September - October" />
+                            <Label Grid.Row="1" Text="22 Oct 20 -
+                                   22 Jan 21" />
                             <Label Grid.Row="1" Grid.Column="1" 
-                                   Text="kL" />
-                            <Label Grid.Row="1" Grid.Column="2" Text="Cost" />
+                                   Text="36 kL" />
+                            <Label Grid.Row="1" Grid.Column="2" 
+                                   Text="$225.67" />
+                            <Label Grid.Row="2" 
+                                   Text="21 Jul 20 -
+                                   21 Oct 20" />
+                            <Label Grid.Row="2" Grid.Column="1" 
+                                   Text="31 kL" />
+                            <Label Grid.Row="2" Grid.Column="2" 
+                                   Text="$198.54" />
+                            <Label Grid.Row="3" 
+                                   Text="22 Apr 20 -
+                                   22 Oct 20" />
+                            <Label Grid.Row="3" Grid.Column="1" 
+                                   Text="33 kL" />
+                            <Label Grid.Row="3" Grid.Column="2" 
+                                   Text="$211.37" />
                         </Grid>
                     </Frame>
                     
