@@ -7,24 +7,40 @@
              x:Class="SWIM.Views.LoginPage"
              Shell.FlyoutBehavior="Disabled"
              Shell.NavBarIsVisible="False">
-    <ContentPage.Content>
-        <StackLayout Padding="10,20,10,20" VerticalOptions="Start" Margin="10, 30, 10, 30">
 
-            <Label VerticalOptions="Start" Text="SMART WATERING SYSTEM" FontSize="30" 
+    <ContentPage.Content>
+        <Frame>
+            <Frame.Background>
+                <!-- StartPoint defaults to (0,0)      
+             Endpoint defaults to (1,1) -->
+                <LinearGradientBrush>
+                    <GradientStop Color="#E7ECEF"
+                          Offset="0.0" />
+                    <GradientStop Color="#A3CEF1"
+                          Offset="0.25" />
+                    <GradientStop Color="#6096BA"
+                          Offset="0.75" />
+                    <GradientStop Color="#274C77"
+                          Offset="1.0" />
+                </LinearGradientBrush>
+            </Frame.Background>
+            <StackLayout Padding="10,20,10,20" VerticalOptions="Start" Margin="10, 30, 10, 30">
+                <Label Margin="0, 0, 0, 30" VerticalOptions="Start" Text="SMART WATERING SYSTEM" FontSize="30" 
                    FontAttributes="Bold" HorizontalTextAlignment="Center"/>
 
-            <BoxView BackgroundColor="Aqua" HeightRequest="200" Margin="0,20,0,20"/>
+                <Image Source="swim_logo.png" />
 
-            <Label Text="Sign in"  HorizontalTextAlignment="Center"
+                <Label Text="Sign in"  HorizontalTextAlignment="Center"
                    FontSize="25"/>
 
-            <Entry x:Name="emailEntry" Placeholder="Email"/>
+                <Entry x:Name="emailEntry" Placeholder="Email"/>
 
-            <Entry x:Name="passwordEntry" IsPassword="True" Placeholder="Password"/>
+                <Entry x:Name="passwordEntry" IsPassword="True" Placeholder="Password"/>
 
-            <Button VerticalOptions="End" Text="Sign in" Clicked="Button_Clicked"/>
+                <Button VerticalOptions="End" Text="Sign in" Clicked="Button_Clicked"/>
 
-            <Label x:Name="messageLabel" />
-        </StackLayout>
+                <Label x:Name="messageLabel" />
+            </StackLayout>
+        </Frame>
     </ContentPage.Content>
 </ContentPage>
