@@ -16,5 +16,16 @@ namespace SWIM.Views
         {
             InitializeComponent();
         }
+
+        
+        protected override async void OnAppearing()
+        {
+            base.OnAppearing();
+
+            // Retrieve all the notes from the database, and set them as the
+            // data source for the CollectionView.
+            collectionView.ItemsSource = await App.Database.GetUsersAsync();
+        }
+        
     }
 }
