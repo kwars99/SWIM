@@ -28,6 +28,9 @@ namespace SWIM
 
         public App()
         {
+
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("NDc4ODkyQDMxMzkyZTMyMmUzMGtSWmFjN1ptS1NwOU5FQXBtQUY0MlNYMy9BaXR0SmlZaDI5cGZhL3lYcXM9");
+
             InitializeComponent();
 
             DependencyService.Register<MockDataStore>();
