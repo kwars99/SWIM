@@ -29,9 +29,11 @@ namespace SWIM.Services
                 fileStreamToWrite.Close();
             }
             
+            
 
             database = new SQLiteAsyncConnection(dbPath);
             database.CreateTablesAsync<User, Bill, Usage, Transaction, Enquiry>().Wait();
+            database.CreateTableAsync<Fault>().Wait();
         }
 
         public Task<List<User>> GetUsersAsync()
