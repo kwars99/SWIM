@@ -1,4 +1,5 @@
-﻿using SWIM.Services;
+﻿using SWIM.Models;
+using SWIM.Services;
 using SWIM.Views;
 using System;
 using System.IO;
@@ -28,8 +29,8 @@ namespace SWIM
 
         public App()
         {
-
-            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("NDc4ODkyQDMxMzkyZTMyMmUzMGtSWmFjN1ptS1NwOU5FQXBtQUY0MlNYMy9BaXR0SmlZaDI5cGZhL3lYcXM9");
+            
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense(Constants.APIKey);
 
             InitializeComponent();
 
