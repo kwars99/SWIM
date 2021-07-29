@@ -34,16 +34,18 @@ namespace SWIM.Services
             database.CreateTableAsync<Fault>().Wait();
         }
 
-        public Task<List<User>> GetUsersAsync()
+        public async Task<List<User>> GetUsersAsync()
         {
-            return database.Table<User>().ToListAsync();
+            return await database.Table<User>().ToListAsync();
         }
-
-        /*
-        public async Task AddUsage(int usageID, double amount, string tier, string rate, string month)
+        
+        
+        public List<Usage> GetUsageAsync()
         {
-            
+            var result = database.Table<Usage>().ToListAsync().Result;
+            return result;
         }
-        */
+        
+        
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SWIM.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,6 +16,7 @@ namespace SWIM.Views
         public UsagePage()
         {
             InitializeComponent();
+            (BindingContext as UsageViewModel).Data = App.Database.GetUsageAsync();
         }
     }
 }

@@ -40,7 +40,7 @@ namespace SWIM.Views
             }
         }
 
-        bool CredentialCheck(Models.User user)
+        private bool CredentialCheck(Models.User user)
         {
             return user.Email == Constants.Email && user.Password == Constants.Passwword;
         }
