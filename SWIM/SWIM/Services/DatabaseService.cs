@@ -27,9 +27,7 @@ namespace SWIM.Services
                 embeddedDatabaseStream.Seek(0, SeekOrigin.Begin);
                 embeddedDatabaseStream.CopyTo(fileStreamToWrite);
                 fileStreamToWrite.Close();
-            }
-            
-            
+            }           
 
             database = new SQLiteAsyncConnection(dbPath);
             database.CreateTablesAsync<User, Bill, Usage, Transaction, Enquiry>().Wait();
@@ -40,5 +38,12 @@ namespace SWIM.Services
         {
             return database.Table<User>().ToListAsync();
         }
+
+        /*
+        public async Task AddUsage(int usageID, double amount, string tier, string rate, string month)
+        {
+            
+        }
+        */
     }
 }
