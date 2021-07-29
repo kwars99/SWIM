@@ -34,7 +34,7 @@
                             </Grid>
                         </Grid>
                     </Frame>
-                    
+
                     <!-- Monthly Usage -->
                     <Frame Grid.Row="1" Margin="10, 0, 10, 10">
                         <StackLayout>

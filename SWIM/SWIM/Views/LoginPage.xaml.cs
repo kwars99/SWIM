@@ -1,4 +1,5 @@
-﻿using SWIM.ViewModels;
+﻿using SWIM.Models;
+using SWIM.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -41,7 +42,7 @@ namespace SWIM.Views
 
         bool CredentialCheck(Models.User user)
         {
-            return user.Email == Models.Constants.Email && user.Password == Models.Constants.Passwword;
+            return user.Email == Constants.Email && user.Password == Constants.Passwword;
         }
     }
 }
