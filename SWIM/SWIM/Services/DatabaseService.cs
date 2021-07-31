@@ -27,11 +27,13 @@ namespace SWIM.Services
                 embeddedDatabaseStream.Seek(0, SeekOrigin.Begin);
                 embeddedDatabaseStream.CopyTo(fileStreamToWrite);
                 fileStreamToWrite.Close();
-            }           
+            }
+            
 
             database = new SQLiteAsyncConnection(dbPath);
             database.CreateTablesAsync<User, Bill, Usage, Transaction, Enquiry>().Wait();
             database.CreateTableAsync<Fault>().Wait();
+            
         }
 
         public async Task<List<User>> GetUsersAsync()

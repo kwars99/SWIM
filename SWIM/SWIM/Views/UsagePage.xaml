@@ -15,8 +15,9 @@
         <ScrollView>
             <StackLayout>
                 <Grid RowDefinitions="*, Auto, Auto, 50">
-                    
-                    <chart:SfChart HeightRequest="300">
+
+                    <chart:SfChart x:Name="barChart" 
+                                   HeightRequest="300">
                         <chart:SfChart.Title>
                             <chart:ChartTitle Text="Monthly Usage"/>
                         </chart:SfChart.Title>
@@ -37,43 +38,34 @@
                             </chart:NumericalAxis>
                         </chart:SfChart.SecondaryAxis>
 
-                        <chart:ColumnSeries ItemsSource="{Binding Data}" 
-                                            XBindingPath="Month"
-                                            YBindingPath="Amount"/>
+                        <chart:ColumnSeries ItemsSource="{Binding ChartEntries}" 
+                                            XBindingPath="ReadingDate"
+                                            YBindingPath="Amount"
+                                            ListenPropertyChange="True"/>
 
                     </chart:SfChart>
-                   
-                    <!-- Current Usage -->
-                    <!--
-                    <Frame Margin="10">
-                        <Grid RowDefinitions="*, 200, *">
-                            <Label Grid.Row="0" 
-                                   HorizontalTextAlignment="Center"
-                                   FontAttributes="Bold"
-                                   FontSize="Medium"
-                                   Text="Current Usage" />
-                            <Image Grid.Row="1"
-                                   Source="chart.png"
-                                   Aspect="Fill"/>
-                            <Grid Grid.Row="2">
-                                <RadioButton FontSize="Small"
-                                             HorizontalOptions="Center" 
-                                             Content="Usage"
-                                             GroupName="UsageCostSwitch"
-                                             IsChecked="True" />
-                                <RadioButton FontSize="Small" 
-                                             HorizontalOptions="Center" 
-                                             Grid.Column="1" 
-                                             Content="Cost"
-                                             GroupName="UsageCostSwitch" />
-                            </Grid>
-                        </Grid>
-                    </Frame>
-                    -->
+
+                    <Grid Grid.Row="1">
+                        <RadioButton FontSize="Small"
+                                     HorizontalOptions="Center" 
+                                     Content="kL"
+                                     GroupName="UsageCostSwitch"
+                                     IsChecked="True" 
+                                     CheckedChanged="OnRadioButtonCheckedChanged" />
+                        <RadioButton FontSize="Small" 
+                                     HorizontalOptions="Center" 
+                                     Grid.Column="1" 
+                                     Content="Cost"
+                                     GroupName="UsageCostSwitch" 
+                                     CheckedChanged="OnRadioButtonCheckedChanged" />
+                        <Label Grid.Row="2"
+                               x:Name="radioLabel" 
+                               Text="You have chosen: "/>
+                    </Grid>
 
                     <!-- Monthly Usage -->
-                    <Frame Grid.Row="1" Margin="10, 0, 10, 10">
-                        <StackLayout>
+                    <Frame Grid.Row="2" Margin="10, 0, 10, 10">
+                        <StackLayout x:Name="lastThreeUsages">
                             <Label FontSize="Medium" Text="April:" />
                             <Label Text="-Usage Information &amp; Cost" />
                             <Label FontSize="Medium" Text="March:" />
@@ -84,7 +76,7 @@
                     </Frame>
 
                     <!-- Previous Quarters -->
-                    <Frame Grid.Row="2" Margin="10, 0, 10 , 10">
+                    <Frame Grid.Row="3" Margin="10, 0, 10 , 10">
                         <Grid>
                             <Label FontAttributes="Bold" 
                                    Text="Usage Period" />
@@ -116,7 +108,7 @@
                     </Frame>
 
                     <!-- Report Usage Button -->
-                    <Button Grid.Row ="3" Margin="10, 0, 10, 10"
+                    <Button Grid.Row ="4" Margin="10, 0, 10, 10"
                             Text="Report a Usage" />
                 </Grid>
             </StackLayout>

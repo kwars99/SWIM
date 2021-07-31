@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Text;
 using System.Threading.Tasks;
 using SWIM.Models;
+using Xamarin.Forms;
 
 namespace SWIM.ViewModels
 {
@@ -12,6 +13,8 @@ namespace SWIM.ViewModels
     {
         
         private List<Usage> data = new List<Usage>();
+        private List<Usage> lastThreeEntries = new List<Usage>();
+
         public List<Usage> Data
         {
             get { return data; }
@@ -25,13 +28,24 @@ namespace SWIM.ViewModels
             }
         }
         
+        public List<Usage> ChartEntries
+        {
+            get { return lastThreeEntries; }
+            set
+            {
+                if (lastThreeEntries != null)
+                {
+                    lastThreeEntries = value;
+                    OnPropertyChanged(nameof(ChartEntries));
+                }
+            }
+        }
+
 
         public UsageViewModel()
         { 
         
-        }
-
-        
+        }   
 
         private void OnPropertyChanged(string propertyName)
         {
@@ -39,6 +53,6 @@ namespace SWIM.ViewModels
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
-        
+
     }
 }

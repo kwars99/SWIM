@@ -7,9 +7,11 @@
 
   <ItemGroup>
     <None Remove="data.db" />
+    <None Remove="GettingStarted.txt" />
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="GettingStarted.txt" />
     <EmbeddedResource Include="data.db" />
   </ItemGroup>
 
@@ -18,6 +20,10 @@
     <PackageReference Include="Syncfusion.Xamarin.SfChart" Version="19.2.0.48" />
     <PackageReference Include="Xamarin.Forms" Version="5.0.0.2012" />  
     <PackageReference Include="Xamarin.Essentials" Version="1.6.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Include="data.db" />
   </ItemGroup>
 
   <ItemGroup>

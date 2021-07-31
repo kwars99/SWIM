@@ -16,12 +16,6 @@ namespace SWIM.Models
         public double Amount { get; set; }
 
         [Column("date")]
-        public string Month { get; set; }
-
-        [Column("tier")]
-        public string Tier { get; set; }
-
-        [Column("rate")]
-        public double Rate { get; set; }
+        public DateTime ReadingDate { get; set; }
     }
 }

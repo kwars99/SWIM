@@ -15,6 +15,12 @@ namespace SWIM.Models
         [Column("amount")]
         public double Amount { get; set; }
 
+        [Column("Start")]
+        public DateTime PeriodStart { get; set; }
+
+        [Column("End")]
+        public DateTime PeriodEnd { get; set; }
+
         [Column("dueDate")]
         public DateTime DueDate { get; set; }
 
