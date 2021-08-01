@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using SWIM.Models;
@@ -14,10 +15,15 @@ namespace SWIM.ViewModels
         
         private List<Usage> data = new List<Usage>();
         private List<Usage> lastThreeEntries = new List<Usage>();
+        private List<string> lastThreeMonths = new List<string>();
 
         public List<Usage> Data
         {
-            get { return data; }
+            get 
+            {
+                data = App.Database.GetUsageAsync();
+                return data; 
+            }
             set
             {
                 if (data != value)
@@ -28,24 +34,27 @@ namespace SWIM.ViewModels
             }
         }
         
-        public List<Usage> ChartEntries
+        public List<Usage> LastThreeEntries
         {
-            get { return lastThreeEntries; }
+            get 
+            {
+                lastThreeEntries = App.Database.GetUsageAsync().Take(3).Reverse().ToList();
+                return lastThreeEntries; 
+            }
             set
             {
                 if (lastThreeEntries != null)
                 {
                     lastThreeEntries = value;
-                    OnPropertyChanged(nameof(ChartEntries));
+                    OnPropertyChanged(nameof(LastThreeEntries));
                 }
             }
         }
 
-
         public UsageViewModel()
         { 
         
-        }   
+        }
 
         private void OnPropertyChanged(string propertyName)
         {
@@ -53,6 +62,5 @@ namespace SWIM.ViewModels
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
-
     }
 }

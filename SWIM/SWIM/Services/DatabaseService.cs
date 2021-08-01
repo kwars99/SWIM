@@ -29,8 +29,9 @@ namespace SWIM.Services
                 fileStreamToWrite.Close();
             }
             
+            
 
-            database = new SQLiteAsyncConnection(dbPath);
+            database = new SQLiteAsyncConnection(dbPath, false);
             database.CreateTablesAsync<User, Bill, Usage, Transaction, Enquiry>().Wait();
             database.CreateTableAsync<Fault>().Wait();
             

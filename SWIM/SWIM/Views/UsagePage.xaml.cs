@@ -17,9 +17,8 @@ namespace SWIM.Views
         public UsagePage()
         {
             InitializeComponent();
-            
-            (BindingContext as UsageViewModel).ChartEntries = App.Database.GetUsageAsync().Take(3).ToList();
-            (BindingContext as UsageViewModel).Data = App.Database.GetUsageAsync();
+
+            BindingContext = new UsageViewModel();
         }
 
         void OnRadioButtonCheckedChanged(object sender, CheckedChangedEventArgs e)

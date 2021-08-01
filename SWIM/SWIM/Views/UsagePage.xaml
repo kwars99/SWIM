@@ -14,7 +14,7 @@
     <ContentPage.Content>
         <ScrollView>
             <StackLayout>
-                <Grid RowDefinitions="*, Auto, Auto, 50">
+                <Grid RowDefinitions="300, Auto, Auto, 300, 50">
 
                     <chart:SfChart x:Name="barChart" 
                                    HeightRequest="300">
@@ -38,7 +38,7 @@
                             </chart:NumericalAxis>
                         </chart:SfChart.SecondaryAxis>
 
-                        <chart:ColumnSeries ItemsSource="{Binding ChartEntries}" 
+                        <chart:ColumnSeries ItemsSource="{Binding LastThreeEntries}" 
                                             XBindingPath="ReadingDate"
                                             YBindingPath="Amount"
                                             ListenPropertyChange="True"/>
@@ -65,6 +65,14 @@
 
                     <!-- Monthly Usage -->
                     <Frame Grid.Row="2" Margin="10, 0, 10, 10">
+                        <StackLayout BindableLayout.ItemsSource="{Binding LastThreeEntries}">
+                            <BindableLayout.ItemTemplate>
+                                <DataTemplate>
+                                    <Label Text="{Binding ReadingDate}"/>
+                                </DataTemplate>
+                            </BindableLayout.ItemTemplate>
+                        </StackLayout>
+                        <!--
                         <StackLayout x:Name="lastThreeUsages">
                             <Label FontSize="Medium" Text="April:" />
                             <Label Text="-Usage Information &amp; Cost" />
@@ -73,6 +81,7 @@
                             <Label FontSize="Medium" Text="February:" />
                             <Label Text="-Usage Information &amp; Cost" />
                         </StackLayout>
+                        -->
                     </Frame>
 
                     <!-- Previous Quarters -->
@@ -108,7 +117,9 @@
                     </Frame>
 
                     <!-- Report Usage Button -->
-                    <Button Grid.Row ="4" Margin="10, 0, 10, 10"
+                    <Button Grid.Row ="4" 
+                            Margin="10, 0, 10, 10"
+                            HeightRequest="100"
                             Text="Report a Usage" />
                 </Grid>
             </StackLayout>
