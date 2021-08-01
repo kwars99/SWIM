@@ -27,23 +27,28 @@ namespace SWIM.Services
                 embeddedDatabaseStream.Seek(0, SeekOrigin.Begin);
                 embeddedDatabaseStream.CopyTo(fileStreamToWrite);
                 fileStreamToWrite.Close();
-            }           
+            }
+            
+            
 
-            database = new SQLiteAsyncConnection(dbPath);
+            database = new SQLiteAsyncConnection(dbPath, false);
             database.CreateTablesAsync<User, Bill, Usage, Transaction, Enquiry>().Wait();
             database.CreateTableAsync<Fault>().Wait();
-        }
-
-        public Task<List<User>> GetUsersAsync()
-        {
-            return database.Table<User>().ToListAsync();
-        }
-
-        /*
-        public async Task AddUsage(int usageID, double amount, string tier, string rate, string month)
-        {
             
         }
-        */
+
+        public async Task<List<User>> GetUsersAsync()
+        {
+            return await database.Table<User>().ToListAsync();
+        }
+        
+        
+        public List<Usage> GetUsageAsync()
+        {
+            var result = database.Table<Usage>().ToListAsync().Result;
+            return result;
+        }
+        
+        
     }
 }

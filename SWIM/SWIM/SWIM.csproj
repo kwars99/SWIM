@@ -7,10 +7,12 @@
 
   <ItemGroup>
     <None Remove="data.db" />
+    <None Remove="GettingStarted.txt" />
   </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Include="data.db" />
+    <EmbeddedResource Include="GettingStarted.txt" />
   </ItemGroup>
 
   <ItemGroup>
