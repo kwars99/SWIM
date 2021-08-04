@@ -10,40 +10,63 @@
     <ContentPage.BindingContext>
         <local:UsageViewModel/>
     </ContentPage.BindingContext>
-    
+
     <ContentPage.Content>
         <ScrollView>
             <StackLayout>
-                <Grid RowDefinitions="300, Auto, Auto, 300, 50">
-
-                    <chart:SfChart x:Name="barChart" 
+                <Grid RowDefinitions="300, Auto, Auto, Auto, 50">
+                    <!-- Chart-->
+                    <Frame Padding="0, 10, 0, 0">
+                        <chart:SfChart x:Name="barChart" 
                                    HeightRequest="300">
-                        <chart:SfChart.Title>
-                            <chart:ChartTitle Text="Monthly Usage"/>
-                        </chart:SfChart.Title>
 
-                        <chart:SfChart.PrimaryAxis>
-                            <chart:CategoryAxis>
-                                <chart:CategoryAxis.Title>
-                                    <chart:ChartAxisTitle Text="Month"/>
-                                </chart:CategoryAxis.Title>
-                            </chart:CategoryAxis>
-                        </chart:SfChart.PrimaryAxis>
+                            <chart:SfChart.PrimaryAxis>
+                                <chart:CategoryAxis ShowMajorGridLines="False">
+                                    <chart:CategoryAxis.Title>
+                                        <chart:ChartAxisTitle Text="Month"/>
+                                    </chart:CategoryAxis.Title>
+                                </chart:CategoryAxis>
+                            </chart:SfChart.PrimaryAxis>
 
-                        <chart:SfChart.SecondaryAxis>
-                            <chart:NumericalAxis>
-                                <chart:NumericalAxis.LabelStyle>
-                                    <chart:ChartAxisLabelStyle LabelFormat="##kL"/>
-                                </chart:NumericalAxis.LabelStyle>
-                            </chart:NumericalAxis>
-                        </chart:SfChart.SecondaryAxis>
+                            <chart:SfChart.SecondaryAxis>
+                                <chart:NumericalAxis ShowMajorGridLines="True"
+                                                     RangePadding="AppendInterval">
+                                    <chart:NumericalAxis.LabelStyle>
+                                        <chart:ChartAxisLabelStyle LabelFormat="##kL"/>
+                                    </chart:NumericalAxis.LabelStyle>
+                                </chart:NumericalAxis>
+                            </chart:SfChart.SecondaryAxis>
 
-                        <chart:ColumnSeries ItemsSource="{Binding LastThreeEntries}" 
-                                            XBindingPath="ReadingDate"
-                                            YBindingPath="Amount"
-                                            ListenPropertyChange="True"/>
+                            <chart:ColumnSeries ItemsSource="{Binding LastThreeEntries}" 
+                                                XBindingPath="ReadingDate"
+                                                YBindingPath="Amount">
+                                <chart:ColumnSeries.DataMarker>
+                                    <chart:ChartDataMarker ShowLabel="True">
+                                        <chart:ChartDataMarker.LabelStyle>
+                                            <chart:DataMarkerLabelStyle 
+                                                BackgroundColor="White"/>
+                                        </chart:ChartDataMarker.LabelStyle>
+                                    </chart:ChartDataMarker>
+                                </chart:ColumnSeries.DataMarker>
+                            </chart:ColumnSeries>
+                            
 
-                    </chart:SfChart>
+                            <chart:SfChart.ColorModel>
+                                <chart:ChartColorModel Palette="Custom">
+                                    <chart:ChartColorModel.CustomGradientColors>
+                                        <chart:ChartGradientColor StartPoint="0.5,1" EndPoint="0.5,0">
+                                            <chart:ChartGradientColor.GradientStops>
+                                                <chart:ChartGradientStop Color="#A3CEF1" Offset= "0"/>
+                                                <chart:ChartGradientStop Color="#2196F3" Offset= "1"/>
+                                            </chart:ChartGradientColor.GradientStops>
+                                        </chart:ChartGradientColor>
+                                    </chart:ChartColorModel.CustomGradientColors>
+                                </chart:ChartColorModel>
+                            </chart:SfChart.ColorModel>
+
+                        </chart:SfChart>
+                    </Frame>
+                    
 
                     <Grid Grid.Row="1">
                         <RadioButton FontSize="Small"
@@ -58,64 +81,69 @@
                                      Content="Cost"
                                      GroupName="UsageCostSwitch" 
                                      CheckedChanged="OnRadioButtonCheckedChanged" />
-                        <Label Grid.Row="2"
-                               x:Name="radioLabel" 
-                               Text="You have chosen: "/>
                     </Grid>
 
                     <!-- Monthly Usage -->
                     <Frame Grid.Row="2" Margin="10, 0, 10, 10">
-                        <StackLayout BindableLayout.ItemsSource="{Binding LastThreeEntries}">
-                            <BindableLayout.ItemTemplate>
-                                <DataTemplate>
-                                    <Label Text="{Binding ReadingDate}"/>
-                                </DataTemplate>
-                            </BindableLayout.ItemTemplate>
-                        </StackLayout>
-                        <!--
-                        <StackLayout x:Name="lastThreeUsages">
-                            <Label FontSize="Medium" Text="April:" />
-                            <Label Text="-Usage Information &amp; Cost" />
-                            <Label FontSize="Medium" Text="March:" />
-                            <Label Text="-Usage Information &amp; Cost" />
-                            <Label FontSize="Medium" Text="February:" />
-                            <Label Text="-Usage Information &amp; Cost" />
-                        </StackLayout>
-                        -->
+                        <StackLayout>
+                            <Grid>
+                                <Label FontSize="Large" 
+                                       FontAttributes="Bold"
+                                       Text="Month"/>
+                                <Label Grid.Column="1"
+                                       FontSize="Large"
+                                       FontAttributes="Bold"
+                                       Text="Usage"/>
+                            </Grid>
+                            <StackLayout BindableLayout.ItemsSource="{Binding LastThreeEntries}">
+                                <BindableLayout.ItemTemplate>
+                                    <DataTemplate>
+                                        <Grid>
+                                            <Label Grid.Column="0"
+                                                   Text ="{Binding ReadingDate,
+                                                                   StringFormat='{0:MMMM}'}"
+                                                   FontSize="Medium"/>
+                                            <Label Grid.Column="1"
+                                                   Text="{Binding Amount,
+                                                                  StringFormat='{0:##.## kL}'}"
+                                                   FontSize="Medium"/>
+                                        </Grid>
+                                    </DataTemplate>
+                                </BindableLayout.ItemTemplate>
+                            </StackLayout> 
+                        </StackLayout>                        
                     </Frame>
-
+                    
                     <!-- Previous Quarters -->
                     <Frame Grid.Row="3" Margin="10, 0, 10 , 10">
-                        <Grid>
-                            <Label FontAttributes="Bold" 
-                                   Text="Usage Period" />
-                            <Label FontAttributes="Bold" Grid.Column="1" 
-                                   Text="Usage" />
-                            <Label FontAttributes="Bold" Grid.Column="2" 
-                                   Text="Cost" />
-                            <Label Grid.Row="1" Text="22 Oct 20 -
-                                   22 Jan 21" />
-                            <Label Grid.Row="1" Grid.Column="1" 
-                                   Text="36 kL" />
-                            <Label Grid.Row="1" Grid.Column="2" 
-                                   Text="$225.67" />
-                            <Label Grid.Row="2" 
-                                   Text="21 Jul 20 -
-                                   21 Oct 20" />
-                            <Label Grid.Row="2" Grid.Column="1" 
-                                   Text="31 kL" />
-                            <Label Grid.Row="2" Grid.Column="2" 
-                                   Text="$198.54" />
-                            <Label Grid.Row="3" 
-                                   Text="22 Apr 20 -
-                                   22 Oct 20" />
-                            <Label Grid.Row="3" Grid.Column="1" 
-                                   Text="33 kL" />
-                            <Label Grid.Row="3" Grid.Column="2" 
-                                   Text="$211.37" />
-                        </Grid>
+                        <StackLayout>
+                            <Grid>
+                                <Label FontAttributes="Bold" 
+                                       Text="Usage Period" />
+                                <Label FontAttributes="Bold" Grid.Column="1" 
+                                       Text="Usage" />
+                                <Label FontAttributes="Bold" Grid.Column="2" 
+                                       Text="Cost" />
+                            </Grid>
+                            <StackLayout BindableLayout.ItemsSource="{Binding QuarterlyUsages}">
+                                <BindableLayout.ItemTemplate>
+                                    <DataTemplate>
+                                        <Grid>
+                                            <Label
+                                               Text="{Binding Quarter}"/>
+                                            <Label Grid.Column="1" 
+                                               Text="{Binding TotalUsage,
+                                                              StringFormat='{0:##.## kL}'}" />
+                                            <Label Grid.Column="2" 
+                                               Text="{Binding Cost,
+                                                               StringFormat='{0:$##.##}'}" />
+                                        </Grid>
+                                    </DataTemplate>
+                                </BindableLayout.ItemTemplate>
+                            </StackLayout>
+                        </StackLayout>
                     </Frame>
-
+                    
                     <!-- Report Usage Button -->
                     <Button Grid.Row ="4" 
                             Margin="10, 0, 10, 10"
