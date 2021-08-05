@@ -6,13 +6,13 @@ namespace SWIM.Models
 {
     public class FormattedUsage
     {
-        public string Quarter { get; set; }
+        public string TimePeriod { get; set; }
         public double TotalUsage { get; set; }
         public double Cost { get; set; }
 
-        public FormattedUsage(string quarter, double totalUsage, double cost)
+        public FormattedUsage(string timePeriod, double totalUsage, double cost)
         {
-            this.Quarter = quarter;
+            this.TimePeriod = timePeriod;
             this.TotalUsage = totalUsage;
             this.Cost = cost;
         }

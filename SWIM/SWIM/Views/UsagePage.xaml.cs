@@ -24,6 +24,19 @@ namespace SWIM.Views
         void OnRadioButtonCheckedChanged(object sender, CheckedChangedEventArgs e)
         {
             RadioButton button = sender as RadioButton;
+            
+            if (button.Content.ToString() == "Cost")
+            {
+                chartSeries.YBindingPath = "Cost";
+                yAxis.LabelStyle.LabelFormat = "$###";
+                chartSeries.Animate();
+            }
+            else
+            {
+                chartSeries.YBindingPath = "TotalUsage";
+                yAxis.LabelStyle.LabelFormat = "## kL";
+                chartSeries.Animate();
+            }
         }
     }
 }

@@ -29,17 +29,21 @@
                             </chart:SfChart.PrimaryAxis>
 
                             <chart:SfChart.SecondaryAxis>
-                                <chart:NumericalAxis ShowMajorGridLines="True"
+                                <chart:NumericalAxis x:Name="yAxis" 
+                                                     ShowMajorGridLines="True"
                                                      RangePadding="AppendInterval">
                                     <chart:NumericalAxis.LabelStyle>
-                                        <chart:ChartAxisLabelStyle LabelFormat="##kL"/>
+                                        <chart:ChartAxisLabelStyle LabelFormat="## kL"/>
                                     </chart:NumericalAxis.LabelStyle>
                                 </chart:NumericalAxis>
                             </chart:SfChart.SecondaryAxis>
 
-                            <chart:ColumnSeries ItemsSource="{Binding LastThreeEntries}" 
-                                                XBindingPath="ReadingDate"
-                                                YBindingPath="Amount">
+                            <chart:ColumnSeries x:Name="chartSeries"
+                                                ItemsSource="{Binding LastThreeEntries}"
+                                                EnableAnimation="True"
+                                                AnimationDuration="0.5"
+                                                XBindingPath="TimePeriod"
+                                                YBindingPath="TotalUsage">
                                 <chart:ColumnSeries.DataMarker>
                                     <chart:ChartDataMarker ShowLabel="True">
                                         <chart:ChartDataMarker.LabelStyle>
@@ -94,18 +98,26 @@
                                        FontSize="Large"
                                        FontAttributes="Bold"
                                        Text="Usage"/>
+                                <Label Grid.Column="2"
+                                       FontSize="Large"
+                                       FontAttributes="Bold"
+                                       Text="Cost"/>
                             </Grid>
                             <StackLayout BindableLayout.ItemsSource="{Binding LastThreeEntries}">
                                 <BindableLayout.ItemTemplate>
                                     <DataTemplate>
                                         <Grid>
                                             <Label Grid.Column="0"
-                                                   Text ="{Binding ReadingDate,
+                                                   Text ="{Binding TimePeriod,
                                                                    StringFormat='{0:MMMM}'}"
                                                    FontSize="Medium"/>
                                             <Label Grid.Column="1"
-                                                   Text="{Binding Amount,
+                                                   Text="{Binding TotalUsage,
                                                                   StringFormat='{0:##.## kL}'}"
+                                                   FontSize="Medium"/>
+                                            <Label Grid.Column="2"
+                                                   Text="{Binding Cost,
+                                                                  StringFormat='{0:$###.##}'}"
                                                    FontSize="Medium"/>
                                         </Grid>
                                     </DataTemplate>
@@ -130,7 +142,7 @@
                                     <DataTemplate>
                                         <Grid>
                                             <Label
-                                               Text="{Binding Quarter}"/>
+                                               Text="{Binding TimePeriod}"/>
                                             <Label Grid.Column="1" 
                                                Text="{Binding TotalUsage,
                                                               StringFormat='{0:##.## kL}'}" />

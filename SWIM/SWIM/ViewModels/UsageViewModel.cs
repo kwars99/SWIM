@@ -12,13 +12,12 @@ namespace SWIM.ViewModels
 {
     public class UsageViewModel : INotifyPropertyChanged
     {
-        
+        private const int NumOfEntries = 3;
+
         private List<Usage> data = new List<Usage>();
-        private List<Usage> lastThreeEntries = new List<Usage>();
-
+        private List<FormattedUsage> lastThreeEntries = new List<FormattedUsage>();
         //Added because lastThreeEntries was returning list with duplicated entries for some reason
-        private List<Usage> tempList = new List<Usage>();
-
+        private List<FormattedUsage> tempList = new List<FormattedUsage>();
         private List<FormattedUsage> quarterlyUsages = new List<FormattedUsage>();
 
         public List<Usage> Data
@@ -37,18 +36,27 @@ namespace SWIM.ViewModels
             }
         }
         
-        public List<Usage> LastThreeEntries
+        public List<FormattedUsage> LastThreeEntries
         {
             get 
             {
-                for (int i = 0; i < 3; i++)
+
+                for (int i = 0; i < NumOfEntries; i++)
                 {
-                    tempList.Add(data[i]);
+                    string month = data[i].ReadingDate.ToString("MMMM");
+                    double waterUsage = data[i].Amount;
+                    int numOfDays = DateTime.DaysInMonth(data[i].ReadingDate.Year, data[i].ReadingDate.Month);
+                    double cost = CalculateCost(waterUsage, numOfDays);
+
+                    FormattedUsage usage = new FormattedUsage(month, waterUsage, cost);
+
+                    tempList.Add(usage);
                 }
 
                 lastThreeEntries = tempList.Take(3).ToList();
 
                 return lastThreeEntries;
+                
             }
             set
             {
@@ -66,6 +74,7 @@ namespace SWIM.ViewModels
             {
                 for (int i = 0; i < data.Count; i += 3)
                 {
+                    //Format the string to be: Month Year - Month Year
                     string period = data[i + 2].ReadingDate.ToString("MMM yy") + "-" + data[i].ReadingDate.ToString("MMM yy");
 
                     double totalUsage = data[i].Amount + data[i + 1].Amount + data[i + 2].Amount;
