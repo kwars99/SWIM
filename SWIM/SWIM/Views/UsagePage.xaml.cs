@@ -29,12 +29,14 @@ namespace SWIM.Views
             {
                 chartSeries.YBindingPath = "Cost";
                 yAxis.LabelStyle.LabelFormat = "$###";
+                yAxis.Interval = 25;
                 chartSeries.Animate();
             }
             else
             {
                 chartSeries.YBindingPath = "TotalUsage";
                 yAxis.LabelStyle.LabelFormat = "## kL";
+                yAxis.Interval = 2;
                 chartSeries.Animate();
             }
         }

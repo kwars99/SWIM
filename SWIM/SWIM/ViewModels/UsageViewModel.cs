@@ -16,8 +16,6 @@ namespace SWIM.ViewModels
 
         private List<Usage> data = new List<Usage>();
         private List<FormattedUsage> lastThreeEntries = new List<FormattedUsage>();
-        //Added because lastThreeEntries was returning list with duplicated entries for some reason
-        private List<FormattedUsage> tempList = new List<FormattedUsage>();
         private List<FormattedUsage> quarterlyUsages = new List<FormattedUsage>();
 
         public List<Usage> Data
@@ -40,23 +38,7 @@ namespace SWIM.ViewModels
         {
             get 
             {
-
-                for (int i = 0; i < NumOfEntries; i++)
-                {
-                    string month = data[i].ReadingDate.ToString("MMMM");
-                    double waterUsage = data[i].Amount;
-                    int numOfDays = DateTime.DaysInMonth(data[i].ReadingDate.Year, data[i].ReadingDate.Month);
-                    double cost = CalculateCost(waterUsage, numOfDays);
-
-                    FormattedUsage usage = new FormattedUsage(month, waterUsage, cost);
-
-                    tempList.Add(usage);
-                }
-
-                lastThreeEntries = tempList.Take(3).ToList();
-
-                return lastThreeEntries;
-                
+                return lastThreeEntries;   
             }
             set
             {
@@ -72,20 +54,6 @@ namespace SWIM.ViewModels
         {
             get
             {
-                for (int i = 0; i < data.Count; i += 3)
-                {
-                    //Format the string to be: Month Year - Month Year
-                    string period = data[i + 2].ReadingDate.ToString("MMM yy") + "-" + data[i].ReadingDate.ToString("MMM yy");
-
-                    double totalUsage = data[i].Amount + data[i + 1].Amount + data[i + 2].Amount;
-
-                    int numOfDays = GetNumberOfDays(data[i].ReadingDate, data[i + 1].ReadingDate, data[i + 2].ReadingDate);
-
-                    double cost = CalculateCost(totalUsage, numOfDays);
-
-                    FormattedUsage usage = new FormattedUsage(period, totalUsage, cost);
-                    quarterlyUsages.Add(usage);
-                }
                 return quarterlyUsages;
             }
             set
@@ -102,11 +70,65 @@ namespace SWIM.ViewModels
         {
             data = App.Database.GetUsageAsync();
             data.Reverse();
+            FormatLastThree();
+            ComputeQuarterlyUsage();
+        }
+
+        /// <summary>
+        /// Formats the usage data to be in correct form for displaying the chart 
+        /// and the current quarters usage
+        /// </summary>
+        /// <returns> List of the mot current three usages </returns>
+        private List<FormattedUsage> FormatLastThree()
+        {
+            for (int i = 0; i < NumOfEntries; i++)
+            {
+                string month = data[i].ReadingDate.ToString("MMMM");
+                double waterUsage = data[i].Amount;
+                int numOfDays = DateTime.DaysInMonth(data[i].ReadingDate.Year, 
+                                                     data[i].ReadingDate.Month);
+                double cost = CalculateCost(waterUsage, numOfDays);
+
+                FormattedUsage usage = new FormattedUsage(month, waterUsage, cost);
+
+                lastThreeEntries.Add(usage);
+            }
+
+            return lastThreeEntries;
+        }
+
+        /// <summary>
+        /// Formats the usage data to be in correct form to display the previous 
+        /// quarters' usages.
+        /// </summary>
+        /// <returns></returns>
+        private List<FormattedUsage> ComputeQuarterlyUsage()
+        {
+            for (int i = 0; i < data.Count; i += 3)
+            {
+                string period = data[i + 2].ReadingDate.ToString("MMM \"'\"yy") + "-" + 
+                                data[i].ReadingDate.ToString("MMM \"'\"yy");
+
+                double totalUsage = data[i].Amount + data[i + 1].Amount + 
+                                    data[i + 2].Amount;
+
+                int numOfDays = GetNumberOfDays(data[i].ReadingDate, 
+                                                data[i + 1].ReadingDate, 
+                                                data[i + 2].ReadingDate);
+
+                double cost = CalculateCost(totalUsage, numOfDays);
+
+                FormattedUsage usage = new FormattedUsage(period, totalUsage, cost);
+                quarterlyUsages.Add(usage);
+            }
+
+            return quarterlyUsages;
         }
 
         /// <summary>
         /// Helper method that calculates the cost in a given quarter.
-        /// First checks if the total usage if above the threshold and assigns correct charges.
+        /// First checks if the total usage if above the threshold and assigns correct 
+        /// charges.
         /// </summary>
         /// <param name="totalUsage"></param>
         /// <param name="numOfDays"></param>
@@ -127,8 +149,10 @@ namespace SWIM.ViewModels
                 tierCharge = Constants.Tier1Charge;
             }
 
-            cost = (totalUsage * tierCharge) + (totalUsage * Constants.StateWaterCharge) +
-                (numOfDays * Constants.WaterAccesCharge) + (numOfDays * Constants.SewerageAccessCharge);
+            cost = (totalUsage * tierCharge) + 
+                   (totalUsage * Constants.StateWaterCharge) +
+                   (numOfDays * Constants.WaterAccesCharge) + 
+                   (numOfDays * Constants.SewerageAccessCharge);
 
             return cost;
         }
