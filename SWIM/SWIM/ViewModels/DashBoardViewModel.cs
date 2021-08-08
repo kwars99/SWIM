@@ -85,15 +85,16 @@ namespace SWIM.ViewModels
 
         private List<FormattedUsage> CalculateTotalUsages()
         {
+
             string period = usageData[2].ReadingDate.ToString("MMM \"'\"yy") + "-" +
                                 usageData[0].ReadingDate.ToString("MMM \"'\"yy");
             double usageAmount = usageData[0].Amount + usageData[1].Amount + usageData[2].Amount;
 
-            string usageID1 = usageData[0].UsageID.ToString();
-            string usageID2 = usageData[1].UsageID.ToString();
-            string usageID3 = usageData[2].UsageID.ToString();
+            //string usageID1 = usageData[0].UsageID.ToString();
+            //string usageID2 = usageData[1].UsageID.ToString();
+            //string usageID3 = usageData[2].UsageID.ToString();
 
-            string IDs = String.Format("{0},{1},{2}", usageID1, usageID2, usageID3);
+            //string IDs = String.Format("{0},{1},{2}", usageID1, usageID2, usageID3);
 
             double costAmount = billData[0].Amount;
 

@@ -21,15 +21,15 @@ namespace SWIM.Views
             BindingContext = new DashBoardViewModel();
         }
 
-        
-        //protected override async void OnAppearing()
-        //{
-            //base.OnAppearing();
 
-            // Retrieve all the notes from the database, and set them as the
-            // data source for the CollectionView.
-            //collectionView.ItemsSource = await App.Database.GetUsersAsync();
+        //protected override async void onappearing()
+        //{
+        //    //base.onappearing();
+
+        //    // retrieve all the notes from the database, and set them as the
+        //    // data source for the collectionview.
+        //    collectionview.itemssource = await app.database.getusersasync();
         //}
-        
+
     }
 }
