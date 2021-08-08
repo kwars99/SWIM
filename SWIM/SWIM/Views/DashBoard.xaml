@@ -28,31 +28,42 @@
                             <BindableLayout.ItemTemplate>
                                 <DataTemplate>
                                     <StackLayout>
-                                        <Grid>
-                                            <Label Text="{Binding TimePeriod}"/>
-                                            <Label Grid.Column="1" Text="{Binding Cost}"/>
-                                            <Label Grid.Column="2" Text="{Binding TotalUsage}"/>
-                                        </Grid>
+                                        <Label Text="{Binding Cost, StringFormat= '{0: Outstanding Bill of $###.##}'}"
+                                               FontSize="Medium"
+                                               HorizontalTextAlignment="Center"
+                                               TextColor="Red"/>
+                                        <Label Text="{Binding TimePeriod}"
+                                               FontSize="Small"
+                                               HorizontalTextAlignment="Center"/>
+                                        <Label Text="{Binding TotalUsage, StringFormat='{0: Usage Amount: ##.# kL}'}"
+                                               HorizontalTextAlignment="Center"/>
+
                                     </StackLayout>
                                 </DataTemplate>
                             </BindableLayout.ItemTemplate>
                         </StackLayout>
-                        <Label Text="{Binding DueDate}"/>
+                        <StackLayout>
+                            <Label Text="{Binding DueDate}"
+                                   FontSize="Medium"
+                                   HorizontalTextAlignment="Center"
+                                   TextColor="red"
+                                   FontAttributes="Bold"/>
+                            <Button Text="Pay Bill"
+                                    Clicked="Button_Clicked"/>
+                        </StackLayout>
                     </StackLayout>
-                    
                 </Frame>
 
-                <Frame Padding="0,0,0,0" Margin="10,0,10,0" BorderColor="Black" HeightRequest="325">
+                
+
+                <Frame Padding="0,0,0,0" Margin="10,0,10,0" BorderColor="Black" HeightRequest="240">
                     <StackLayout>
                         <Label Text="Overview" HorizontalTextAlignment="Center" HeightRequest="150" 
                                VerticalTextAlignment="Center" BackgroundColor="LightBlue" Margin="5,5,5,0"/>
 
                         <Label Text="Usage Tracker" HorizontalTextAlignment="Center" HeightRequest="75" 
                                VerticalTextAlignment="Center" BackgroundColor="LightBlue" Margin="5,0,5,0"/>
-
-                        <Label Text="Payment Reminder" HorizontalTextAlignment="Center" HeightRequest="75" 
-                               VerticalTextAlignment="Center" BackgroundColor="LightBlue" Margin="5,0,5,5"/>
-
+                        
                     </StackLayout>
                 </Frame>
 

@@ -21,6 +21,11 @@ namespace SWIM.Views
             BindingContext = new DashBoardViewModel();
         }
 
+        private async void Button_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new BillsPage());
+        }
+
 
         //protected override async void onappearing()
         //{

@@ -97,6 +97,7 @@ namespace SWIM.ViewModels
 
             string billingPeriod = usageData[2].ReadingDate.ToString("MMM \"'\"yy") + "-" +
                                 usageData[0].ReadingDate.ToString("MMM \"'\"yy");
+            string formatBillingPeriod = "Billing Period: "+ billingPeriod;
             double waterUsage = usageData[0].Amount + usageData[1].Amount + usageData[2].Amount;
 
             //string usageID1 = usageData[0].UsageID.ToString();
@@ -109,12 +110,17 @@ namespace SWIM.ViewModels
 
             double billCost = unpaidBills[0].Amount;
 
-            dueDate = unpaidBills[0].DueDate.ToString();
+            string formatDueDate = "Due On: ";
 
-            FormattedUsage formattedUsage = new FormattedUsage(billingPeriod, waterUsage, billCost);
+            dueDate = unpaidBills[0].DueDate.ToString(formatDueDate + "dd/MMM");
+
+
+            FormattedUsage formattedUsage = new FormattedUsage(formatBillingPeriod, waterUsage, billCost);
+
 
             billUsage.Add(formattedUsage);
-            
+
+
             return billUsage;
         }
 
