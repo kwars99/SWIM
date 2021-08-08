@@ -21,7 +21,7 @@ namespace SWIM.Views
         {
             App.IsUserLoggedIn = false;
             Application.Current.MainPage = new AppShell();
-            await Shell.Current.GoToAsync("//LoginPage");
+            await Shell.Current.GoToAsync($"//{nameof(LoginPage)}");
         }
     }
 }

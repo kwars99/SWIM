@@ -3,11 +3,17 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:local="clr-namespace:SWIM.ViewModels"
              mc:Ignorable="d"
              x:Class="SWIM.Views.LoginPage"
+             x:DataType="local:LoginViewModel"
              Shell.FlyoutBehavior="Disabled"
              Shell.NavBarIsVisible="False">
 
+    <ContentPage.BindingContext>
+        <local:LoginViewModel/>
+    </ContentPage.BindingContext>
+    
     <ContentPage.Content>
         <Frame>
             <Frame.Background>
@@ -25,7 +31,7 @@
                 </LinearGradientBrush>
             </Frame.Background>
             <StackLayout Padding="10,20,10,20" VerticalOptions="Start" Margin="10, 30, 10, 30">
-                <Label Margin="0, 0, 0, 30" VerticalOptions="Start" Text="SMART WATERING SYSTEM" FontSize="30" 
+                <Label Margin="0, 0, 0, 30" VerticalOptions="Start" Text="SMART WATER INFORMATION MONITORING" FontSize="20" 
                    FontAttributes="Bold" HorizontalTextAlignment="Center"/>
 
                 <Image Source="swim_logo.png" />
@@ -33,13 +39,13 @@
                 <Label Text="Sign in"  HorizontalTextAlignment="Center"
                    FontSize="25"/>
 
-                <Entry x:Name="emailEntry" Placeholder="Email"/>
+                <Entry x:Name="emailEntry" Placeholder="Email" Text="{Binding Email}"/>
 
-                <Entry x:Name="passwordEntry" IsPassword="True" Placeholder="Password"/>
+                <Entry x:Name="passwordEntry" IsPassword="True" Placeholder="Password" Text="{Binding Password}"/>
 
-                <Button VerticalOptions="End" Text="Sign in" Clicked="Button_Clicked"/>
+                <Button VerticalOptions="End" Text="Sign in" Command="{Binding LoginCommand}"/>
 
-                <Label x:Name="messageLabel" />
+                <Label Text="{Binding ErrorMessage}" IsVisible="{Binding IsVisible}"/>
             </StackLayout>
         </Frame>
     </ContentPage.Content>
