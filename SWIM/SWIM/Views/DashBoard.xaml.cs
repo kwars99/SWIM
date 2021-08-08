@@ -1,9 +1,11 @@
-﻿using System;
+﻿using SWIM.Models;
+using SWIM.ViewModels;
+using Syncfusion.SfChart.XForms;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -15,17 +17,19 @@ namespace SWIM.Views
         public DashBoard()
         {
             InitializeComponent();
+
+            BindingContext = new DashBoardViewModel();
         }
 
         
-        protected override async void OnAppearing()
-        {
-            base.OnAppearing();
+        //protected override async void OnAppearing()
+        //{
+            //base.OnAppearing();
 
             // Retrieve all the notes from the database, and set them as the
             // data source for the CollectionView.
-            collectionView.ItemsSource = await App.Database.GetUsersAsync();
-        }
+            //collectionView.ItemsSource = await App.Database.GetUsersAsync();
+        //}
         
     }
 }
