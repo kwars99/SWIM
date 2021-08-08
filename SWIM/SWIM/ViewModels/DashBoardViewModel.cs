@@ -30,6 +30,7 @@ namespace SWIM.ViewModels
                 {
                     billData = value;
                     OnPropertyChanged(nameof(BillData));
+                    
                 }
             }
 
@@ -53,6 +54,8 @@ namespace SWIM.ViewModels
             }
 
         }
+
+        
 
         public List<FormattedUsage> TotalUsages
         {
@@ -82,7 +85,6 @@ namespace SWIM.ViewModels
 
         private List<FormattedUsage> CalculateTotalUsages()
         {
-            usageData = billData.Where(x => x.PaidStatus = "unpaid");
             string period = usageData[2].ReadingDate.ToString("MMM \"'\"yy") + "-" +
                                 usageData[0].ReadingDate.ToString("MMM \"'\"yy");
             double usageAmount = usageData[0].Amount + usageData[1].Amount + usageData[2].Amount;
@@ -97,11 +99,12 @@ namespace SWIM.ViewModels
 
             FormattedUsage formatted = new FormattedUsage(period, usageAmount, costAmount);
 
+
             totalUsages.Add(formatted);
 
             return totalUsages;
-        }
 
+        }
 
         private void OnPropertyChanged(string property)
         {
@@ -109,6 +112,8 @@ namespace SWIM.ViewModels
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
+
     }
+              
 }
 

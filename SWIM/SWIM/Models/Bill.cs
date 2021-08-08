@@ -25,7 +25,7 @@ namespace SWIM.Models
         public DateTime DueDate { get; set; }
 
         [Column("status")]
-        public bool PaidStatus { get; set; }
+        public string PaidStatus { get; set; }
 
         [Column("usage")]
         public string UsageIDs { get; set; }
