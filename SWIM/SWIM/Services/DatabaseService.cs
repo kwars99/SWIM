@@ -49,6 +49,11 @@ namespace SWIM.Services
             return result;
         }
         
+        public List<Bill> GetBillsAsync()
+        {
+            var result = database.Table<Bill>().ToListAsync().Result;
+            return result;
+        }
         
     }
 }

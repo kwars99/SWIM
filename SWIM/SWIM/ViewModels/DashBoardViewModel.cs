@@ -13,82 +13,91 @@ namespace SWIM.ViewModels
     class DashBoardViewModel : INotifyPropertyChanged
     {
         private List<Bill> billData = new List<Bill>();
+        private List<Bill> unpaidBills = new List<Bill>();
         private List<Usage> usageData = new List<Usage>();
-        private List<FormattedUsage> totalUsages = new List<FormattedUsage>();
+        private List<FormattedUsage> billUsage = new List<FormattedUsage>();
+        private string dueDate;
 
         public List<Bill> BillData
         {
             get
             {
                 return billData;
-
             }
-
             set
             {
                 if (billData != value)
                 {
                     billData = value;
-                    OnPropertyChanged(nameof(BillData));
-                    
+                    OnPropertyChanged(nameof(BillData));                   
                 }
             }
-
         }
 
-        public List<Usage> UsagaData
+        public List<Usage> UsageData
         {
             get
             {
                 return usageData;
-
             }
-
             set
             {
                 if (usageData != value)
                 {
                     usageData = value;
-                    OnPropertyChanged(nameof(UsagaData));
+                    OnPropertyChanged(nameof(UsageData));
                 }
             }
 
         }
 
-        
-
-        public List<FormattedUsage> TotalUsages
+        public List<FormattedUsage> BillUsage
         {
             get
             {
-                return totalUsages;
-
+                return billUsage;
             }
-
             set
             {
-                if (totalUsages != value)
+                if (billUsage != value)
                 {
-                    totalUsages = value;
-                    OnPropertyChanged(nameof(TotalUsages));
+                    billUsage = value;
+                    OnPropertyChanged(nameof(billUsage));
                 }
             }
+        }
 
+        public string DueDate
+        {
+            get
+            {
+                return dueDate;
+            }
+            set
+            {
+                if (dueDate != value)
+                {
+                    dueDate = value;
+                    OnPropertyChanged(nameof(DueDate));
+                }
+            }
         }
 
         public DashBoardViewModel()
         {
             usageData = App.Database.GetUsageAsync();
             usageData.Reverse();
-            CalculateTotalUsages();
+
+            billData = App.Database.GetBillsAsync();
+            FormatBillData();
         }
 
-        private List<FormattedUsage> CalculateTotalUsages()
+        private List<FormattedUsage> FormatBillData()
         {
 
-            string period = usageData[2].ReadingDate.ToString("MMM \"'\"yy") + "-" +
+            string billingPeriod = usageData[2].ReadingDate.ToString("MMM \"'\"yy") + "-" +
                                 usageData[0].ReadingDate.ToString("MMM \"'\"yy");
-            double usageAmount = usageData[0].Amount + usageData[1].Amount + usageData[2].Amount;
+            double waterUsage = usageData[0].Amount + usageData[1].Amount + usageData[2].Amount;
 
             //string usageID1 = usageData[0].UsageID.ToString();
             //string usageID2 = usageData[1].UsageID.ToString();
@@ -96,24 +105,25 @@ namespace SWIM.ViewModels
 
             //string IDs = String.Format("{0},{1},{2}", usageID1, usageID2, usageID3);
 
-            double costAmount = billData[0].Amount;
+            unpaidBills = billData.Where(x => x.PaidStatus == "unpaid").ToList();
 
-            FormattedUsage formatted = new FormattedUsage(period, usageAmount, costAmount);
+            double billCost = unpaidBills[0].Amount;
 
+            dueDate = unpaidBills[0].DueDate.ToString();
 
-            totalUsages.Add(formatted);
+            FormattedUsage formattedUsage = new FormattedUsage(billingPeriod, waterUsage, billCost);
 
-            return totalUsages;
-
+            billUsage.Add(formattedUsage);
+            
+            return billUsage;
         }
 
         private void OnPropertyChanged(string property)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(property));
         }
-
+        
         public event PropertyChangedEventHandler PropertyChanged;
-
     }
               
 }

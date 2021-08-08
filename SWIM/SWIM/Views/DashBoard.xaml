@@ -1,55 +1,73 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:local="clr-namespace:SWIM.ViewModels"
              x:Class="SWIM.Views.DashBoard"
              Title="Dashboard"
              Style="{StaticResource PageStyle}">
 
+    <ContentPage.BindingContext>
+        <local:DashBoardViewModel/>
+    </ContentPage.BindingContext>
+
     <ContentPage.Content>
-        <CollectionView x:Name="collectionView">
-            <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <StackLayout Margin="10, 10, 10, 0" VerticalOptions="Start">
-                        <StackLayout>
+        <ScrollView>
+            <StackLayout>
 
-                            <Picker x:Name="Properties" Title="Select Property">
-                                <Picker.Items>
-                                    <x:String>Home</x:String>
-                                    <x:String>Apartment</x:String>
-                                </Picker.Items>
+                <Picker x:Name="Properties" Title="Select Property">
+                    <Picker.Items>
+                        <x:String>Home</x:String>
+                        <x:String>Apartment</x:String>
+                    </Picker.Items>
 
-                            </Picker>
+                </Picker>
 
+                <Frame>
+                    <StackLayout>
+                        <StackLayout BindableLayout.ItemsSource="{Binding BillUsage}">
+                            <BindableLayout.ItemTemplate>
+                                <DataTemplate>
+                                    <StackLayout>
+                                        <Grid>
+                                            <Label Text="{Binding TimePeriod}"/>
+                                            <Label Grid.Column="1" Text="{Binding Cost}"/>
+                                            <Label Grid.Column="2" Text="{Binding TotalUsage}"/>
+                                        </Grid>
+                                    </StackLayout>
+                                </DataTemplate>
+                            </BindableLayout.ItemTemplate>
+                        </StackLayout>
+                        <Label Text="{Binding DueDate}"/>
+                    </StackLayout>
+                    
+                </Frame>
 
-                            <Frame Padding="0,0,0,0" Margin="10,0,10,0" BorderColor="Black" HeightRequest="325">
-                                <StackLayout>
-                                    <Label Text="Overview" HorizontalTextAlignment="Center" HeightRequest="150" 
+                <Frame Padding="0,0,0,0" Margin="10,0,10,0" BorderColor="Black" HeightRequest="325">
+                    <StackLayout>
+                        <Label Text="Overview" HorizontalTextAlignment="Center" HeightRequest="150" 
                                VerticalTextAlignment="Center" BackgroundColor="LightBlue" Margin="5,5,5,0"/>
 
-                                    <Label Text="Usage Tracker" HorizontalTextAlignment="Center" HeightRequest="75" 
+                        <Label Text="Usage Tracker" HorizontalTextAlignment="Center" HeightRequest="75" 
                                VerticalTextAlignment="Center" BackgroundColor="LightBlue" Margin="5,0,5,0"/>
 
-                                    <Label Text="Payment Reminder" HorizontalTextAlignment="Center" HeightRequest="75" 
+                        <Label Text="Payment Reminder" HorizontalTextAlignment="Center" HeightRequest="75" 
                                VerticalTextAlignment="Center" BackgroundColor="LightBlue" Margin="5,0,5,5"/>
 
-                                </StackLayout>
-                            </Frame>
-
-                            <Frame Padding="0,0,0,0" Margin="10,0,10,0" BorderColor="Black" HeightRequest="150">
-                                <Label Text="Weather Updates" HorizontalTextAlignment="Center" HeightRequest="140" 
-                               VerticalTextAlignment="Center" BackgroundColor="LightBlue" Margin="5,5,5,5"/>
-                            </Frame>
-
-
-                            <Frame Padding="0,0,0,0" Margin="10,0,10,0" BorderColor="Black" HeightRequest="150">
-                                <Label Text="News and Tips" HorizontalTextAlignment="Center" HeightRequest="140"
-                           VerticalTextAlignment="Center" BackgroundColor="LightBlue" Margin="5,5,5,5"/>
-                            </Frame>
-
-                        </StackLayout>
                     </StackLayout>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
+                </Frame>
+
+                <Frame Padding="0,0,0,0" Margin="10,0,10,0" BorderColor="Black" HeightRequest="150">
+                    <Label Text="Weather Updates" HorizontalTextAlignment="Center" HeightRequest="140" 
+                               VerticalTextAlignment="Center" BackgroundColor="LightBlue" Margin="5,5,5,5"/>
+                </Frame>
+
+
+                <Frame Padding="0,0,0,0" Margin="10,0,10,0" BorderColor="Black" HeightRequest="150">
+                    <Label Text="News and Tips" HorizontalTextAlignment="Center" HeightRequest="140"
+                           VerticalTextAlignment="Center" BackgroundColor="LightBlue" Margin="5,5,5,5"/>
+                </Frame>
+
+            </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>
