@@ -28,7 +28,6 @@ namespace SWIM.ViewModels
                 if (email != value)
                 {
                     email = value;
-                    //SetProperty(ref _email, value);
                     OnPropertyChanged(nameof(Email));
                 }
             }
@@ -45,7 +44,6 @@ namespace SWIM.ViewModels
                 if (password != value) 
                 {
                     password = value;
-                    //SetProperty(ref _password, value);
                     OnPropertyChanged(nameof(Password));
                 }
             }
@@ -59,10 +57,10 @@ namespace SWIM.ViewModels
             }
             set
             {
-                if (errorMessage != null)
+                if (errorMessage != value)
                 {
                     errorMessage = value;
-                    SetProperty(ref errorMessage, value);
+                    OnPropertyChanged(nameof(ErrorMessage));
                 }
             }
         }
@@ -105,7 +103,9 @@ namespace SWIM.ViewModels
             }
             else
             {
-                isVisible = true;
+                IsVisible = true;
+                Email = "";
+                Password = "";
             }
         }
 

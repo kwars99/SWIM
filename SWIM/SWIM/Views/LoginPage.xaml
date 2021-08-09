@@ -4,6 +4,7 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:local="clr-namespace:SWIM.ViewModels"
+             xmlns:converter="clr-namespace:SWIM.Services"
              mc:Ignorable="d"
              x:Class="SWIM.Views.LoginPage"
              x:DataType="local:LoginViewModel"
@@ -13,6 +14,12 @@
     <ContentPage.BindingContext>
         <local:LoginViewModel/>
     </ContentPage.BindingContext>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converter:InverseBoolConverter x:Key="InverseBool"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
     
     <ContentPage.Content>
         <Frame>
@@ -45,7 +52,7 @@
 
                 <Button VerticalOptions="End" Text="Sign in" Command="{Binding LoginCommand}"/>
 
-                <Label Text="{Binding ErrorMessage}" IsVisible="{Binding IsVisible}"/>
+                <Label Text="{Binding ErrorMessage}" IsVisible="{Binding IsVisible, Converter={StaticResource InverseBool}}"/>
             </StackLayout>
         </Frame>
     </ContentPage.Content>
