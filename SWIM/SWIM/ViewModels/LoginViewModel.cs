@@ -1,18 +1,24 @@
 ﻿using SWIM.Models;
+using SWIM.Services;
 using SWIM.Views;
 using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows.Input;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace SWIM.ViewModels
 {
     public class LoginViewModel : BaseViewModel
     {
+        private readonly LoginService loginService;
+
         private string email, password, 
                        errorMessage = "You have entered incorrect email or password";
-        private bool isVisible;
+
+        private bool isVisible, rememberMe;
+
         private User user = new User();
 
         public ICommand LoginCommand { get; }
@@ -81,21 +87,50 @@ namespace SWIM.ViewModels
             }
         }
 
+        public bool RememberMe
+        {
+            get
+            {
+                return rememberMe;
+            }
+            set
+            {
+                if (rememberMe != value)
+                {
+                    rememberMe = value;
+                    OnPropertyChanged(nameof(RememberMe));
+                }
+            }
+        }
+
         public LoginViewModel()
         {
             LoginCommand = new Command(OnLoginClicked);
+            loginService =  new LoginService();
         }
 
         private async void OnLoginClicked()
         {
-
             user.Email = email;
             user.Password = password;
 
-            var isValid = CredentialCheck(user);
+            var isValid = loginService.CredentialCheck(user.Email, user.Password);
 
             if (isValid)
             {
+                if (RememberMe)
+                {
+                    try
+                    {
+                        await SecureStorage.SetAsync(Constants.UserKey, user.Email);
+                        await SecureStorage.SetAsync(Constants.PwdKey, user.Password);
+                    }
+                    catch (Exception ex)
+                    {
+                        // Possible that device doesn't support secure storage on device.
+                    }        
+                }
+
                 App.IsUserLoggedIn = true;
                 Application.Current.MainPage = new AppShell();
                 await Shell.Current.GoToAsync($"//{nameof(DashBoard)}");
@@ -107,11 +142,6 @@ namespace SWIM.ViewModels
                 Email = "";
                 Password = "";
             }
-        }
-
-        private bool CredentialCheck(User user)
-        {
-            return user.Email == Constants.Email && user.Password == Constants.Passwword;
         }
     }
 }

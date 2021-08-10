@@ -34,8 +34,6 @@ namespace SWIM
 
             InitializeComponent();
 
-            DependencyService.Register<MockDataStore>();
-
             if (!IsUserLoggedIn)
             {
                 MainPage = new LoginPage();
@@ -47,6 +45,7 @@ namespace SWIM
 
         protected override void OnStart()
         {
+            LoginAutomatically();
         }
 
         protected override void OnSleep()
@@ -55,6 +54,26 @@ namespace SWIM
 
         protected override void OnResume()
         {
+        }
+
+        private async void LoginAutomatically()
+        {
+            var loginService = new LoginService();
+            var username = await SecureStorage.GetAsync(Constants.UserKey);
+            var password = await SecureStorage.GetAsync(Constants.PwdKey);
+
+            if (loginService.CredentialCheck(username, password))
+            {
+                IsUserLoggedIn = true;
+                MainPage = new AppShell();
+                await Shell.Current.GoToAsync($"//{nameof(DashBoard)}");
+            }
+            else
+            {
+                IsUserLoggedIn = false;
+                MainPage = new LoginPage();
+                await Shell.Current.GoToAsync($"//{nameof(LoginPage)}");
+            }
         }
     }
 }
