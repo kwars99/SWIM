@@ -6,15 +6,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using SWIM.Models;
+using SWIM.Views;
 using Xamarin.Forms;
 
 namespace SWIM.ViewModels
 {
     public class BillViewModel : INotifyPropertyChanged
     {
+        
         private List<Bill> data = new List<Bill>();
         private List<Bill> unpaidBills = new List<Bill>();
         private List<FormattedBill> paidBills = new List<FormattedBill>();
+
+        public Command GoToPayment { get; }
 
         public List<Bill> Data
         {
@@ -67,6 +71,8 @@ namespace SWIM.ViewModels
 
         public BillViewModel()
         {
+            GoToPayment = new Command(OnPayBillClicked);
+
             data = App.Database.GetBillAsync();
             data.Reverse();
             FormatPaidBills();
@@ -85,6 +91,11 @@ namespace SWIM.ViewModels
                 paidBills.Add(paidbill);
             }
             return paidBills;
+        }
+
+        private async void OnPayBillClicked(object obj)
+        {
+            await Shell.Current.Navigation.PushAsync(new PaymentPage());
         }
 
         private void OnPropertyChanged(string propertyName)

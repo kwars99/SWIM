@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:local="clr-namespace:SWIM.ViewModels"
+             x:Class="SWIM.Views.PaymentPage"
+             x:DataType="local:PaymentPageViewModel"
+             Title="Make a Payment">
+
+    <ContentPage.BindingContext>
+        <local:PaymentPageViewModel/>
+    </ContentPage.BindingContext>
+    
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout>
+                <Frame>
+                    <StackLayout>
+                        <Label Text="Address: "/>
+                        <Label Text="Account number: "/>
+                        <Label Text="Amount owed: "/>
+                        <Label Text="How will you pay: "/>
+                    </StackLayout>
+                </Frame>
+                <Frame>
+                    <StackLayout>
+                        <Label Text="Payment options"/>
+                        <BoxView BackgroundColor="Gray"
+                                 HeightRequest="300"/>
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="Save this card: "/>
+                            <CheckBox/>
+                        </StackLayout>
+                    </StackLayout>
+                </Frame>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+    
+</ContentPage>
