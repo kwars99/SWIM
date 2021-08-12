@@ -1,6 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:local="clr-namespace:SWIM.ViewModels"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:local="clr-namespace:SWIM.ViewModels"
+             xmlns:magic="clr-namespace:MagicGradients;assembly=MagicGradients"
              x:Class="SWIM.Views.PaymentPage"
              x:DataType="local:PaymentPageViewModel"
              Title="Make a Payment">
@@ -8,29 +10,86 @@
     <ContentPage.BindingContext>
         <local:PaymentPageViewModel/>
     </ContentPage.BindingContext>
+
+    <ContentPage.Resources>
+        <StyleSheet Source="../Styles/LinearGradient.css"/>
+    </ContentPage.Resources>
     
     <ContentPage.Content>
         <ScrollView>
             <StackLayout>
-                <Frame>
-                    <StackLayout>
-                        <Label Text="Address: "/>
-                        <Label Text="Account number: "/>
-                        <Label Text="Amount owed: "/>
-                        <Label Text="How will you pay: "/>
-                    </StackLayout>
-                </Frame>
-                <Frame>
-                    <StackLayout>
-                        <Label Text="Payment options"/>
-                        <BoxView BackgroundColor="Gray"
-                                 HeightRequest="300"/>
-                        <StackLayout Orientation="Horizontal">
-                            <Label Text="Save this card: "/>
-                            <CheckBox/>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="200"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <Grid>
+                        <magic:GradientView VerticalOptions="FillAndExpand" StyleClass="gradientStyledWithCss"/>
+                        <StackLayout HorizontalOptions="Center"
+                                     VerticalOptions="Center"
+                                     Margin="0, 0, 0, 50">
+                            <Label Text="Amount Owing: "
+                                   TextColor="White"
+                                   FontSize="Medium"
+                                   FontAttributes="Bold"
+                                   HorizontalTextAlignment="Center"/>
+                            <Label Text="$360.00"
+                                   TextColor="White"
+                                   FontSize="Title"
+                                   FontAttributes="Bold"
+                                   HorizontalTextAlignment="Center"/>
                         </StackLayout>
-                    </StackLayout>
-                </Frame>
+                    </Grid>
+
+                    <Grid Grid.Row="0"
+                          Grid.RowSpan="2"
+                          Margin="14,150,14,0"
+                          ColumnSpacing="0"
+                          IsClippedToBounds="True"
+                          RowSpacing="0">
+
+                        <!-- Payment Form-->
+                        <Frame Grid.Row="0"
+                               Grid.ColumnSpan="2"
+                               BackgroundColor="White"
+                               CornerRadius="6"
+                               HasShadow="True"
+                               BorderColor="Gray">
+
+                            <StackLayout x:Name="cardPaymentForm" IsVisible="True">
+                                <Grid RowDefinitions="50, 50, 50, 50, 50"
+                                      ColumnDefinitions="*,*,*">
+
+                                    <Grid ColumnDefinitions="*,*,*"
+                                          Grid.ColumnSpan="3">
+                                        <Button Text="Credit Card"/>
+                                        <Button Grid.Column="1" Text="BPAY"/>
+                                        <Button Grid.Column="2" Text="Other"/>
+                                    </Grid>
+
+                                    <Entry Placeholder="Card Number" 
+                                           Grid.Row="1"
+                                           Grid.ColumnSpan="3"
+                                           Margin="10, 0, 10, 0"/>
+
+                                    <Entry Placeholder="Expiry" 
+                                           Grid.Row="2"
+                                           Margin="10, 0, 10, 0"/>
+
+                                    <Entry Placeholder="CVV" 
+                                           Grid.Row="2"
+                                           Grid.Column="1"
+                                           Margin="10, 0, 0, 0"/>
+
+                                    <Button Grid.Row="3"
+                                            Grid.Column="1"
+                                            Text="Pay Now"/>
+                                </Grid>
+                            </StackLayout>
+                        </Frame>
+                    </Grid>
+                </Grid>
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>
