@@ -22,7 +22,7 @@ namespace SWIM.ViewModels
         {
             get 
             {
-                return data; 
+                return data;
             }
             set
             {

@@ -15,6 +15,8 @@ namespace SWIM
 
         static DatabaseService database;
 
+        private LoginService loginService;
+
         public static DatabaseService Database
         {
             get
@@ -32,9 +34,9 @@ namespace SWIM
             
             Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense(Constants.APIKey);
 
-            InitializeComponent();
+            loginService = new LoginService();
 
-            DependencyService.Register<MockDataStore>();
+            InitializeComponent();
 
             if (!IsUserLoggedIn)
             {
@@ -47,6 +49,7 @@ namespace SWIM
 
         protected override void OnStart()
         {
+            loginService.LoginAutomatically();
         }
 
         protected override void OnSleep()
