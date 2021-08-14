@@ -22,11 +22,11 @@ namespace SWIM.Views
         
         protected override async void OnAppearing()
         {
-            base.OnAppearing();
             if (App.IsUserLoggedIn)
             {
                 await Shell.Current.GoToAsync($"//{nameof(DashBoard)}");
             }
         }
+        
     }
 }

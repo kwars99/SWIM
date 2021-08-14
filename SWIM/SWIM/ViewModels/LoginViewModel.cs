@@ -118,6 +118,7 @@ namespace SWIM.ViewModels
 
             if (isValid)
             {
+                
                 if (RememberMe)
                 {
                     try
@@ -130,7 +131,12 @@ namespace SWIM.ViewModels
                         // Possible that device doesn't support secure storage on device.
                     }        
                 }
-
+                else
+                {
+                    SecureStorage.Remove(Constants.UserKey);
+                    SecureStorage.Remove(Constants.PwdKey);
+                }
+                
                 App.IsUserLoggedIn = true;
                 Application.Current.MainPage = new AppShell();
                 await Shell.Current.GoToAsync($"//{nameof(DashBoard)}");

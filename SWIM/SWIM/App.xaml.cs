@@ -15,6 +15,8 @@ namespace SWIM
 
         static DatabaseService database;
 
+        private LoginService loginService;
+
         public static DatabaseService Database
         {
             get
@@ -32,6 +34,8 @@ namespace SWIM
             
             Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense(Constants.APIKey);
 
+            loginService = new LoginService();
+
             InitializeComponent();
 
             if (!IsUserLoggedIn)
@@ -45,7 +49,7 @@ namespace SWIM
 
         protected override void OnStart()
         {
-            LoginAutomatically();
+            loginService.LoginAutomatically();
         }
 
         protected override void OnSleep()
@@ -54,26 +58,6 @@ namespace SWIM
 
         protected override void OnResume()
         {
-        }
-
-        private async void LoginAutomatically()
-        {
-            var loginService = new LoginService();
-            var username = await SecureStorage.GetAsync(Constants.UserKey);
-            var password = await SecureStorage.GetAsync(Constants.PwdKey);
-
-            if (loginService.CredentialCheck(username, password))
-            {
-                IsUserLoggedIn = true;
-                MainPage = new AppShell();
-                await Shell.Current.GoToAsync($"//{nameof(DashBoard)}");
-            }
-            else
-            {
-                IsUserLoggedIn = false;
-                MainPage = new LoginPage();
-                await Shell.Current.GoToAsync($"//{nameof(LoginPage)}");
-            }
         }
     }
 }
