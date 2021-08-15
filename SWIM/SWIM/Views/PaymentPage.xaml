@@ -5,7 +5,8 @@
              xmlns:magic="clr-namespace:MagicGradients;assembly=MagicGradients"
              x:Class="SWIM.Views.PaymentPage"
              x:DataType="local:PaymentPageViewModel"
-             Title="Make a Payment">
+             Title="Make a Payment"
+             Style="{StaticResource PageStyle}">
 
     <ContentPage.BindingContext>
         <local:PaymentPageViewModel/>
@@ -14,7 +15,7 @@
     <ContentPage.Resources>
         <StyleSheet Source="../Styles/LinearGradient.css"/>
     </ContentPage.Resources>
-    
+
     <ContentPage.Content>
         <ScrollView>
             <StackLayout>
@@ -50,14 +51,14 @@
                           RowSpacing="0">
 
                         <!-- Payment Form-->
-                        <Frame Grid.Row="0"
+                        <Frame x:Name="CardPaymentForm"
+                               Grid.Row="0"
                                Grid.ColumnSpan="2"
                                BackgroundColor="White"
                                CornerRadius="6"
-                               HasShadow="True"
-                               BorderColor="Gray">
+                               HasShadow="True">
 
-                            <StackLayout x:Name="cardPaymentForm" IsVisible="True">
+                            <StackLayout>
                                 <Grid RowDefinitions="50, 50, 50, 50, 50"
                                       ColumnDefinitions="*,*,*">
 
@@ -88,6 +89,41 @@
                                 </Grid>
                             </StackLayout>
                         </Frame>
+
+                        <!--BPAY Details-->
+                        <Frame x:Name="BPAYDetails"
+                               Grid.Row="1"
+                               Grid.ColumnSpan="2"
+                               BackgroundColor="White"
+                               CornerRadius="6"
+                               HasShadow="True"
+                               BorderColor="Gray"
+                               IsVisible="False">
+                            <StackLayout>
+                                <Label Text="Pay your bills securely"/>
+
+                                <Label Text="Pay for your bill easily from your banking app or website."/>
+
+                                <Image Source="Basic_Biller_Code_Artwork_Vertical.png"/>
+                            </StackLayout>
+                        </Frame>
+
+                        <!--Other payment options-->
+                        <Frame x:Name="OtherMethods"
+                               Grid.Row="2"
+                               Grid.ColumnSpan="2"
+                               BackgroundColor="White"
+                               CornerRadius="6"
+                               HasShadow="True"
+                               BorderColor="Gray"
+                               IsVisible="False">
+                            <StackLayout>
+                                <Label Text="By Phone"/>
+                                <Label Text="In person, by phone or online via Post Billpay"/>
+                                <Label Text="Cheques by mail"/>
+                            </StackLayout>
+                        </Frame>
+
                     </Grid>
                 </Grid>
             </StackLayout>

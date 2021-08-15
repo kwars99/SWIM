@@ -95,7 +95,8 @@ namespace SWIM.ViewModels
 
         private async void OnPayBillClicked(object obj)
         {
-            await Shell.Current.Navigation.PushAsync(new PaymentPage());
+            var route = $"{nameof(PaymentPage)}";
+            await Shell.Current.GoToAsync(route);
         }
 
         private void OnPropertyChanged(string propertyName)
