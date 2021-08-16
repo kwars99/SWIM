@@ -1,32 +1,43 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:SWIM.ViewModels"
              x:Class="SWIM.Views.BillsPage"
              Title="Bill History"
              Style="{StaticResource PageStyle}">
-
+    
+    <ContentPage.BindingContext>
+        <local:BillViewModel/>
+    </ContentPage.BindingContext>
+    
     <ContentPage.Content>
         <ScrollView>
             <StackLayout>
                 <!-- Current Bill -->
                 <Frame Margin="10">
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="150" />
-                            <ColumnDefinition Width="*" />
-                        </Grid.ColumnDefinitions>
-                        <Label Grid.Column="1" Text="Amount Due" FontSize="Large" Font="Bold" HorizontalTextAlignment="Center"/>
-                        <Label Grid.Column="1" Grid.Row="1" Text="$217.21" FontSize="Medium" HorizontalTextAlignment="Center"/>
-                        <Button Grid.Row="2" Grid.Column="0" Text="Pay Now" HorizontalOptions="Center"/>
-                        <Button Grid.Column="2" Grid.Row="2" Text="View Bill" />
-                        <Label Grid.Column="1" Grid.Row="3" Text="Direct Debit Active" HorizontalOptions="Center"/>
-                    </Grid>
+                    <StackLayout BindableLayout.ItemsSource="{Binding UnPaidBills}">
+                        <BindableLayout.ItemTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="150" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Label Grid.Column="1" Text="Amount Due" FontSize="Large" Font="Bold" HorizontalTextAlignment="Center"/>
+                                    <Label Grid.Column="1" Grid.Row="1" Text="{Binding Amount, StringFormat='{0:C2}'}" FontSize="Medium" HorizontalTextAlignment="Center"/>
+                                    <Button Grid.Row="2" Grid.Column="0" Text="Pay Now" HorizontalOptions="Center"/>
+                                    <Button Grid.Column="2" Grid.Row="2" Text="View Bill" />
+                                    <Label Grid.Column="1" Grid.Row="3" Text="Direct Debit Active" HorizontalOptions="Center"/>
+                                </Grid>
+                            </DataTemplate>
+                        </BindableLayout.ItemTemplate>
+                    </StackLayout>
                 </Frame>
 
                 <!--Buttons-->
@@ -36,6 +47,117 @@
                 
                 <!-- Latest Bills -->
                 <Frame Margin="10">
+                    <StackLayout>
+                        <BoxView Grid.Row="2"
+                                     Color="#6096BA"
+                                     HeightRequest="2"
+                                     HorizontalOptions="Fill"/>
+                        <Label Text="Previous Bills"
+                                   FontSize="Large"
+                                   HorizontalTextAlignment="Center"/>
+                        <BoxView Grid.Row="2"
+                                     Color="#6096BA"
+                                     HeightRequest="2"
+                                     HorizontalOptions="Fill"/>
+                        <StackLayout>
+                            <Grid ColumnDefinitions="*, 100, 100">
+                                <Label Margin="0, 10, 0, 10"
+                                           HorizontalTextAlignment="Center"
+                                           FontSize="Subtitle"
+                                           FontAttributes="Bold"
+                                           Text="Period"/>
+
+                                <Label Grid.Column="1"
+                                           Margin="0, 10, 0, 10"
+                                           HorizontalTextAlignment="Center"
+                                           FontSize="Subtitle"
+                                           FontAttributes="Bold"
+                                           Text="Amount"/>
+
+                                <Label Grid.Column="2"
+                                           Margin="0, 10, 0, 10"
+                                           HorizontalTextAlignment="Center"
+                                           FontSize="Subtitle"
+                                           FontAttributes="Bold"
+                                           Text="Paid"/>
+                                
+                                <Label Grid.Column="3"
+                                           Margin="0, 10, 0, 10"
+                                           HorizontalTextAlignment="Center"
+                                           FontSize="Default"
+                                           FontAttributes="Bold"
+                                           Text="Download"/>
+
+                            </Grid>
+                            <BoxView Grid.Row="2"
+                                         Color="#E7ECEF"
+                                         HeightRequest="2"
+                                         HorizontalOptions="Fill"/>
+                        </StackLayout>
+                        <StackLayout BindableLayout.ItemsSource="{Binding PaidBills}">
+                            <BindableLayout.ItemTemplate>
+                                <DataTemplate>
+                                    <StackLayout>
+                                        <Grid ColumnDefinitions="*, *, *, *">
+                                            <Label Grid.Column="0"
+                                                       Margin="5, 2, 8, 2"
+                                                       HorizontalTextAlignment="Start"
+                                                       Text ="{Binding BillPeriod}"
+                                                       FontSize="Small"/>
+                                            <Label Grid.Column="1"
+                                                       Margin="0, 2, 0, 2"
+                                                       HorizontalTextAlignment="Center"
+                                                       Text="{Binding Amount,
+                                                                  StringFormat='{0:C2}'}"
+                                                       FontSize="Small"/>
+                                            <Image Grid.Column="2"
+                                                       Source="green_tick.png"
+                                                       HeightRequest="30"/>
+                                            <Button Grid.Column="3" 
+                                                       Text="PDF"/>
+                                        </Grid>
+                                        <BoxView Grid.Row="2"
+                                                     Color="#E7ECEF"
+                                                     HeightRequest="1"
+                                                     HorizontalOptions="Fill"/>
+                                    </StackLayout>
+                                </DataTemplate>
+                            </BindableLayout.ItemTemplate>
+                        </StackLayout>
+                    </StackLayout>
+                    <!--<dg:SfDataGrid x:Name="dataGrid" 
+                                   ItemsSource="{Binding PaidBills}" 
+                                   AutoGenerateColumns="False"
+                                   ColumnSizer="Star">
+
+                        <dg:SfDataGrid.GridStyle>
+                            <dg:DefaultStyle GridLinesVisibility="None"/>
+                        </dg:SfDataGrid.GridStyle>
+
+                        <dg:SfDataGrid.Columns>
+                            <dg:GridTextColumn HeaderText="Bill Period" HeaderFont="Bold" MappingName="DueDate"/>
+                            <dg:GridTextColumn HeaderText="Bill Amount" HeaderFont="Bold" Format="C" MappingName="Amount"/>
+
+                            <dg:GridTemplateColumn HeaderText="Paid Status" MappingName="paid">
+                                <dg:GridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Image Source="green_tick.png" Aspect="AspectFit"/>
+                                    </DataTemplate>
+                                </dg:GridTemplateColumn.CellTemplate>
+                            </dg:GridTemplateColumn>
+
+                            <dg:GridTemplateColumn HeaderText="Download" MappingName="download">
+                                <dg:GridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button Text="PDF" Margin="5"/>
+                                    </DataTemplate>
+                                </dg:GridTemplateColumn.CellTemplate>
+                            </dg:GridTemplateColumn>
+
+                        </dg:SfDataGrid.Columns>
+                    </dg:SfDataGrid>
+                    -->
+                    <!--
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="20" />
@@ -73,6 +195,7 @@
                         <Button Grid.Row="2" Grid.Column="3" Text="PDF" />
                         <Button Grid.Row="3" Grid.Column="3" Text="PDF" />
                     </Grid>
+                    -->
                 </Frame>
             </StackLayout>
         </ScrollView>
