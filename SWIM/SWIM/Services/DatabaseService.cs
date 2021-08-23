@@ -52,5 +52,16 @@ namespace SWIM.Services
             var result = database.Table<Bill>().ToListAsync().Result;
             return result;
         }
+
+        public List<Fault> GetFaultAsync()
+        {
+            var result = database.Table<Fault>().ToListAsync().Result;
+            return result;
+        }
+
+        public Task<int> InsertFaultAsync(Fault fault)
+        {
+            return database.InsertAsync(fault);
+        }
     }
 }
