@@ -13,6 +13,8 @@ namespace SWIM.ViewModels
     {
         private bool isCardPaymentVisible, isBPAYVisible, isOtherVisisble, displayPopup;
 
+        private string cardNumber;
+
         private List<Bill> unpaidBill = new List<Bill>();
 
         private List<User> user = new List<User>();
@@ -86,6 +88,22 @@ namespace SWIM.ViewModels
             }
         }
 
+        public string CardNumber
+        {
+            get
+            {
+                return cardNumber;
+            }
+            set
+            {
+                if (cardNumber != value)
+                {
+                    cardNumber = value;
+                    OnPropertyChanged(nameof(CardNumber));
+                }
+            }
+        }
+
         public List<Bill> UnpaidBill
         {
             get
@@ -155,7 +173,15 @@ namespace SWIM.ViewModels
 
         private void OnPaymentReviewClicked()
         {
-            DisplayPopup = true;
+            if (!string.IsNullOrEmpty(CardNumber))
+            {
+                DisplayPopup = true;
+            }
+            else
+            {
+                return;
+            }
+            
         }
     }
 }
