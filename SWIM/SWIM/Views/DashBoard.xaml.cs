@@ -24,7 +24,7 @@ namespace SWIM.Views
 
             // Retrieve all the notes from the database, and set them as the
             // data source for the CollectionView.
-            collectionView.ItemsSource = await App.Database.GetUsersAsync();
+            //collectionView.ItemsSource = App.Database.GetUsersAsync();
         }
         
     }

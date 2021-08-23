@@ -1,6 +1,8 @@
-﻿using System;
+﻿using SWIM.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 using System.Text;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -9,9 +11,14 @@ namespace SWIM.ViewModels
 {
     public class PaymentPageViewModel : BaseViewModel
     {
-        private bool isCardPaymentVisible, isBPAYVisible, isOtherVisisble;
+        private bool isCardPaymentVisible, isBPAYVisible, isOtherVisisble, displayPopup;
 
-        public ICommand PaymentMethodSelection { get; }
+        private List<Bill> unpaidBill = new List<Bill>();
+
+        private List<User> user = new List<User>();
+
+        public ICommand PaymentMethodSelection { get; set; }
+        public ICommand OpenPopupCommand { get; set; }
 
         public bool IsCardPaymentVisible
         {
@@ -63,11 +70,63 @@ namespace SWIM.ViewModels
             }
         }
 
+        public bool DisplayPopup
+        {
+            get
+            {
+                return displayPopup;
+            }
+            set
+            {
+                if (displayPopup != value)
+                {
+                    displayPopup = value;
+                    OnPropertyChanged(nameof(DisplayPopup));
+                }
+            }
+        }
+
+        public List<Bill> UnpaidBill
+        {
+            get
+            {
+                return unpaidBill;
+            }
+            set
+            {
+                if (unpaidBill != value)
+                {
+                    unpaidBill = value;
+                    OnPropertyChanged(nameof(UnpaidBill));
+                }
+            }
+        }
+
+        public List<User> User
+        {
+            get
+            {
+                return user;
+            }
+            set
+            {
+                if (user != value)
+                {
+                    user = value;
+                    OnPropertyChanged(nameof(User));
+                }
+            }
+        }
+
 
         public PaymentPageViewModel()
         {
             PaymentMethodSelection = new Command(OnPaymentSelectionClicked);
+            OpenPopupCommand = new Command(OnPaymentReviewClicked);
             IsCardPaymentVisible = true;
+
+            unpaidBill = App.Database.GetBillAsync().Where(x => x.PaidStatus == "unpaid").ToList();
+            user = App.Database.GetUsersAsync().Where(x => x.FirstName == "John").ToList();
         }
 
         private void OnPaymentSelectionClicked(object parameter)
@@ -92,6 +151,11 @@ namespace SWIM.ViewModels
                     IsOtherVisible = true;
                     break;
             }
+        }
+
+        private void OnPaymentReviewClicked()
+        {
+            DisplayPopup = true;
         }
     }
 }

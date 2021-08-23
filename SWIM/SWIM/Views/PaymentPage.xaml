@@ -4,8 +4,8 @@
              xmlns:behavior="clr-namespace:SWIM.Behaviors"
              xmlns:local="clr-namespace:SWIM.ViewModels"
              xmlns:magic="clr-namespace:MagicGradients;assembly=MagicGradients"
+             xmlns:sfPopup="clr-namespace:Syncfusion.XForms.PopupLayout;assembly=Syncfusion.SfPopupLayout.XForms"
              x:Class="SWIM.Views.PaymentPage"
-             x:DataType="local:PaymentPageViewModel"
              Title="Make a Payment"
              Style="{StaticResource PageStyle}">
 
@@ -23,31 +23,58 @@
             <StackLayout>
                 <Grid>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="200"/>
+                        <RowDefinition Height="250"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
+                    
+                    <Grid RowDefinitions="20, *"
+                          RowSpacing="0">
 
-                    <Grid>
-                        <magic:GradientView VerticalOptions="FillAndExpand" StyleClass="gradientStyledWithCss"/>
-                        <StackLayout HorizontalOptions="Center"
-                                     VerticalOptions="Center"
-                                     Margin="0, 0, 0, 50">
-                            <Label Text="Amount Owing: "
-                                   TextColor="White"
-                                   FontSize="Medium"
-                                   FontAttributes="Bold"
-                                   HorizontalTextAlignment="Center"/>
-                            <Label Text="$360.00"
-                                   TextColor="White"
-                                   FontSize="Title"
-                                   FontAttributes="Bold"
-                                   HorizontalTextAlignment="Center"/>
+                        <BoxView Grid.Row="0" 
+                                 BackgroundColor="White"/>
+
+                        <StackLayout Grid.Row="0"
+                                     BindableLayout.ItemsSource="{Binding User}">
+                            <BindableLayout.ItemTemplate>
+                                <DataTemplate>
+                                    <StackLayout Orientation="Horizontal">
+                                        <Label Text="Address: "/>
+                                        <Label Text="{Binding Address}"/>
+                                    </StackLayout>
+                                </DataTemplate>
+                            </BindableLayout.ItemTemplate>
                         </StackLayout>
+
+                        <Grid Grid.Row="1">
+                            <magic:GradientView VerticalOptions="FillAndExpand" StyleClass="gradientStyledWithCss"/>
+                            <StackLayout BindableLayout.ItemsSource="{Binding UnpaidBill}">
+                                <BindableLayout.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackLayout HorizontalOptions="Center"
+                                                     VerticalOptions="Center"
+                                                     Margin="0, 0, 0, 50">
+
+                                            <Label Text="Amount Owing: "
+                                                    TextColor="White"
+                                                    FontSize="Medium"
+                                                    FontAttributes="Bold"
+                                                    HorizontalTextAlignment="Center"/>
+                                            <Label Text="{Binding Amount}"
+                                                    TextColor="White"
+                                                    FontSize="Title"
+                                                    FontAttributes="Bold"
+                                                    HorizontalTextAlignment="Center"/>
+                                        </StackLayout>
+                                    </DataTemplate>
+                                </BindableLayout.ItemTemplate>
+                            </StackLayout>
+                        </Grid>
                     </Grid>
+                    
 
                     <Grid Grid.Row="0"
                           Grid.RowSpan="2"
-                          Margin="14,150,14,0"
+                          Margin="0,200,0,0"
                           ColumnSpacing="0"
                           IsClippedToBounds="True"
                           RowSpacing="0">
@@ -57,9 +84,8 @@
                         <Frame x:Name="CardPaymentForm"
                                Grid.Row="0"
                                Grid.ColumnSpan="2"
-                               HeightRequest="350"
                                BackgroundColor="White"
-                               CornerRadius="6"
+                               CornerRadius="25"
                                HasShadow="True">
 
                             <StackLayout>
@@ -92,7 +118,7 @@
                                          HeightRequest="1"/>
 
                                 <!-- Card payment form -->
-                                <Grid RowDefinitions="40, 1, 50, 15, 50, 15, 50"
+                                <Grid RowDefinitions="40, 50, 50, 15, 50, 15, 60"
                                       ColumnDefinitions="*,*,*"
                                       IsVisible="{Binding IsCardPaymentVisible}">
 
@@ -101,10 +127,16 @@
                                            FontSize="Medium"
                                            Text="Please enter your card details:"/>
 
+                                    <Entry Placeholder="Cardholder name"
+                                           Grid.Row="1"
+                                           Grid.ColumnSpan="3"
+                                           Margin="10, 0, 10, 0"/>
+
                                     <Entry Placeholder="Card Number" 
                                            Grid.Row="2"
                                            Grid.ColumnSpan="3"
-                                           Margin="10, 0, 10, 0">
+                                           Margin="10, 0, 10, 0"
+                                           Keyboard="Numeric">
                                         <Entry.Behaviors>
                                             <behavior:EntryMaskBehavior Mask="####-####-####-####"/>
                                         </Entry.Behaviors>
@@ -119,7 +151,8 @@
 
                                     <Entry Placeholder="Expiry" 
                                            Grid.Row="4"
-                                           Margin="10, 0, 0, 0">
+                                           Margin="10, 0, 0, 0"
+                                           Keyboard="Numeric">
                                         <Entry.Behaviors>
                                             <behavior:EntryMaskBehavior Mask="##/##"/>
                                             <behavior:ExpNumericValidationBehavior/>
@@ -134,7 +167,8 @@
                                     <Entry Placeholder="CVV" 
                                            Grid.Row="4"
                                            Grid.Column="1"
-                                           Margin="10, 0, 0, 0">
+                                           Margin="10, 0, 0, 0"
+                                           Keyboard="Numeric">
                                         <Entry.Behaviors>
                                             <behavior:MaxLengthValidationBehavior MaxLength="3"/>
                                             <behavior:NumericValidationBehavior/>
@@ -150,7 +184,8 @@
                                     <Button Grid.Row="6"
                                             Grid.ColumnSpan="3"
                                             Margin="0, 10, 0, 0"
-                                            Text="Go To Payment Review"/>
+                                            Text="Go To Payment Review"
+                                            Command="{Binding OpenPopupCommand}"/>
                                 </Grid>
 
                                 <!-- BPAY Details -->
@@ -200,6 +235,82 @@
                         </Frame>
                     </Grid>
                 </Grid>
+
+                <sfPopup:SfPopupLayout x:Name="popupLayout" IsOpen="{Binding DisplayPopup}">
+                    <sfPopup:SfPopupLayout.PopupView>
+                        <sfPopup:PopupView AppearanceMode="TwoButton"
+                                           AcceptButtonText="Pay Now"
+                                           DeclineButtonText="Cancel">
+
+                            <sfPopup:PopupView.HeaderTemplate>
+                                <DataTemplate>
+                                    <StackLayout>
+                                        <Label Text="Payment Review"
+                                               HorizontalOptions="Center"/>
+                                    </StackLayout>
+                                </DataTemplate>
+                            </sfPopup:PopupView.HeaderTemplate>
+
+                            <sfPopup:PopupView.ContentTemplate>
+                                <DataTemplate>
+                                    <Grid RowDefinitions="20, 20, 20, 20, 20, 20, 20"
+                                          ColumnDefinitions="*, *">
+
+                                        <StackLayout Grid.Row="0"
+                                                     Grid.ColumnSpan="2"
+                                                     BindableLayout.ItemsSource="{Binding User}">
+                                            <BindableLayout.ItemTemplate>
+                                                <DataTemplate>
+                                                    <StackLayout Orientation="Horizontal">
+                                                        <Label Text="Address: "/>
+                                                        <Label Text="{Binding Address}"/>
+                                                    </StackLayout>
+                                                </DataTemplate>
+                                            </BindableLayout.ItemTemplate>
+                                        </StackLayout>
+
+                                        <!-- data bind bill aamount-->
+                                        <StackLayout Grid.Row="1"
+                                                     Grid.ColumnSpan="2"
+                                                     BindableLayout.ItemsSource="{Binding UnpaidBill}">
+                                            <BindableLayout.ItemTemplate>
+                                                <DataTemplate>
+                                                    <StackLayout Orientation="Horizontal">
+                                                        <Label Text="Amount: "/>
+                                                        <Label Text="{Binding Amount}"/>
+                                                    </StackLayout>
+                                                </DataTemplate>
+                                            </BindableLayout.ItemTemplate>
+                                        </StackLayout>
+
+                                        <StackLayout>
+                                            <BindableLayout.ItemTemplate>
+                                                <DataTemplate>
+                                                    <StackLayout Orientation="Horizontal">
+                                                        <Label Text="Payment: "/>
+                                                        <Label Text="Bind to entry fields on payment page"/>
+                                                    </StackLayout>
+                                                </DataTemplate>
+                                            </BindableLayout.ItemTemplate>
+                                        </StackLayout>
+                                        
+                                        <!-- get rid of popup-->
+                                        <Button Grid.Row="3"
+                                                Grid.Column="0"
+                                                Text="Cancel"/>
+                                        
+                                        <!-- on button clicked save to transaction table
+                                             and update bill to paid status -->
+                                        <Button Grid.Row="3"
+                                                Grid.Column="1"
+                                                Text="Pay Now"/>
+                                    </Grid>
+                                </DataTemplate>
+                            </sfPopup:PopupView.ContentTemplate>
+
+                        </sfPopup:PopupView>
+                    </sfPopup:SfPopupLayout.PopupView>
+                </sfPopup:SfPopupLayout>
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

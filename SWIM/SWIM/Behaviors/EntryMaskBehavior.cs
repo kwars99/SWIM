@@ -44,7 +44,7 @@ namespace SWIM.Behaviors
                 }     
             }
 
-            // 2. Evaluating if the user is removing test
+            // 2. Evaluating if the user is removing text
             if ((args.OldTextValue == null) || (args.OldTextValue.Length <= args.NewTextValue.Length))
             {
                 // 3. Evaluating mask positions

@@ -35,9 +35,10 @@ namespace SWIM.Services
             
         }
 
-        public async Task<List<User>> GetUsersAsync()
+        public List<User> GetUsersAsync()
         {
-            return await database.Table<User>().ToListAsync();
+            var result = database.Table<User>().ToListAsync().Result;
+            return result;
         }
         
         
