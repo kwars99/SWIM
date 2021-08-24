@@ -4,7 +4,8 @@
              xmlns:local="clr-namespace:SWIM.ViewModels"
              x:Class="SWIM.Views.BillsPage"
              Title="Bill History"
-             Style="{StaticResource PageStyle}">
+             Style="{StaticResource PageStyle}"
+             xmlns:syncfusion="clr-namespace:Syncfusion.SfPdfViewer.XForms;assembly=Syncfusion.SfPdfViewer.XForms">
     
     <ContentPage.BindingContext>
         <local:BillViewModel/>
