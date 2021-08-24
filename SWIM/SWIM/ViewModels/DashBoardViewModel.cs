@@ -79,6 +79,7 @@ namespace SWIM.ViewModels
         public DashBoardViewModel()
         {
             usageData = App.Database.GetUsageAsync();
+            billData = App.Database.GetBillAsync();
             usageData.Reverse();
             CalculateTotalUsages();
         }
