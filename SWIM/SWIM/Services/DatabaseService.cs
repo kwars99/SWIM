@@ -53,5 +53,21 @@ namespace SWIM.Services
             var result = database.Table<Bill>().ToListAsync().Result;
             return result;
         }
+
+        public List<Transaction> GetTransactionsAsync()
+        {
+            var result = database.Table<Transaction>().ToListAsync().Result;
+            return result;
+        }
+
+        public Task<int> InsertTransactionAsync(Transaction transaction)
+        {
+            return database.InsertAsync(transaction);
+        }
+
+        public Task<int> UpdateBillAsync(Bill bill)
+        {
+            return database.UpdateAsync(bill);
+        }
     }
 }

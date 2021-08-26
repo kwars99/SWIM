@@ -22,6 +22,10 @@ namespace SWIM.ViewModels
         public ICommand PaymentMethodSelection { get; set; }
         public ICommand OpenPopupCommand { get; set; }
 
+        public ICommand ClosePopupCommand { get; set; }
+
+        public ICommand MakePaymentCommand { get; set; }
+
         public bool IsCardPaymentVisible
         {
             get
@@ -141,10 +145,15 @@ namespace SWIM.ViewModels
         {
             PaymentMethodSelection = new Command(OnPaymentSelectionClicked);
             OpenPopupCommand = new Command(OnPaymentReviewClicked);
+            ClosePopupCommand = new Command(OnCancelButtonClicked);
+            MakePaymentCommand = new Command(OnPayBillButtonClicked);
+
             IsCardPaymentVisible = true;
 
             unpaidBill = App.Database.GetBillAsync().Where(x => x.PaidStatus == "unpaid").ToList();
             user = App.Database.GetUsersAsync().Where(x => x.FirstName == "John").ToList();
+
+            
         }
 
         private void OnPaymentSelectionClicked(object parameter)
@@ -181,7 +190,46 @@ namespace SWIM.ViewModels
             {
                 return;
             }
-            
         }
+
+        private void OnCancelButtonClicked()
+        {
+            DisplayPopup = false;
+        }
+
+        
+        private async void OnPayBillButtonClicked()
+        {
+            int newTransactionID = App.Database.GetTransactionsAsync().Count + 1;
+
+            Bill bill = unpaidBill[0];
+
+            DateTime paymentTime = DateTime.Now;
+
+            Transaction newTransaction = new Transaction()
+            {
+                TransactionID = newTransactionID,
+                Amount = bill.Amount,
+                DatePaid = paymentTime
+            };
+
+            
+            if ((await App.Database.InsertTransactionAsync(newTransaction)) != 0) 
+            {
+                
+                bill.PaidStatus = "paid";
+                
+                await App.Database.UpdateBillAsync(bill);
+                
+                DisplayPopup = false;
+
+                //set bill frame to invisible??
+            }
+            else
+            {
+                return;
+            }
+        }
+        
     }
 }

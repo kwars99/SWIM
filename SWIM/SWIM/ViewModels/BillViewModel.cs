@@ -74,6 +74,13 @@ namespace SWIM.ViewModels
             GoToPayment = new Command(OnPayBillClicked);
 
             data = App.Database.GetBillAsync();
+            
+            //For testing purposes
+            /*
+            data[data.Count - 1].PaidStatus = "unpaid";
+            App.Database.UpdateBillAsync(data[data.Count - 1]);
+            */
+
             data.Reverse();
             FormatPaidBills();
         }

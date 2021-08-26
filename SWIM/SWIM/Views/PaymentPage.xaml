@@ -254,7 +254,7 @@
 
                             <sfPopup:PopupView.ContentTemplate>
                                 <DataTemplate>
-                                    <Grid RowDefinitions="20, 20, 20, 20"
+                                    <Grid RowDefinitions="20, 20, 20, 50"
                                           ColumnDefinitions="*, *">
 
                                         <StackLayout Grid.Row="0"
@@ -294,13 +294,15 @@
                                         <!-- get rid of popup-->
                                         <Button Grid.Row="3"
                                                 Grid.Column="0"
-                                                Text="Cancel"/>
+                                                Text="Cancel"
+                                                Command="{Binding ClosePopupCommand}"/>
                                         
                                         <!-- on button clicked save to transaction table
                                              and update bill to paid status -->
                                         <Button Grid.Row="3"
                                                 Grid.Column="1"
-                                                Text="Pay Now"/>
+                                                Text="Pay Now"
+                                                Command="{Binding MakePaymentCommand}"/>
                                     </Grid>
                                 </DataTemplate>
                             </sfPopup:PopupView.ContentTemplate>
