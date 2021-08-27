@@ -43,7 +43,7 @@ namespace SWIM.ViewModels
         public PdfViewerModel()
         {
             //Accessing the PDF document that is added as embedded resource as stream.
-            m_pdfDocumentStream = typeof(App).GetTypeInfo().Assembly.GetManifestResourceStream("SAMPLE BILL.pdf");
+            m_pdfDocumentStream = typeof(App).GetTypeInfo().Assembly.GetManifestResourceStream("SWIM.Resources.sample_bill.pdf");
         }
 
         private void NotifyPropertyChanged(string propertyName)

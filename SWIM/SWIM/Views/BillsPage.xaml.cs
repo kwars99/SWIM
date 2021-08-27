@@ -18,7 +18,5 @@ namespace SWIM.Views
         {
             InitializeComponent();
         }
-
-        
     }
 }

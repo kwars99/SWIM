@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using SWIM.Models;
+using SWIM.Views;
 using Xamarin.Forms;
 
 namespace SWIM.ViewModels
@@ -17,7 +18,7 @@ namespace SWIM.ViewModels
         private List<Bill> unpaidBills = new List<Bill>();
         private List<FormattedBill> paidBills = new List<FormattedBill>();
 
-        public ICommand OpenPDF { get; }
+        public ICommand OpenPDFCommand { get; }
 
         public List<Bill> Data
         {
@@ -73,12 +74,12 @@ namespace SWIM.ViewModels
             data = App.Database.GetBillAsync();
             data.Reverse();
             FormatPaidBills();
-            OpenPDF = new Command(OnOpenClicked);
+            OpenPDFCommand = new Command(OnOpenClicked);
         }
 
-        async void OnOpenClicked()
+        private async void OnOpenClicked()
         {
-            var route = $"{nameof(PdfViewerModel)}";
+            var route = $"{nameof(PdfPage)}";
             await Shell.Current.GoToAsync(route);
         }
 
