@@ -7,10 +7,10 @@
              Style="{StaticResource PageStyle}"
              xmlns:syncfusion="clr-namespace:Syncfusion.SfPdfViewer.XForms;assembly=Syncfusion.SfPdfViewer.XForms">
     
-    <ContentPage.BindingContext>
+    <ContentPage.BindingContext >
         <local:BillViewModel/>
     </ContentPage.BindingContext>
-    
+
     <ContentPage.Content>
         <ScrollView>
             <StackLayout>
@@ -81,7 +81,7 @@
                                            FontSize="Subtitle"
                                            FontAttributes="Bold"
                                            Text="Paid"/>
-                                
+
                                 <Label Grid.Column="3"
                                            Margin="0, 10, 0, 10"
                                            HorizontalTextAlignment="Center"
@@ -115,12 +115,13 @@
                                                        Source="green_tick.png"
                                                        HeightRequest="30"/>
                                             <Button Grid.Column="3" 
-                                                       Text="PDF"/>
+                                                       Text="PDF"
+                                                    Command="{Binding }"/>
                                         </Grid>
                                         <BoxView Grid.Row="2"
                                                      Color="#E7ECEF"
                                                      HeightRequest="1"
-                                                     HorizontalOptions="Fill"/>
+                                                     HorizontalOptions="Fill"/> 
                                     </StackLayout>
                                 </DataTemplate>
                             </BindableLayout.ItemTemplate>
