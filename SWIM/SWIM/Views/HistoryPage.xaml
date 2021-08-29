@@ -20,7 +20,7 @@
                                      Color="#6096BA"
                                      HeightRequest="2"
                                      HorizontalOptions="Fill"/>
-                        <Label Text="Bill History"
+                        <Label Text="Payment History"
                                    FontSize="Large"
                                    HorizontalTextAlignment="Center"/>
                         <BoxView Grid.Row="1"
@@ -28,7 +28,7 @@
                                      HeightRequest="2"
                                      HorizontalOptions="Fill"/>
                         <StackLayout>
-                            <Grid ColumnDefinitions="*, *, 50">
+                            <Grid ColumnDefinitions="*">
                                 <Label Grid.Column="0" 
                                        Margin="25, 20, 0, 10"
                                        HorizontalTextAlignment="Start"
@@ -41,13 +41,6 @@
                                        FontSize="Subtitle"
                                        FontAttributes="Bold"
                                        Text="Date Paid"/>
-
-                                <Label Grid.Column="2"
-                                       Margin="0, 20, 0, 10"
-                                       HorizontalTextAlignment="Start"
-                                       FontSize="Subtitle"
-                                       FontAttributes="Bold"
-                                       Text="ID"/>
                             </Grid>
                             <BoxView Grid.Row="1"
                                      Color="#E7ECEF"
@@ -58,7 +51,7 @@
                             <BindableLayout.ItemTemplate>
                                 <DataTemplate>
                                     <StackLayout>
-                                        <Grid ColumnDefinitions="*, *, 50">
+                                        <Grid ColumnDefinitions="*">
                                             <Label Grid.Column="0"
                                                    Margin="45, 20, 8, 2"
                                                    HorizontalTextAlignment="Start"
@@ -69,13 +62,6 @@
                                                    HorizontalTextAlignment="Start"
                                                    FontSize="Small"
                                                    Text="{Binding DatePaid, StringFormat='{0:dd MMM yyyy}'}"/>
-                                            <Label Grid.Column="2"
-                                                   Margin="0, 20, 0, 10"
-                                                   HorizontalTextAlignment="Start"
-                                                   FontSize="Small"
-                                                   FontAttributes="Bold"
-                                                   Text="{Binding TransactionID}"/>
-
                                         </Grid>
                                     </StackLayout>
                                 </DataTemplate>
