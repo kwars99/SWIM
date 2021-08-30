@@ -22,7 +22,6 @@ namespace SWIM.ViewModels
 
         public ICommand GoToPayment { get; }
         public ICommand OpenPDFCommand { get; }
-
         public ICommand RequestExtensionCommand { get; }
 
         public List<Bill> Data
@@ -110,6 +109,7 @@ namespace SWIM.ViewModels
         {
             GoToPayment = new Command(OnPayBillClicked);
             OpenPDFCommand = new Command(OnOpenClicked);
+            RequestExtensionCommand = new Command(OnRequestExtensionClicked);
 
             data = App.Database.GetBillAsync();
 
@@ -140,8 +140,6 @@ namespace SWIM.ViewModels
         {
             var route = $"{nameof(PdfPage)}";
             await Shell.Current.GoToAsync(route);
-
-            RequestExtensionCommand = new Command(OnRequestExtensionClicked);
         }
 
         private List<FormattedBill> FormatPaidBills()
@@ -163,6 +161,7 @@ namespace SWIM.ViewModels
         {
             var route = $"{nameof(PaymentPage)}";
             await Shell.Current.GoToAsync(route);
+        }
 
         private async void OnRequestExtensionClicked()
         {
