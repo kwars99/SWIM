@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
@@ -35,12 +35,11 @@ namespace SWIM.Services
             
         }
 
-        public async Task<List<User>> GetUsersAsync()
+        public List<User> GetUsersAsync()
         {
-            return await database.Table<User>().ToListAsync();
+            var result = database.Table<User>().ToListAsync().Result;
+            return result;
         }
-        
-        
         public List<Usage> GetUsageAsync()
         {
             var result = database.Table<Usage>().ToListAsync().Result;
@@ -53,9 +52,31 @@ namespace SWIM.Services
             return result;
         }
 
+        public List<Transaction> GetTransactionsAsync()
+        {
+            var result = database.Table<Transaction>().ToListAsync().Result;
+            return result;
+        }
+
+        public Task<int> InsertTransactionAsync(Transaction transaction)
+        {
+            return database.InsertAsync(transaction);
+        }
+
+        public Task<int> UpdateBillAsync(Bill bill)
+        {
+            return database.UpdateAsync(bill);
+        }
+
         public List<Fault> GetFaultAsync()
         {
             var result = database.Table<Fault>().ToListAsync().Result;
+            return result;
+        }
+
+        public List<Transaction> GetTransactionAsync()
+        {
+            var result = database.Table<Transaction>().ToListAsync().Result;
             return result;
         }
 
