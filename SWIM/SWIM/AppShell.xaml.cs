@@ -17,6 +17,8 @@ namespace SWIM
             Routing.RegisterRoute(nameof(HelpAndSupportPage), typeof(HelpAndSupportPage));
             Routing.RegisterRoute(nameof(MorePage), typeof(MorePage));
             Routing.RegisterRoute(nameof(PaymentPage), typeof(PaymentPage));
+            Routing.RegisterRoute(nameof(HistoryPage), typeof(HistoryPage));
+
         }
 
     }
