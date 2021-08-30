@@ -18,6 +18,8 @@ namespace SWIM.ViewModels
         private List<Bill> unpaidBills = new List<Bill>();
         private List<FormattedBill> paidBills = new List<FormattedBill>();
 
+        private bool isReminderVisible, isLabelVisible;
+
         public Command GoToPayment { get; }
 
         public List<Bill> Data
@@ -44,7 +46,7 @@ namespace SWIM.ViewModels
             }
             set
             {
-                if (paidBills != null)
+                if (paidBills != value)
                 {
                     paidBills = value;
                     OnPropertyChanged(nameof(PaidBills));
@@ -56,15 +58,47 @@ namespace SWIM.ViewModels
         {
             get
             {
-                List<Bill> unpaidBills = data.Where(x => x.PaidStatus == "unpaid").ToList();
+                
                 return unpaidBills;
             }
             set
             {
-                if (unpaidBills != null)
+                if (unpaidBills != value)
                 {
                     unpaidBills = value;
                     OnPropertyChanged(nameof(UnPaidBills));
+                }
+            }
+        }
+
+        public bool IsReminderVisible
+        {
+            get
+            {
+                return isReminderVisible;
+            }
+            set
+            {
+                if (isReminderVisible != value)
+                {
+                    isReminderVisible = value;
+                    OnPropertyChanged(nameof(IsReminderVisible));
+                }
+            }
+        }
+
+        public bool IsLabelVisible
+        {
+            get
+            {
+                return isLabelVisible;
+            }
+            set
+            {
+                if (isLabelVisible != value)
+                {
+                    isLabelVisible = value;
+                    OnPropertyChanged(nameof(IsLabelVisible));
                 }
             }
         }
@@ -74,12 +108,27 @@ namespace SWIM.ViewModels
             GoToPayment = new Command(OnPayBillClicked);
 
             data = App.Database.GetBillAsync();
-            
-            //For testing purposes
-            /*
+
+            //For testing the payment function
+            //adds in an unpaid bill
             data[data.Count - 1].PaidStatus = "unpaid";
             App.Database.UpdateBillAsync(data[data.Count - 1]);
-            */
+
+            unpaidBills = data.Where(x => x.PaidStatus == "unpaid").ToList();
+
+            if (unpaidBills.Count == 0)
+            {
+                IsLabelVisible = true;
+                IsReminderVisible = false;
+            }
+            else
+            {
+                IsReminderVisible = true;
+                IsLabelVisible = false;
+            }
+
+            
+
 
             data.Reverse();
             FormatPaidBills();

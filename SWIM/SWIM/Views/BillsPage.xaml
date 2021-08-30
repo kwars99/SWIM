@@ -14,7 +14,7 @@
         <ScrollView>
             <StackLayout>
                 <!-- Current Bill -->
-                <Frame Margin="10">
+                <Frame Margin="10" IsVisible="{Binding IsReminderVisible}">
                     <StackLayout BindableLayout.ItemsSource="{Binding UnPaidBills}">
                         <BindableLayout.ItemTemplate>
                             <DataTemplate>
@@ -34,10 +34,12 @@
                                            FontSize="Large" 
                                            Font="Bold" 
                                            HorizontalTextAlignment="Center"/>
+
                                     <Label Grid.Column="1" Grid.Row="1" 
                                            Text="{Binding Amount, StringFormat='{0:C2}'}" 
                                            FontSize="Medium" 
                                            HorizontalTextAlignment="Center"/>
+
                                     <Button Grid.Row="2" Grid.Column="0"
                                             Text="Pay Now" 
                                             HorizontalOptions="Center"
@@ -53,6 +55,13 @@
                         </BindableLayout.ItemTemplate>
                     </StackLayout>
                 </Frame>
+
+                <Frame Margin="10"
+                       IsVisible="{Binding IsLabelVisible}">
+                    <Label HorizontalOptions="Center"
+                           VerticalOptions="Center"
+                           Text="You have no current bills"/>
+                </Frame> 
 
                 <!--Buttons-->
                 <Button Text="Report Payment" 

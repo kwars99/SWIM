@@ -4,7 +4,8 @@
              xmlns:behavior="clr-namespace:SWIM.Behaviors"
              xmlns:local="clr-namespace:SWIM.ViewModels"
              xmlns:magic="clr-namespace:MagicGradients;assembly=MagicGradients"
-             xmlns:sfPopup="clr-namespace:Syncfusion.XForms.PopupLayout;assembly=Syncfusion.SfPopupLayout.XForms"
+             xmlns:sfPopup="clr-namespace:Syncfusion.XForms.PopupLayout;assembly=Syncfusion.SfPopupLayout.XForms" 
+             xmlns:controls="clr-namespace:SWIM.Views.Controls"
              x:Class="SWIM.Views.PaymentPage"
              Title="Make a Payment"
              Style="{StaticResource PageStyle}">
@@ -156,7 +157,6 @@
                                            Keyboard="Numeric">
                                         <Entry.Behaviors>
                                             <behavior:EntryMaskBehavior Mask="##/##"/>
-                                            <behavior:ExpNumericValidationBehavior/>
                                         </Entry.Behaviors>
                                     </Entry>
 
@@ -172,7 +172,6 @@
                                            Keyboard="Numeric">
                                         <Entry.Behaviors>
                                             <behavior:MaxLengthValidationBehavior MaxLength="3"/>
-                                            <behavior:NumericValidationBehavior/>
                                         </Entry.Behaviors>
                                     </Entry>
 
@@ -204,7 +203,7 @@
                                 <StackLayout IsVisible="{Binding IsOtherVisible}">
                                     <Label Text="By Phone:"
                                            FontSize="Medium"/>
-                                    <Label Text="Call 1300 XXX XXX to pay your bill by credit card."
+                                    <Label Text="Call 1300 123 456 to pay your bill by credit card."
                                            FontSize="Small"/>
                                     <BoxView Grid.Row="1"
                                          Grid.ColumnSpan="3"

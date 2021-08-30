@@ -1,4 +1,5 @@
 ﻿using SWIM.Models;
+using SWIM.Views;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,7 +14,7 @@ namespace SWIM.ViewModels
     {
         private bool isCardPaymentVisible, isBPAYVisible, isOtherVisisble, displayPopup;
 
-        private string cardNumber;
+        private string cardHolder, cardNumber, cardExpiry, cardCVV;
 
         private List<Bill> unpaidBill = new List<Bill>();
 
@@ -92,6 +93,22 @@ namespace SWIM.ViewModels
             }
         }
 
+        public string CardHolder
+        {
+            get
+            {
+                return cardHolder;
+            }
+            set
+            {
+                if (cardHolder != value)
+                {
+                    cardHolder = value;
+                    OnPropertyChanged(nameof(CardHolder));
+                }
+            }
+        }
+
         public string CardNumber
         {
             get
@@ -104,6 +121,36 @@ namespace SWIM.ViewModels
                 {
                     cardNumber = value;
                     OnPropertyChanged(nameof(CardNumber));
+                }
+            }
+        }
+        public string CardExpiry
+        {
+            get
+            {
+                return cardExpiry;
+            }
+            set
+            {
+                if (cardExpiry != value)
+                {
+                    cardExpiry = value;
+                    OnPropertyChanged(nameof(CardExpiry));
+                }
+            }
+        }
+        public string CardCVV
+        {
+            get
+            {
+                return cardCVV;
+            }
+            set
+            {
+                if (cardCVV != value)
+                {
+                    cardCVV = value;
+                    OnPropertyChanged(nameof(CardCVV));
                 }
             }
         }
@@ -182,10 +229,13 @@ namespace SWIM.ViewModels
 
         private void OnPaymentReviewClicked()
         {
-            if (!string.IsNullOrEmpty(CardNumber))
+            //if all card details are valid, display payment review popup
+            if (!(string.IsNullOrEmpty(cardNumber)))
             {
                 DisplayPopup = true;
             }
+            // display incorrect details
+            // how to get the incorrect entry
             else
             {
                 return;
@@ -219,17 +269,18 @@ namespace SWIM.ViewModels
                 
                 bill.PaidStatus = "paid";
                 
-                await App.Database.UpdateBillAsync(bill);
-                
-                DisplayPopup = false;
+                if ((await App.Database.UpdateBillAsync(bill)) != 0)
+                {
+                    DisplayPopup = false;
 
-                //set bill frame to invisible??
+                    //something wrong here
+                    //await Shell.Current.GoToAsync($"//{nameof(BillsPage)}");
+                }
             }
             else
             {
                 return;
             }
-        }
-        
+        }       
     }
 }
