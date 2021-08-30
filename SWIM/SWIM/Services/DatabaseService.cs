@@ -40,8 +40,6 @@ namespace SWIM.Services
             var result = database.Table<User>().ToListAsync().Result;
             return result;
         }
-        
-        zzz
         public List<Usage> GetUsageAsync()
         {
             var result = database.Table<Usage>().ToListAsync().Result;
