@@ -10,9 +10,9 @@ using Xamarin.Forms.Xaml;
 namespace SWIM.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class PaymentExtension : ContentPage
+    public partial class PaymentExtensionPage : ContentPage
     {
-        public PaymentExtension()
+        public PaymentExtensionPage()
         {
             InitializeComponent();
         }

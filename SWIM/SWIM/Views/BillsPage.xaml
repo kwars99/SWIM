@@ -42,7 +42,8 @@
 
                 <!--Buttons-->
                 <Button Text="Report Payment" Margin="10, -5, 10, 0"/>
-                <Button Text="Request Extension" Margin="10, 0, 10, 0"/>
+                <Button Text="Request Extension" Margin="10, 0, 10, 0"
+                        Command="{Binding RequestExtensionCommand}"/>
                 <Button Text="Manage Payment Options" Margin="10, 0, 10, -5"/>
                 
                 <!-- Latest Bills -->

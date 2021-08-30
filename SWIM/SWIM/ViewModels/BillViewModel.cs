@@ -5,7 +5,9 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using SWIM.Models;
+using SWIM.Views;
 using Xamarin.Forms;
 
 namespace SWIM.ViewModels
@@ -15,6 +17,8 @@ namespace SWIM.ViewModels
         private List<Bill> data = new List<Bill>();
         private List<Bill> unpaidBills = new List<Bill>();
         private List<FormattedBill> paidBills = new List<FormattedBill>();
+
+        public ICommand RequestExtensionCommand { get; }
 
         public List<Bill> Data
         {
@@ -70,6 +74,8 @@ namespace SWIM.ViewModels
             data = App.Database.GetBillAsync();
             data.Reverse();
             FormatPaidBills();
+
+            RequestExtensionCommand = new Command(OnRequestExtensionClicked);
         }
 
         private List<FormattedBill> FormatPaidBills()
@@ -85,6 +91,12 @@ namespace SWIM.ViewModels
                 paidBills.Add(paidbill);
             }
             return paidBills;
+        }
+
+        private async void OnRequestExtensionClicked()
+        {
+            var route = $"{nameof(PaymentExtensionPage)}";
+            await Shell.Current.GoToAsync(route);
         }
 
         private void OnPropertyChanged(string propertyName)
