@@ -1,4 +1,4 @@
-﻿    using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -22,6 +22,8 @@ namespace SWIM.ViewModels
 
         public ICommand GoToPayment { get; }
         public ICommand OpenPDFCommand { get; }
+
+        public ICommand RequestExtensionCommand { get; }
 
         public List<Bill> Data
         {
@@ -107,6 +109,7 @@ namespace SWIM.ViewModels
         public BillViewModel()
         {
             GoToPayment = new Command(OnPayBillClicked);
+            OpenPDFCommand = new Command(OnOpenClicked);
 
             data = App.Database.GetBillAsync();
 
@@ -128,18 +131,17 @@ namespace SWIM.ViewModels
                 IsLabelVisible = false;
             }
 
-            
-
-
             data.Reverse();
             FormatPaidBills();
-            OpenPDFCommand = new Command(OnOpenClicked);
+            
         }
 
         private async void OnOpenClicked()
         {
             var route = $"{nameof(PdfPage)}";
             await Shell.Current.GoToAsync(route);
+
+            RequestExtensionCommand = new Command(OnRequestExtensionClicked);
         }
 
         private List<FormattedBill> FormatPaidBills()
@@ -160,6 +162,11 @@ namespace SWIM.ViewModels
         private async void OnPayBillClicked(object obj)
         {
             var route = $"{nameof(PaymentPage)}";
+            await Shell.Current.GoToAsync(route);
+
+        private async void OnRequestExtensionClicked()
+        {
+            var route = $"{nameof(PaymentExtensionPage)}";
             await Shell.Current.GoToAsync(route);
         }
 

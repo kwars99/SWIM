@@ -19,7 +19,7 @@ namespace SWIM
             Routing.RegisterRoute(nameof(PdfPage), typeof(PdfPage));
             Routing.RegisterRoute(nameof(PaymentPage), typeof(PaymentPage));
             Routing.RegisterRoute(nameof(HistoryPage), typeof(HistoryPage));
-
+            Routing.RegisterRoute(nameof(PaymentExtensionPage), typeof(PaymentExtensionPage));
         }
 
     }
