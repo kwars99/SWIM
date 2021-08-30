@@ -17,8 +17,8 @@
                                 Text="FAQ" />
                     </Frame>
                     <Frame Grid.Row="0" Grid.Column="1" Padding="0">
-                        <Button HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"
-                               Text="Outages" />
+                        <Button Clicked="Button_Clicked" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"
+                               Text="Outages"/>
                     </Frame>
                     <Frame Grid.Row="1" Grid.Column="0" Padding="0">
                         <Button HorizontalOptions="FillAndExpand"  

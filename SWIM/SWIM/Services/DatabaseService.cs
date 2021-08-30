@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
@@ -41,7 +41,7 @@ namespace SWIM.Services
             return result;
         }
         
-        
+        zzz
         public List<Usage> GetUsageAsync()
         {
             var result = database.Table<Usage>().ToListAsync().Result;
@@ -68,6 +68,17 @@ namespace SWIM.Services
         public Task<int> UpdateBillAsync(Bill bill)
         {
             return database.UpdateAsync(bill);
+        }
+
+        public List<Fault> GetFaultAsync()
+        {
+            var result = database.Table<Fault>().ToListAsync().Result;
+            return result;
+        }
+
+        public Task<int> InsertFaultAsync(Fault fault)
+        {
+            return database.InsertAsync(fault);
         }
     }
 }
