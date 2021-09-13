@@ -34,7 +34,7 @@
                     <DatePicker Margin="0, 0, 0, 14"
                             Grid.Row="3" 
                             Grid.Column="1" 
-                            MinimumDate="{Binding MinimumDate}"
+                            MinimumDate="{Binding DueDate}"
                             MaximumDate="{Binding MaximumDate}"
                             Date="{Binding SelectedDate}"
                             FontSize="Small"/>
