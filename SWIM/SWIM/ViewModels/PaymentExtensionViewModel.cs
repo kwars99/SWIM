@@ -3,20 +3,25 @@ using System.Collections.Generic;
 using SWIM.Models;
 using System.Linq;
 using System.Text;
+using System.Windows.Input;
+using Xamarin.Forms;
+using SWIM.Views;
 
 namespace SWIM.ViewModels
 {
     public class PaymentExtensionViewModel : BaseViewModel
     {
         private List<Bill> billData = new List<Bill>();
-        private List<Bill> unpaidBill = new List<Bill>();
-        private DateTime currentDate, maximumDate, selectedDate, dueDate;
+        private List<Bill> unpaidBills = new List<Bill>();
+        private DateTime minimumDate, maximumDate, selectedDate, dueDate;
+
+        public ICommand PaymentExtensionCommand { get; }
 
         public double BillAmount
         {
             get
             {
-                return billData[0].Amount;
+                return unpaidBills[0].Amount;
             }
         }
 
@@ -24,16 +29,16 @@ namespace SWIM.ViewModels
         {
             get
             {
-                dueDate = billData[0].DueDate;
+                dueDate = unpaidBills[0].DueDate;
                 return dueDate;
             }
         }
 
-        public DateTime CurrentDate
+        public DateTime MinimumDate
         {
             get
             {
-                return DateTime.Now;
+                return minimumDate;
             }
         }
 
@@ -72,9 +77,24 @@ namespace SWIM.ViewModels
 
         public PaymentExtensionViewModel()
         {
+            PaymentExtensionCommand = new Command(OnPaymentExtensionClicked);
+
             billData = App.Database.GetBillAsync();
-            unpaidBill = billData.Where(x => x.PaidStatus == "unpaid").ToList();
-            maximumDate = unpaidBill[0].DueDate.AddDays(31);
+            unpaidBills = billData.Where(x => x.PaidStatus == "unpaid").ToList();
+            maximumDate = unpaidBills[0].DueDate.AddDays(31);
+            minimumDate = unpaidBills[0].DueDate.AddDays(-14);
+        }
+
+        private async void OnPaymentExtensionClicked(object obj)
+        {
+            unpaidBills[0].DueDate = SelectedDate;
+            await App.Database.UpdateBillAsync(unpaidBills[0]);
+
+            var route = $"///{nameof(BillsPage)}";
+            await Shell.Current.GoToAsync(route);
+            //update bill duie date to selected date
+            //display pop up
+            //go to bills page
         }
     }
 }

@@ -11,27 +11,38 @@
     <ContentPage.Content>
         <ScrollView>
             <Frame>
-                <Grid RowDefinitions="50, 50, 50, 50">
-                    <Label Text="Bill amount: "/>
-                    <Label Grid.Column="1" 
-                            Text="{Binding BillAmount}"/>
-
-                    <Label Grid.Row="1" Text="Orginal Due Date: "/>
+                <Grid RowDefinitions="50, 50, 50, 50, 50">
+                    <Label Grid.ColumnSpan="2"
+                           Text="Request Extension"
+                           FontSize="Title"/>
+                    
                     <Label Grid.Row="1" 
+                           Text="Bill amount: "/>
+                    
+                    <Label Grid.Row="1"
+                           Grid.Column="1" 
+                           Text="{Binding BillAmount, StringFormat='{0:C2}'}"/>
+
+                    <Label Grid.Row="2" Text="Orginal Due Date: "/>
+                    <Label Grid.Row="2" 
                             Grid.Column="1"
-                            Text="{Binding DueDate}"/>
+                            Text="{Binding DueDate, StringFormat='{dd/MM/yyyy}'}"/>
 
-                    <Label Grid.Row="2"
-                   Text="Select a preferred date:"/>
-                    <DatePicker Grid.Row="2" 
+                    <Label Grid.Row="3"
+                           Text="Select a preferred date:"/>
+                    
+                    <DatePicker Margin="0, 0, 0, 14"
+                            Grid.Row="3" 
                             Grid.Column="1" 
-                            MinimumDate="{Binding CurrentDate}"
+                            MinimumDate="{Binding MinimumDate}"
                             MaximumDate="{Binding MaximumDate}"
-                            Date="{Binding SelectedDate}"/>
+                            Date="{Binding SelectedDate}"
+                            FontSize="Small"/>
 
-                    <Button Grid.Row="3"
-                    Grid.ColumnSpan="2"
-                    Text="Request Extension"/>
+                    <Button Grid.Row="4"
+                            Grid.ColumnSpan="2"
+                            Text="Request Extension"
+                            Command="{Binding PaymentExtensionCommand}"/>
                 </Grid>
                 
             </Frame>

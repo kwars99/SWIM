@@ -273,8 +273,7 @@ namespace SWIM.ViewModels
                 {
                     DisplayPopup = false;
 
-                    //something wrong here
-                    //await Shell.Current.GoToAsync($"//{nameof(BillsPage)}");
+                    await Shell.Current.GoToAsync($"///{nameof(BillsPage)}");
                 }
             }
             else

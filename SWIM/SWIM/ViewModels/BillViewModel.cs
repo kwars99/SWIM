@@ -132,8 +132,8 @@ namespace SWIM.ViewModels
 
             //For testing the payment function
             //adds in an unpaid bill
-            //data[data.Count - 1].PaidStatus = "unpaid";
-            //App.Database.UpdateBillAsync(data[data.Count - 1]);
+            data[data.Count - 1].PaidStatus = "unpaid";
+            App.Database.UpdateBillAsync(data[data.Count - 1]);
 
             unpaidBills = data.Where(x => x.PaidStatus == "unpaid").ToList();
 
@@ -173,10 +173,11 @@ namespace SWIM.ViewModels
                 FormattedBill paidbill = new FormattedBill(period, amount);
                 paidBills.Add(paidbill);
             }
+
             return paidBills;
         }
 
-        private async void OnPayBillClicked(object obj)
+        private async void OnPayBillClicked()
         {
             var route = $"{nameof(PaymentPage)}";
             await Shell.Current.GoToAsync(route);
