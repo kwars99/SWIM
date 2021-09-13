@@ -10,7 +10,7 @@ namespace SWIM.ViewModels
     {
         private List<Bill> billData = new List<Bill>();
         private List<Bill> unpaidBill = new List<Bill>();
-        private DateTime currentDate, maximumDate, selectedDate;
+        private DateTime currentDate, maximumDate, selectedDate, dueDate;
 
         public double BillAmount
         {
@@ -24,7 +24,8 @@ namespace SWIM.ViewModels
         {
             get
             {
-                return billData[0].DueDate;
+                dueDate = billData[0].DueDate;
+                return dueDate;
             }
         }
         public DateTime CurrentDate
@@ -52,24 +53,28 @@ namespace SWIM.ViewModels
             }
         }
 
-        /*
+        
         public DateTime MaximumDate
         {
             get
             {
-                maximumDate = DueDate.AddDays(31);
                 return maximumDate;
-            }            
+            }
+            set
+            {
+                if (maximumDate != value)
+                {
+                    maximumDate = value;
+                    OnPropertyChanged(nameof(MaximumDate));
+                }
+            }
         }
-        */
-
 
         public PaymentExtensionViewModel()
         {
             billData = App.Database.GetBillAsync();
             unpaidBill = billData.Where(x => x.PaidStatus == "unpaid").ToList();
+            maximumDate = unpaidBill[0].DueDate.AddDays(31);
         }
-
-
     }
 }

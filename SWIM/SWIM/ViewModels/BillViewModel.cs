@@ -17,7 +17,7 @@ namespace SWIM.ViewModels
         private List<Bill> data = new List<Bill>();
         private List<Bill> unpaidBills = new List<Bill>();
         private List<FormattedBill> paidBills = new List<FormattedBill>();
-
+        private bool isEnabled;
         public ICommand RequestExtensionCommand { get; }
 
         public List<Bill> Data
@@ -44,7 +44,7 @@ namespace SWIM.ViewModels
             }
             set
             {
-                if (paidBills != null)
+                if (paidBills != value)
                 {
                     paidBills = value;
                     OnPropertyChanged(nameof(PaidBills));
@@ -56,12 +56,11 @@ namespace SWIM.ViewModels
         {
             get
             {
-                List<Bill> unpaidBills = data.Where(x => x.PaidStatus == "unpaid").ToList();
                 return unpaidBills;
             }
             set
             {
-                if (unpaidBills != null)
+                if (unpaidBills != value)
                 {
                     unpaidBills = value;
                     OnPropertyChanged(nameof(UnPaidBills));
@@ -69,13 +68,42 @@ namespace SWIM.ViewModels
             }
         }
 
+        public bool IsEnabled
+        {
+            get
+            {
+                return isEnabled;
+            }
+            set
+            {
+                if (isEnabled != value)
+                {
+                    isEnabled = value;
+                    OnPropertyChanged(nameof(IsEnabled));
+                }
+            }
+        }
+
         public BillViewModel()
         {
             data = App.Database.GetBillAsync();
+            unpaidBills = data.Where(x => x.PaidStatus == "unpaid").ToList();
+
+            //For testing
+
             data.Reverse();
             FormatPaidBills();
 
             RequestExtensionCommand = new Command(OnRequestExtensionClicked);
+
+            if (unpaidBills.Count == 0)
+            {
+                IsEnabled = false;
+            }
+            else
+            {
+                IsEnabled = true;
+            }
         }
 
         private List<FormattedBill> FormatPaidBills()
