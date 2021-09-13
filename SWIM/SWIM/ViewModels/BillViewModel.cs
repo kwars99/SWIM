@@ -115,8 +115,8 @@ namespace SWIM.ViewModels
 
             //For testing the payment function
             //adds in an unpaid bill
-            data[data.Count - 1].PaidStatus = "unpaid";
-            App.Database.UpdateBillAsync(data[data.Count - 1]);
+            //data[data.Count - 1].PaidStatus = "unpaid";
+            //App.Database.UpdateBillAsync(data[data.Count - 1]);
 
             unpaidBills = data.Where(x => x.PaidStatus == "unpaid").ToList();
 
