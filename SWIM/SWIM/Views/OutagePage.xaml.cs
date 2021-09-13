@@ -28,6 +28,9 @@ namespace SWIM.Views
                     EstimatedFixDate = currentDate.AddDays(7), 
                     Location = location.Text });
             }
+
+            var route = $"{nameof(OutagePage)}";
+            await Shell.Current.GoToAsync(route);
         }
     }
 }

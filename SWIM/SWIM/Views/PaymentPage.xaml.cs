@@ -1,22 +1,23 @@
-﻿using System;
+﻿using SWIM.ViewModels;
+using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
-using Syncfusion.PdfViewer;
+
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace SWIM.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class BillsPage : ContentPage
+    public partial class PaymentPage : ContentPage
     {
-        public BillsPage()
+        public PaymentPage()
         {
             InitializeComponent();
+
+            BindingContext = new PaymentPageViewModel();
         }
     }
 }

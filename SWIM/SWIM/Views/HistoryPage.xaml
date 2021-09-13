@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:SWIM.ViewModels"
+             Title="Transaction History"
+             x:Class="SWIM.Views.HistoryPage">
+
+    <ContentPage.BindingContext>
+        <local:HistoryViewModel/>
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout>
+                <Frame     Padding="5, 5, 5, 0"
+                           Margin="0, 0, 0, 0"
+                           HasShadow="False">
+                    <StackLayout>
+                        <BoxView Grid.Row="2"
+                                     Color="#6096BA"
+                                     HeightRequest="2"
+                                     HorizontalOptions="Fill"/>
+                        <Label Text="Payment History"
+                                   FontSize="Large"
+                                   HorizontalTextAlignment="Center"/>
+                        <BoxView Grid.Row="1"
+                                     Color="#6096BA"
+                                     HeightRequest="2"
+                                     HorizontalOptions="Fill"/>
+                        <StackLayout>
+                            <Grid ColumnDefinitions="*">
+                                <Label Grid.Column="0" 
+                                       Margin="25, 20, 0, 10"
+                                       HorizontalTextAlignment="Start"
+                                       FontSize="Subtitle"
+                                       FontAttributes="Bold"
+                                       Text="Amount"/>
+                                <Label Grid.Column="1"
+                                       Margin="0, 20, 0, 10"
+                                       HorizontalTextAlignment="Start"
+                                       FontSize="Subtitle"
+                                       FontAttributes="Bold"
+                                       Text="Date Paid"/>
+                            </Grid>
+                            <BoxView Grid.Row="1"
+                                     Color="#E7ECEF"
+                                     HeightRequest="2"
+                                     HorizontalOptions="Fill"/>
+                        </StackLayout>
+                        <StackLayout BindableLayout.ItemsSource="{Binding Data}">
+                            <BindableLayout.ItemTemplate>
+                                <DataTemplate>
+                                    <StackLayout>
+                                        <Grid ColumnDefinitions="*">
+                                            <Label Grid.Column="0"
+                                                   Margin="45, 20, 8, 2"
+                                                   HorizontalTextAlignment="Start"
+                                                   FontSize="Small"
+                                                   Text="{Binding Amount, StringFormat= '{0:$###.##}'}"/>
+                                            <Label Grid.Column="1"
+                                                   Margin="25, 20, 0, 0"
+                                                   HorizontalTextAlignment="Start"
+                                                   FontSize="Small"
+                                                   Text="{Binding DatePaid, StringFormat='{0:dd MMM yyyy}'}"/>
+                                        </Grid>
+                                    </StackLayout>
+                                </DataTemplate>
+                            </BindableLayout.ItemTemplate>
+                        </StackLayout>
+                    </StackLayout>
+                </Frame>                 
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

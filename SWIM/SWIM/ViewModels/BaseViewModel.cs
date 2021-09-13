@@ -10,6 +10,7 @@ namespace SWIM.ViewModels
 {
     public class BaseViewModel : INotifyPropertyChanged
     {
+        
         public IDataStore<Item> DataStore => DependencyService.Get<IDataStore<Item>>();
 
         bool isBusy = false;
@@ -25,6 +26,7 @@ namespace SWIM.ViewModels
             get { return title; }
             set { SetProperty(ref title, value); }
         }
+        
 
         protected bool SetProperty<T>(ref T backingStore, T value,
             [CallerMemberName] string propertyName = "",
@@ -32,7 +34,7 @@ namespace SWIM.ViewModels
         {
             if (EqualityComparer<T>.Default.Equals(backingStore, value))
                 return false;
-
+            
             backingStore = value;
             onChanged?.Invoke();
             OnPropertyChanged(propertyName);

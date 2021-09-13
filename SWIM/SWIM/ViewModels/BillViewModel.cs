@@ -14,10 +14,15 @@ namespace SWIM.ViewModels
 {
     public class BillViewModel : INotifyPropertyChanged
     {
+        
         private List<Bill> data = new List<Bill>();
         private List<Bill> unpaidBills = new List<Bill>();
         private List<FormattedBill> paidBills = new List<FormattedBill>();
         private bool isEnabled;
+        private bool isReminderVisible, isLabelVisible;
+
+        public ICommand GoToPayment { get; }
+        public ICommand OpenPDFCommand { get; }
         public ICommand RequestExtensionCommand { get; }
 
         public List<Bill> Data
@@ -56,6 +61,7 @@ namespace SWIM.ViewModels
         {
             get
             {
+                
                 return unpaidBills;
             }
             set
@@ -83,27 +89,76 @@ namespace SWIM.ViewModels
                 }
             }
         }
+        
+        public bool IsReminderVisible
+        {
+            get
+            {
+                return isReminderVisible;
+            }
+            set
+            {
+                if (isReminderVisible != value)
+                {
+                    isReminderVisible = value;
+                    OnPropertyChanged(nameof(IsReminderVisible));
+                }
+            }
+        }
+
+        public bool IsLabelVisible
+        {
+            get
+            {
+                return isLabelVisible;
+            }
+            set
+            {
+                if (isLabelVisible != value)
+                {
+                    isLabelVisible = value;
+                    OnPropertyChanged(nameof(IsLabelVisible));
+                }
+            }
+        }
 
         public BillViewModel()
         {
-            data = App.Database.GetBillAsync();
-            unpaidBills = data.Where(x => x.PaidStatus == "unpaid").ToList();
-
-            //For testing
-
-            data.Reverse();
-            FormatPaidBills();
-
+            GoToPayment = new Command(OnPayBillClicked);
+            OpenPDFCommand = new Command(OnOpenClicked);
             RequestExtensionCommand = new Command(OnRequestExtensionClicked);
+
+            data = App.Database.GetBillAsync();
+
+            //For testing the payment function
+            //adds in an unpaid bill
+            //data[data.Count - 1].PaidStatus = "unpaid";
+            //App.Database.UpdateBillAsync(data[data.Count - 1]);
+
+            unpaidBills = data.Where(x => x.PaidStatus == "unpaid").ToList();
 
             if (unpaidBills.Count == 0)
             {
+                IsLabelVisible = true;
+                IsReminderVisible = false;
                 IsEnabled = false;
             }
             else
             {
+                IsReminderVisible = true;
+                IsLabelVisible = false;
                 IsEnabled = true;
             }
+
+            data.Reverse();
+            FormatPaidBills();
+            
+        }
+            
+        private async void OnOpenClicked()
+        {
+            var route = $"{nameof(PdfPage)}";
+            await Shell.Current.GoToAsync(route);
         }
 
         private List<FormattedBill> FormatPaidBills()
@@ -119,6 +174,12 @@ namespace SWIM.ViewModels
                 paidBills.Add(paidbill);
             }
             return paidBills;
+        }
+
+        private async void OnPayBillClicked(object obj)
+        {
+            var route = $"{nameof(PaymentPage)}";
+            await Shell.Current.GoToAsync(route);
         }
 
         private async void OnRequestExtensionClicked()

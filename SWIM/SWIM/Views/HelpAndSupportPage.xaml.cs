@@ -20,7 +20,8 @@ namespace SWIM.Views
         //Button to navigate to Outage Page
         private async void Button_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new OutagePage());
+            var route = $"{nameof(OutagePage)}";
+            await Shell.Current.GoToAsync(route);
         }
     }
 }

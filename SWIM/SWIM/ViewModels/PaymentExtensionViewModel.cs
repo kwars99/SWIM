@@ -1,6 +1,6 @@
-﻿using SWIM.Models;
 using System;
 using System.Collections.Generic;
+using SWIM.Models;
 using System.Linq;
 using System.Text;
 
@@ -28,12 +28,12 @@ namespace SWIM.ViewModels
                 return dueDate;
             }
         }
+
         public DateTime CurrentDate
         {
             get
             {
-                currentDate = DateTime.Now;
-                return currentDate;
+                return DateTime.Now;
             }
         }
 

@@ -4,17 +4,18 @@
              xmlns:local="clr-namespace:SWIM.ViewModels"
              x:Class="SWIM.Views.BillsPage"
              Title="Bill History"
-             Style="{StaticResource PageStyle}">
+             Style="{StaticResource PageStyle}"
+             xmlns:syncfusion="clr-namespace:Syncfusion.SfPdfViewer.XForms;assembly=Syncfusion.SfPdfViewer.XForms">
     
-    <ContentPage.BindingContext>
+    <ContentPage.BindingContext >
         <local:BillViewModel/>
     </ContentPage.BindingContext>
-    
+
     <ContentPage.Content>
         <ScrollView>
             <StackLayout>
                 <!-- Current Bill -->
-                <Frame Margin="10">
+                <Frame Margin="10" IsVisible="{Binding IsReminderVisible}">
                     <StackLayout BindableLayout.ItemsSource="{Binding UnPaidBills}">
                         <BindableLayout.ItemTemplate>
                             <DataTemplate>
@@ -29,52 +30,78 @@
                                         <ColumnDefinition Width="150" />
                                         <ColumnDefinition Width="*" />
                                     </Grid.ColumnDefinitions>
-                                    <Label Grid.Column="1" Text="Amount Due" FontSize="Large" Font="Bold" HorizontalTextAlignment="Center"/>
-                                    <Label Grid.Column="1" Grid.Row="1" Text="{Binding Amount, StringFormat='{0:C2}'}" FontSize="Medium" HorizontalTextAlignment="Center"/>
-                                    <Button Grid.Row="2" Grid.Column="0" Text="Pay Now" HorizontalOptions="Center"/>
-                                    <Button Grid.Column="2" Grid.Row="2" Text="View Bill" />
-                                    <Label Grid.Column="1" Grid.Row="3" Text="Direct Debit Active" HorizontalOptions="Center"/>
+                                    <Label Grid.Column="1" 
+                                           Text="Amount Due" 
+                                           FontSize="Large" 
+                                           Font="Bold" 
+                                           HorizontalTextAlignment="Center"/>
+
+                                    <Label Grid.Column="1" Grid.Row="1" 
+                                           Text="{Binding Amount, StringFormat='{0:C2}'}" 
+                                           FontSize="Medium" 
+                                           HorizontalTextAlignment="Center"/>
+
+                                    <Button Grid.Row="2" Grid.Column="0"
+                                            Text="Pay Now" 
+                                            HorizontalOptions="Center"
+                                            Command="{Binding Source={RelativeSource AncestorType={x:Type local:BillViewModel}},
+                                                                                     Path=GoToPayment}"/>
+                                    <Button Grid.Column="2" Grid.Row="2" 
+                                            Text="View Bill" />
+                                    <Label Grid.Column="1" Grid.Row="3" 
+                                           Text="Direct Debit Active" 
+                                           HorizontalOptions="Center"/>
                                 </Grid>
                             </DataTemplate>
                         </BindableLayout.ItemTemplate>
                     </StackLayout>
                 </Frame>
 
+                <Frame Margin="10"
+                       IsVisible="{Binding IsLabelVisible}">
+                    <Label HorizontalOptions="Center"
+                           VerticalOptions="Center"
+                           Text="You have no current bills"/>
+                </Frame> 
+
                 <!--Buttons-->
-                <Button Text="Report Payment" Margin="10, -5, 10, 0"/>
-                <Button Text="Request Extension" Margin="10, 0, 10, 0"
+                <Button Text="Report Payment" 
+                        Margin="10, -5, 10, 0"/>
+                <Button Text="Request Extension" 
+                        Margin="10, 0, 10, 0"
                         Command="{Binding RequestExtensionCommand}"
                         IsEnabled="{Binding IsEnabled}"/>
-                <Button Text="Manage Payment Options" Margin="10, 0, 10, -5"/>
+                <Button Text="Manage Payment Options" 
+                        Margin="10, 0, 10, -5"/>
                 
                 <!-- Latest Bills -->
                 <Frame Margin="10">
                     <StackLayout>
                         <BoxView Grid.Row="2"
-                                     Color="#6096BA"
-                                     HeightRequest="2"
-                                     HorizontalOptions="Fill"/>
+                                 Color="#6096BA"
+                                 HeightRequest="2"
+                                 HorizontalOptions="Fill"/>
                         <Label Text="Previous Bills"
-                                   FontSize="Large"
-                                   HorizontalTextAlignment="Center"/>
+                               FontSize="Large"
+                               HorizontalTextAlignment="Center"/>
                         <BoxView Grid.Row="2"
-                                     Color="#6096BA"
-                                     HeightRequest="2"
-                                     HorizontalOptions="Fill"/>
+                                 Color="#6096BA"
+                                 HeightRequest="2"
+                                 HorizontalOptions="Fill"/>
                         <StackLayout>
                             <Grid ColumnDefinitions="*, 100, 100">
                                 <Label Margin="0, 10, 0, 10"
-                                           HorizontalTextAlignment="Center"
-                                           FontSize="Subtitle"
-                                           FontAttributes="Bold"
-                                           Text="Period"/>
+                                       HorizontalTextAlignment="Center"
+                                       FontSize="Subtitle"
+                                       FontAttributes="Bold"
+                                       Text="Period"/>
 
                                 <Label Grid.Column="1"
-                                           Margin="0, 10, 0, 10"
-                                           HorizontalTextAlignment="Center"
-                                           FontSize="Subtitle"
-                                           FontAttributes="Bold"
-                                           Text="Amount"/>
+                                       Margin="0, 10, 0, 10"
+                                       HorizontalTextAlignment="Center"
+                                       FontSize="Subtitle"
+                                       FontAttributes="Bold"
+                                       Text="Amount"/>
 
                                 <Label Grid.Column="2"
                                            Margin="0, 10, 0, 10"
@@ -82,19 +109,19 @@
                                            FontSize="Subtitle"
                                            FontAttributes="Bold"
                                            Text="Paid"/>
-                                
+
                                 <Label Grid.Column="3"
-                                           Margin="0, 10, 0, 10"
-                                           HorizontalTextAlignment="Center"
-                                           FontSize="Default"
-                                           FontAttributes="Bold"
-                                           Text="Download"/>
+                                       Margin="0, 10, 0, 10"
+                                       HorizontalTextAlignment="Center"
+                                       FontSize="Default"
+                                       FontAttributes="Bold"
+                                       Text="Download"/>
 
                             </Grid>
                             <BoxView Grid.Row="2"
-                                         Color="#E7ECEF"
-                                         HeightRequest="2"
-                                         HorizontalOptions="Fill"/>
+                                     Color="#E7ECEF"
+                                     HeightRequest="2"
+                                     HorizontalOptions="Fill"/>
                         </StackLayout>
                         <StackLayout BindableLayout.ItemsSource="{Binding PaidBills}">
                             <BindableLayout.ItemTemplate>
@@ -102,102 +129,32 @@
                                     <StackLayout>
                                         <Grid ColumnDefinitions="*, *, *, *">
                                             <Label Grid.Column="0"
-                                                       Margin="5, 2, 8, 2"
-                                                       HorizontalTextAlignment="Start"
-                                                       Text ="{Binding BillPeriod}"
-                                                       FontSize="Small"/>
+                                                   Margin="5, 2, 8, 2"
+                                                   HorizontalTextAlignment="Start"
+                                                   Text ="{Binding BillPeriod}"
+                                                   FontSize="Small"/>
                                             <Label Grid.Column="1"
-                                                       Margin="0, 2, 0, 2"
-                                                       HorizontalTextAlignment="Center"
-                                                       Text="{Binding Amount,
+                                                   Margin="0, 2, 0, 2"
+                                                   HorizontalTextAlignment="Center"
+                                                   Text="{Binding Amount,
                                                                   StringFormat='{0:C2}'}"
-                                                       FontSize="Small"/>
+                                                   FontSize="Small"/>
                                             <Image Grid.Column="2"
-                                                       Source="green_tick.png"
-                                                       HeightRequest="30"/>
+                                                   Source="green_tick.png"
+                                                   HeightRequest="30"/>
                                             <Button Grid.Column="3" 
-                                                       Text="PDF"/>
+                                                    Text="PDF"
+                                                    Command="{Binding Source={RelativeSource AncestorType={x:Type local:BillViewModel}}, Path=OpenPDFCommand}"/>
                                         </Grid>
                                         <BoxView Grid.Row="2"
                                                      Color="#E7ECEF"
                                                      HeightRequest="1"
-                                                     HorizontalOptions="Fill"/>
+                                                     HorizontalOptions="Fill"/> 
                                     </StackLayout>
                                 </DataTemplate>
                             </BindableLayout.ItemTemplate>
                         </StackLayout>
                     </StackLayout>
-                    <!--<dg:SfDataGrid x:Name="dataGrid" 
-                                   ItemsSource="{Binding PaidBills}" 
-                                   AutoGenerateColumns="False"
-                                   ColumnSizer="Star">
-
-                        <dg:SfDataGrid.GridStyle>
-                            <dg:DefaultStyle GridLinesVisibility="None"/>
-                        </dg:SfDataGrid.GridStyle>
-
-                        <dg:SfDataGrid.Columns>
-                            <dg:GridTextColumn HeaderText="Bill Period" HeaderFont="Bold" MappingName="DueDate"/>
-                            <dg:GridTextColumn HeaderText="Bill Amount" HeaderFont="Bold" Format="C" MappingName="Amount"/>
-
-                            <dg:GridTemplateColumn HeaderText="Paid Status" MappingName="paid">
-                                <dg:GridTemplateColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <Image Source="green_tick.png" Aspect="AspectFit"/>
-                                    </DataTemplate>
-                                </dg:GridTemplateColumn.CellTemplate>
-                            </dg:GridTemplateColumn>
-
-                            <dg:GridTemplateColumn HeaderText="Download" MappingName="download">
-                                <dg:GridTemplateColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <Button Text="PDF" Margin="5"/>
-                                    </DataTemplate>
-                                </dg:GridTemplateColumn.CellTemplate>
-                            </dg:GridTemplateColumn>
-
-                        </dg:SfDataGrid.Columns>
-                    </dg:SfDataGrid>
-                    -->
-                    <!--
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="20" />
-                            <RowDefinition Height="35" />
-                            <RowDefinition Height="35" />
-                            <RowDefinition Height="35" />
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="80" />
-                            <ColumnDefinition Width="80" />
-                            <ColumnDefinition Width="80" />
-                            <ColumnDefinition Width="80" />
-                        <ColumnDefinition />
-                        </Grid.ColumnDefinitions>
-                        <Label Grid.Column="0" Text="Bill Period" Font="Bold"/>
-                        <Label Grid.Column="1" Text="Bill Amount" Font="Bold"/>
-                        <Label Grid.Column="2" Text="Paid Status" Font="Bold"/>
-                        <Label Grid.Column="3" Text="Download" Font="Bold"/>
-                        <Label Grid.Row="1" Grid.Column="0" Text="28 Jan 21-
-                               27 Apr 21"/>
-                        <Label Grid.Row="2" Grid.Column="0" Text="27 Oct 20-
-                               27 Jan 21"/>
-                        <Label Grid.Row="3" Grid.Column="0" Text="13 Aug 20-
-                               26 Oct 20"/>
-                        <Label Grid.Row="1" Grid.Column="1" Text="$250" HorizontalTextAlignment="Center"/>
-                        <Label Grid.Row="2" Grid.Column="1" Text="$405" HorizontalTextAlignment="Center"/>
-                        <Label Grid.Row="3" Grid.Column="1" Text="$389" HorizontalTextAlignment="Center"/>
-                        <Image Grid.Row="1" Grid.Column="2" Source="green_tick.png" 
-                               Aspect="AspectFit"/>
-                        <Image Grid.Row="2" Grid.Column="2" Source="green_tick.png" 
-                               Aspect="AspectFit"/>
-                        <Image Grid.Row="3" Grid.Column="2" Source="green_tick.png" 
-                               Aspect="AspectFit"/>
-                        <Button Grid.Row="1" Grid.Column="3" Text="PDF" />
-                        <Button Grid.Row="2" Grid.Column="3" Text="PDF" />
-                        <Button Grid.Row="3" Grid.Column="3" Text="PDF" />
-                    </Grid>
-                    -->
                 </Frame>
             </StackLayout>
         </ScrollView>
