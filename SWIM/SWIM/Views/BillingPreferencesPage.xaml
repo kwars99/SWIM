@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SWIM.Views.BillingPreferencesPage">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout>
+                <Frame>
+                    <StackLayout>
+                        <Label Text="Billing Preferences"/>
+
+                        <BoxView Grid.Row="2"
+                                 Color="#6096BA"
+                                 HeightRequest="2"
+                                 HorizontalOptions="Fill"/>
+
+                        <Label Text="Receiving your bill:"/>
+
+                        <StackLayout Orientation="Horizontal">
+                            <CheckBox/>
+                            <Label Text="Email"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal">
+                            <CheckBox/>
+                            <Label Text="By Mail"/>
+                        </StackLayout>
+
+                        <BoxView Grid.Row="2"
+                                 Color="#6096BA"
+                                 HeightRequest="2"
+                                 HorizontalOptions="Fill"/>
+
+                        <Label Text="When to receive your bill:"/>
+
+                        <StackLayout Orientation="Horizontal">
+                            <CheckBox/>
+                            <Label Text="1 month before due date"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal">
+                            <CheckBox/>
+                            <Label Text="2 weeks before due date"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal">
+                            <CheckBox/>
+                            <Label Text="1 week before due date"/>
+                        </StackLayout>
+                    </StackLayout>
+                </Frame>
+
+                <Frame Grid.Row="1">
+                    <StackLayout>
+                        <Label Text="Payment Reminder Preferences"/>
+                        <BoxView Grid.Row="2"
+                                 Color="#6096BA"
+                                 HeightRequest="2"
+                                 HorizontalOptions="Fill"/>
+
+                        <Label Text="Receiving payment reminders:"/>
+                        <StackLayout Orientation="Horizontal">
+                            <CheckBox/>
+                            <Label Text="Email"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal">
+                            <CheckBox/>
+                            <Label Text="SMS"/>
+                        </StackLayout>
+
+                        <BoxView Grid.Row="2"
+                                 Color="#6096BA"
+                                 HeightRequest="2"
+                                 HorizontalOptions="Fill"/>
+
+                        <Label Text="When to receive payment reminders:"/>
+                        <StackLayout Orientation="Horizontal">
+                            <CheckBox />
+                            <Label Text="Weekly"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal">
+                            <CheckBox />
+                            <Label Text="Fortnightly"/>
+                        </StackLayout>
+                    </StackLayout>
+                </Frame>
+
+                <Button Text="Save Preferences"/>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
