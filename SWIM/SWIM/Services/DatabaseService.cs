@@ -59,9 +59,20 @@ namespace SWIM.Services
             return result;
         }
 
+        public List<Enquiry> GetEnquiryAsync()
+        {
+            var result = database.Table<Enquiry>().ToListAsync().Result;
+            return result;
+        }
+
         public Task<int> InsertFaultAsync(Fault fault)
         {
             return database.InsertAsync(fault);
+        }
+
+        public Task<int> InsertEnquiryAsync(Enquiry enquiry)
+        {
+            return database.InsertAsync(enquiry);
         }
     }
 }
