@@ -59,6 +59,12 @@ namespace SWIM.Services
             return result;
         }
 
+        public List<User> GetUserDetailsAsync()
+        {
+            var result = database.Table<User>().ToListAsync().Result;
+            return result;
+        }
+
         public Task<int> InsertFaultAsync(Fault fault)
         {
             return database.InsertAsync(fault);

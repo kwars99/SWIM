@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:SWIM.ViewModels"
+             x:Class="SWIM.Views.UpdateDetails"
+             Title="Update Details"
+             Style="{StaticResource PageStyle}">
+
+    <ContentPage.BindingContext >
+        <local:UpdateDetailsViewModel/>
+    </ContentPage.BindingContext>
+    
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout>
+                <Frame>  
+                    <StackLayout BindableLayout.ItemsSource="{Binding Data}">
+                        <BindableLayout.ItemTemplate>
+                            <DataTemplate>
+                                <StackLayout>
+                                    <Label Text="{Binding Email}"/>
+                                    <Label Text="{Binding FirstName}"/>
+                                    <Label Text="{Binding LastName}"/>
+                                </StackLayout>
+                            </DataTemplate>
+                        </BindableLayout.ItemTemplate>
+                    </StackLayout>                                        
+                </Frame>
+            </StackLayout>
+        </ScrollView>
+        
+    </ContentPage.Content>
+</ContentPage>

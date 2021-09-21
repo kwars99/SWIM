@@ -12,6 +12,14 @@
                     <Label Text="My Account" />
                 </Frame>
                 <Frame Padding="15">
+                    <Label Text="Update Contact Details">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    
+                </Frame>
+                <Frame Padding="15">
                     <Label Text="Move or Add Property" />
                 </Frame>
                 <Frame Padding="15">

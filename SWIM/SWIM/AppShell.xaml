@@ -39,6 +39,8 @@
         <ShellContent Title="Bills" Icon="bills_18.png" Route="BillsPage" ContentTemplate="{DataTemplate local:BillsPage}" />
         <ShellContent Title="Help" Icon="help_18.png" Route="HelpAndSupportPaage" ContentTemplate="{DataTemplate local:HelpAndSupportPage}" />
         <ShellContent Title="More" Icon="more_18.png" Route="MorePage" ContentTemplate="{DataTemplate local:MorePage}" />
+        <ShellContent Title="Update Contact Details" Icon="more_18.png" Route="UpdateDetails" ContentTemplate="{DataTemplate local:UpdateDetails}" />
+
     </TabBar>
 
     <!--

@@ -26,5 +26,10 @@ namespace SWIM.Views
             App.IsUserLoggedIn = false;
             await Shell.Current.GoToAsync($"//{nameof(LoginPage)}");
         }
+
+        async void TapGestureRecognizer_Tapped(object sender, EventArgs e)
+        {
+            await Shell.Current.GoToAsync($"//{nameof(UpdateDetails)}");
+        }
     }
 }
