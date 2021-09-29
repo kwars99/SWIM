@@ -15,6 +15,14 @@ namespace SWIM.Views
         public PdfPage()
         {
             InitializeComponent();
+
+            //Set Toolbar Items
+            pdfViewerControl.Toolbar.SetToolbarItemVisibility("page-view-mode", false);
+            pdfViewerControl.Toolbar.SetToolbarItemVisibility("bookmark", false);
+            pdfViewerControl.Toolbar.SetToolbarItemVisibility("search", false);
+            pdfViewerControl.Toolbar.SetToolbarItemVisibility("undo", false);
+            pdfViewerControl.Toolbar.SetToolbarItemVisibility("redo", false);
+            pdfViewerControl.Toolbar.SetToolbarItemVisibility("annotation", false);
         }
     }
 }
