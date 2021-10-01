@@ -3,9 +3,13 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
+using System.ServiceModel.Syndication;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
+using System.Xml;
 using SWIM.Models;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace SWIM.ViewModels
@@ -16,7 +20,13 @@ namespace SWIM.ViewModels
         private List<Bill> unpaidBills = new List<Bill>();
         private List<Usage> usageData = new List<Usage>();
         private List<FormattedUsage> billUsage = new List<FormattedUsage>();
+        private List<WaterSavingTips> waterSavingTips = new List<WaterSavingTips>();
+        private List<NewsItem> newsItems = new List<NewsItem>();
+
         private string dueDate;
+
+        //public ICommand ReadMoreCommand => new Command<string>(async (url) => await Browser.OpenAsync(url, BrowserLaunchMode.SystemPreferred));
+        public ICommand TapCommand => new Command<string>(async (url) => await Launcher.OpenAsync(url));
 
         public List<Bill> BillData
         {
@@ -67,6 +77,38 @@ namespace SWIM.ViewModels
             }
         }
 
+        public List<WaterSavingTips> WaterSavingTips
+        {
+            get
+            {
+                return waterSavingTips;
+            }
+            set
+            {
+                if (waterSavingTips != value)
+                {
+                    waterSavingTips = value;
+                    OnPropertyChanged(nameof(WaterSavingTips));
+                }
+            }
+        }
+
+        public List<NewsItem> NewsItems
+        {
+            get
+            {
+                return newsItems.Take(5).ToList();
+            }
+            set
+            {
+                if (newsItems != value)
+                {
+                    newsItems = value;
+                    OnPropertyChanged(nameof(NewsItems));
+                }
+            }
+        }
+
         public string DueDate
         {
             get
@@ -90,6 +132,10 @@ namespace SWIM.ViewModels
 
             billData = App.Database.GetBillsAsync();
             FormatBillData();
+
+            InitialiseTips();
+
+            ParseRSS();
         }
 
         private List<FormattedUsage> FormatBillData()
@@ -122,6 +168,93 @@ namespace SWIM.ViewModels
 
 
             return billUsage;
+        }
+
+        private void InitialiseTips()
+        {
+            /* Tips taken from: https://www.qld.gov.au/environment/water/residence/use/home */
+            WaterSavingTips Tip1 = new WaterSavingTips()
+            {
+                TipID = 1,
+                Title = "Laundry",
+                Description = "Try not to use your washing machine every day. " +
+                              "Instead, sort clothes and wash bigger loads less frequently.",
+                ImageSource = ""
+            };
+            WaterSavingTips Tip2 = new WaterSavingTips()
+            {
+                TipID = 1,
+                Title = "Kitchen",
+                Description = "Use the dishwasher with a full load. Running a full load in a water-efficient " +
+                               "dishwasher uses less water than washing dishes by hand",
+
+                ImageSource = ""
+            };
+            WaterSavingTips Tip3 = new WaterSavingTips()
+            {
+                TipID = 1,
+                Title = "Bathroom",
+                Description = "Install a water-efficient shower head. A WELS Scheme 3-star rated shower " +
+                              "head will use no more than 9 litres of water per minute.",
+
+                ImageSource = ""
+            };
+            WaterSavingTips Tip4 = new WaterSavingTips()
+            {
+                TipID = 1,
+                Title = "Pool & Outdoors",
+                Description = "Use a pool cover.A properly fitted pool cover can stop up to 97 % " +
+                              "of evaporation and reduce the amount of chemicals required to treat the water.",
+
+                ImageSource = ""
+            };
+            WaterSavingTips Tip5 = new WaterSavingTips()
+            {
+                TipID = 1,
+                Title = "Leaks",
+                Description = "A large amount of water around can be lost due to leaking pipes and dripping taps. " +
+                              "One slowly dripping tap can waste 9,000 litres of water a year, while a visibly " +
+                              "leaking toilet can waste more than 60,000 litres.",
+
+                ImageSource = ""
+            };
+
+            waterSavingTips.Add(Tip1);
+            waterSavingTips.Add(Tip2);
+            waterSavingTips.Add(Tip3);
+            waterSavingTips.Add(Tip4);
+            waterSavingTips.Add(Tip5);
+        }
+
+        private void ParseRSS()
+        {
+            SyndicationFeed feed = null;
+
+            try
+            {
+                using (var reader = XmlReader.Create("http://www.environment.gov.au/rss/water"))
+                {
+                    feed = SyndicationFeed.Load(reader);
+                }
+            }
+            catch { } //Deal with unavailable resource
+
+            if (feed != null)
+            {
+
+                foreach (var element in feed.Items)
+                {
+                    NewsItem newsItem = new NewsItem()
+                    {
+                        Title = element.Title.Text,
+                        DatePublished = element.PublishDate.DateTime,
+                        Description = element.Summary.Text,
+                        Link = element.Links[0].Uri.ToString()                       
+                    };
+
+                    newsItems.Add(newsItem);
+                }
+            }
         }
 
         private void OnPropertyChanged(string property)
