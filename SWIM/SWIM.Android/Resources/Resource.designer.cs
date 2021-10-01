@@ -12413,6 +12413,61 @@ namespace SWIM.Droid
 			
 			// aapt resource value: 0x7F0700D9
 			public const int xamarin_logo = 2131165401;
+			public const int outline_print_black_24 = 2131165377;
+			
+			// aapt resource value: 0x7F0700C2
+			public const int outline_save_alt_black_24 = 2131165378;
+			
+			// aapt resource value: 0x7F0700C3
+			public const int outline_save_alt_grey_24 = 2131165379;
+			
+			// aapt resource value: 0x7F0700C4
+			public const int PasswordAlertDialogBottomLine = 2131165380;
+			
+			// aapt resource value: 0x7F0700C5
+			public const int PasswordAlertDialogCursorStyle = 2131165381;
+			
+			// aapt resource value: 0x7F0700C6
+			public const int Search = 2131165382;
+			
+			// aapt resource value: 0x7F0700C7
+			public const int sfprogressbar_determinate_linear = 2131165383;
+			
+			// aapt resource value: 0x7F0700C8
+			public const int sfprogressbar_indeterminate_circular = 2131165384;
+			
+			// aapt resource value: 0x7F0700C9
+			public const int sfprogressbar_indeterminate_linear = 2131165385;
+			
+			// aapt resource value: 0x7F0700CA
+			public const int SignaturePadBottomCorner = 2131165386;
+			
+			// aapt resource value: 0x7F0700CB
+			public const int SignaturepadRoundedCorners = 2131165387;
+			
+			// aapt resource value: 0x7F0700CC
+			public const int SignaturePadTopCorner = 2131165388;
+			
+			// aapt resource value: 0x7F0700CD
+			public const int swim_logo = 2131165389;
+			
+			// aapt resource value: 0x7F0700CE
+			public const int test_custom_background = 2131165390;
+			
+			// aapt resource value: 0x7F0700CF
+			public const int tooltip_frame_dark = 2131165391;
+			
+			// aapt resource value: 0x7F0700D0
+			public const int tooltip_frame_light = 2131165392;
+			
+			// aapt resource value: 0x7F0700D1
+			public const int usage_18 = 2131165393;
+			
+			// aapt resource value: 0x7F0700D2
+			public const int Viewmode = 2131165394;
+			
+			// aapt resource value: 0x7F0700D3
+			public const int xamarin_logo = 2131165395;
 			
 			static Drawable()
 			{

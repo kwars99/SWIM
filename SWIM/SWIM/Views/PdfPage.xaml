@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:behaviours="clr-namespace:SWIM.Behaviours"
              xmlns:local="clr-namespace:SWIM.ViewModels"
              x:Class="SWIM.Views.PdfPage"
              xmlns:syncfusion="clr-namespace:Syncfusion.SfPdfViewer.XForms;assembly=Syncfusion.SfPdfViewer.XForms"
@@ -9,7 +10,16 @@
     <ContentPage.BindingContext>
         <local:PdfViewerModel></local:PdfViewerModel>
     </ContentPage.BindingContext>
-    <Grid x:Name="pdfViewGrid">
-        <syncfusion:SfPdfViewer x:Name="pdfViewerControl" InputFileStream="{Binding PdfDocumentStream}"/>
-    </Grid> 
+
+    <Grid x:Name="pdfViewGrid"
+              Grid.Row="1">
+        <syncfusion:SfPdfViewer x:Name="pdfViewerControl" 
+                                InputFileStream="{Binding PdfDocumentStream}"
+                                IsToolbarVisible="True">
+            <syncfusion:SfPdfViewer.Behaviors>
+                <behaviours:EventToCommandBehavior EventName="DocumentSaveInitiated"
+                                                   Command="{Binding SaveCommand}"/>
+            </syncfusion:SfPdfViewer.Behaviors>
+        </syncfusion:SfPdfViewer>
+    </Grid>
 </ContentPage>
