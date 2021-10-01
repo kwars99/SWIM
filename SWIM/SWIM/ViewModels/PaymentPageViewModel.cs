@@ -263,24 +263,15 @@ namespace SWIM.ViewModels
                 DatePaid = paymentTime
             };
 
-            
-            if ((await App.Database.InsertTransactionAsync(newTransaction)) != 0) 
-            {
+            await App.Database.InsertTransactionAsync(newTransaction);
                 
-                bill.PaidStatus = "paid";
+            bill.PaidStatus = "paid";
                 
-                if ((await App.Database.UpdateBillAsync(bill)) != 0)
-                {
-                    DisplayPopup = false;
+            await App.Database.UpdateBillAsync(bill);
 
-                    //something wrong here
-                    //await Shell.Current.GoToAsync($"//{nameof(BillsPage)}");
-                }
-            }
-            else
-            {
-                return;
-            }
+            DisplayPopup = false;
+
+            await Shell.Current.GoToAsync($"///{nameof(BillsPage)}");
         }       
     }
 }
