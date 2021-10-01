@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:local="clr-namespace:SWIM.ViewModels"
+             x:Class="SWIM.Views.BillingPreferencesPage">
+
+    <ContentPage.BindingContext>
+        <local:BillingPreferencesViewModel/>
+    </ContentPage.BindingContext>
+    
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout>
+                <Frame>
+                    <StackLayout>
+                        <Label Text="Billing Preferences"/>
+
+                        <BoxView Grid.Row="2"
+                                 Color="#6096BA"
+                                 HeightRequest="2"
+                                 HorizontalOptions="Fill"/>
+
+                        <Label Text="Receiving your bill:"/>
+
+                        <StackLayout RadioButtonGroup.GroupName="ReceivingBillMethod"
+                                     RadioButtonGroup.SelectedValue="{Binding ReceivingBillSelection}">
+                            <RadioButton Content="Email"
+                                         Value="Email"
+                                         IsChecked="{Binding IsEmailChecked}"/>
+                            <RadioButton Content="By Mail"
+                                         Value="By Mail"
+                                         IsChecked="{Binding IsPostChecked}"/>
+                        </StackLayout>
+                        
+                        <BoxView Grid.Row="2"
+                                 Color="#6096BA"
+                                 HeightRequest="2"
+                                 HorizontalOptions="Fill"/>
+
+                        <Label Text="When to receive your bill:"/>
+
+                        <StackLayout RadioButtonGroup.GroupName="ReceivingBillTime"
+                                     RadioButtonGroup.SelectedValue="{Binding ReceivingBillTimeSelection}">
+                            <RadioButton Content="1 month before due date"
+                                         Value="1 Month"
+                                         IsChecked="{Binding Is1MonthChecked}"/>
+                            <RadioButton Content="2 weeks before due date"
+                                         Value="2 Weeks"
+                                         IsChecked="{Binding Is2WeeksChecked}"/>
+                            <RadioButton Content="1 week before due date"
+                                         Value="1 Week"
+                                         IsChecked="{Binding Is1WeekChecked}"/>
+                        </StackLayout>
+                    </StackLayout>
+                </Frame>
+
+                <Frame Grid.Row="1">
+                    <StackLayout>
+                        <Label Text="Payment Reminder Preferences"/>
+                        <BoxView Grid.Row="2"
+                                 Color="#6096BA"
+                                 HeightRequest="2"
+                                 HorizontalOptions="Fill"/>
+
+                        <Label Text="Receiving payment reminders:"/>
+                        <StackLayout RadioButtonGroup.GroupName="ReceivingPaymentReminderMethod"
+                                     RadioButtonGroup.SelectedValue="{Binding ReceivingReminderSelection}">
+                            <RadioButton Content="Email"
+                                         Value="Email"
+                                         IsChecked="{Binding IsReminderEmailChecked}"/>
+                            <RadioButton Content="SMS"
+                                         Value="SMS"
+                                         IsChecked="{Binding IsSMSChecked}"/>
+                        </StackLayout>
+
+                        <BoxView Grid.Row="2"
+                                 Color="#6096BA"
+                                 HeightRequest="2"
+                                 HorizontalOptions="Fill"/>
+
+                        <Label Text="When to receive payment reminders:"/>
+                        <StackLayout RadioButtonGroup.GroupName="ReceivingPaymentReminderTime"
+                                     RadioButtonGroup.SelectedValue="{Binding ReminderTimeSelection}">
+                            <RadioButton Content="Weekly"
+                                         Value="Weekly"
+                                         IsChecked="{Binding IsWeeklykChecked}"/>
+                            <RadioButton Content="Fortnightly"
+                                         Value="Fortnightly"
+                                         IsChecked="{Binding IsFortnightlyChecked}"/>
+                        </StackLayout>
+                    </StackLayout>
+                </Frame>
+
+                <Button Text="Save Preferences" Command="{Binding SavePreferencesCommand}"/>
+                
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

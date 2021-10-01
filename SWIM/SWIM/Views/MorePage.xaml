@@ -1,9 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:local="clr-namespace:SWIM.ViewModels"
              x:Class="SWIM.Views.MorePage"
              Title="More"
              Style="{StaticResource PageStyle}">
+    
+    <ContentPage.BindingContext>
+        <local:MorePageViewModel/>
+    </ContentPage.BindingContext>
     
     <ContentPage.Content>
         <ScrollView>
@@ -14,12 +18,27 @@
                 <Frame Padding="15">
                     <Label Text="Move or Add Property" />
                 </Frame>
+                
                 <Frame Padding="15">
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer
+                                Command="{Binding ViewBillingPreferencesCommand}"/>
+                    </Frame.GestureRecognizers>
                     <Label Text="Change Billing Preferences" />
                 </Frame>
+                
                 <Frame Padding="15">
                     <Label Text="Manage Payment Details" />
                 </Frame>
+                
+                <Frame Padding="15">
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer
+                                Command="{Binding ViewTransactionHistoryCommand}"/>
+                    </Frame.GestureRecognizers>
+                    <Label Text="Transaction History"/>
+                </Frame>
+                
                 <Frame Padding="15">
                     <Label Text="Tenant Portal" />
                 </Frame>
@@ -32,9 +51,7 @@
                 <Frame Padding="15">
                     <Label Text="FAQ" />
                 </Frame>
-                <Frame Padding="15">
-                    <Label Text="Newsroom" />
-                </Frame>
+                
                 <Frame Padding="15">
                     <Label Text="Feedback" />
                 </Frame>
