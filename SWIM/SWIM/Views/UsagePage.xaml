@@ -90,6 +90,22 @@
                         </StackLayout>
                     </Frame>
 
+                    <Frame>
+                        <StackLayout BindableLayout.ItemsSource="{Binding Data}">
+                            <BindableLayout.ItemTemplate>
+                                <DataTemplate>
+                                    <StackLayout>
+                                        <Grid>
+                                            <Label Text="{Binding ReadingDate}"/>
+                                            <Label Grid.Column="1"
+                                                   Text="{Binding Amount}"/>
+                                        </Grid>
+                                    </StackLayout>
+                                </DataTemplate>
+                            </BindableLayout.ItemTemplate>
+                        </StackLayout>
+                    </Frame>
+
                     <!-- Monthly Usage -->
                     <Frame Grid.Row="2"
                            Padding="5, 5, 5, 0"
@@ -247,7 +263,8 @@
                     <Button Grid.Row ="4" 
                             Margin="10, 0, 10, 10"
                             HeightRequest="100"
-                            Text="Report a Usage" />
+                            Text="Report a Usage" 
+                            Command="{Binding OpenReportUsageCommand}"/>
                 </Grid>
             </StackLayout>
         </ScrollView>

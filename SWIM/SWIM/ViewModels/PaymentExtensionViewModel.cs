@@ -84,9 +84,6 @@ namespace SWIM.ViewModels
 
             var route = $"///{nameof(BillsPage)}";
             await Shell.Current.GoToAsync(route);
-            //update bill duie date to selected date
-            //display pop up
-            //go to bills page
         }
     }
 }

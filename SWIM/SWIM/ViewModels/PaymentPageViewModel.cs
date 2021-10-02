@@ -250,7 +250,7 @@ namespace SWIM.ViewModels
         
         private async void OnPayBillButtonClicked()
         {
-            int newTransactionID = App.Database.GetTransactionsAsync().Count + 1;
+            int newTransactionID = App.Database.GetTransactionAsync().Count + 1;
 
             Bill bill = unpaidBill[0];
 

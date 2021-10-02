@@ -5,18 +5,29 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using SWIM.Models;
+using SWIM.Views;
 using Xamarin.Forms;
 
 namespace SWIM.ViewModels
 {
     public class UsageViewModel : INotifyPropertyChanged
     {
+        /* for current quarter and graph
+         * -------------------------------
+         * get all readings for the last three months
+         * add totals for each month
+         * 
+         */
+
         private const int NumOfEntries = 3;
 
         private List<Usage> data = new List<Usage>();
         private List<FormattedUsage> lastThreeEntries = new List<FormattedUsage>();
         private List<FormattedUsage> quarterlyUsages = new List<FormattedUsage>();
+
+        public ICommand OpenReportUsageCommand { get; set; }
 
         public List<Usage> Data
         {
@@ -68,10 +79,17 @@ namespace SWIM.ViewModels
 
         public UsageViewModel()
         {
+            OpenReportUsageCommand = new Command(OnSubmitReadingClicked);
             data = App.Database.GetUsageAsync();
             data.Reverse();
-            FormatLastThree();
-            ComputeQuarterlyUsage();
+            //FormatLastThree();
+            //ComputeQuarterlyUsage();
+        }
+
+        private async void OnSubmitReadingClicked(object obj)
+        {
+            var route = $"{nameof(ReportUsagePage)}";
+            await Shell.Current.GoToAsync(route);
         }
 
         /// <summary>
