@@ -4,8 +4,10 @@
              xmlns:local="clr-namespace:SWIM.ViewModels"
              xmlns:chart="clr-namespace:Syncfusion.SfChart.XForms;assembly=Syncfusion.SfChart.XForms"
              x:Class="SWIM.Views.UsagePage"
-             Title="Usage"
-             Style="{StaticResource PageStyle}">
+             Title="Usage">
+    <!--
+    Style="{StaticResource PageStyle}"
+             ControlTemplate="{StaticResource BackgroundTemplate}">-->
 
     <ContentPage.BindingContext>
         <local:UsageViewModel/>
@@ -15,7 +17,9 @@
         <ScrollView>
             <StackLayout>
                 <Grid RowDefinitions="370, Auto, Auto, Auto, 50">
+                    
                     <!-- Chart-->
+                    <!--
                     <Frame Padding="10, 20, 10, 0"
                            Margin="0, 0, 0, 0"
                            HasShadow="False">
@@ -89,7 +93,7 @@
                             </Grid>
                         </StackLayout>
                     </Frame>
-
+                    -->
                     <!-- Monthly Usage -->
                     <Frame Grid.Row="2"
                            Padding="5, 5, 5, 0"

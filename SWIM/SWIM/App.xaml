@@ -1,19 +1,47 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Application xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:Background="clr-namespace:SWIM.Views.Controls"
              x:Class="SWIM.App">
     <!--
         Define global resources and styles here, that apply to all pages in your app.
     -->
     <Application.Resources>
         <ResourceDictionary>
+            
+            <!-- Page styling -->
+            <Thickness x:Key="PageMargin">20</Thickness>
+            
+            <!-- Application Colours -->
             <Color x:Key="Primary">#2196F3</Color>
-            <Style x:Key="PageStyle" TargetType="ContentPage">
-                <Setter Property="BackgroundColor" Value="#E7ECEF" />
+            <Color x:Key="PageBackgroundColour">#EFEFEF</Color>
+            <Color x:Key="RadioButtonColor">#15BB0A</Color>
+
+            <LinearGradientBrush x:Key="ButtonGradient" EndPoint="1,0">
+                <GradientStop Color="#05ccee" Offset="0.2"/>
+                <GradientStop Color="#0066af" Offset="0.9"/>
+            </LinearGradientBrush>
+            
+            <!-- Implicit Styles -->
+            <Style x:Key="PageStyle" TargetType="{x:Type ContentPage}">
+                <Setter Property="BackgroundColor" Value="{StaticResource PageBackgroundColour}" />
             </Style>
 
-            <Style TargetType="Button">
+            <Style x:Key="MainStackLayout" TargetType="StackLayout">
+                <Setter Property="Margin" Value="{StaticResource PageMargin}"/>
+            </Style>
+
+            <Style TargetType="Frame">
+                <Setter Property="BorderColor" Value="Transparent"/>
+                <Setter Property="HasShadow" Value="True"/>
+                <Setter Property="CornerRadius" Value="30"/>
+            </Style>
+
+            <Style x:Key="MainButtonStyle" TargetType="Button">
                 <Setter Property="TextColor" Value="White"></Setter>
+                <Setter Property="CornerRadius" Value="80"/>
+                <Setter Property="Background" Value="{StaticResource ButtonGradient}"/>
+                <!--
                 <Setter Property="VisualStateManager.VisualStateGroups">
                     <VisualStateGroupList>
                         <VisualStateGroup x:Name="CommonStates">
@@ -30,7 +58,24 @@
                         </VisualStateGroup>
                     </VisualStateGroupList>
                 </Setter>
+                -->
             </Style>
+
+            <Style x:Key="AltButtonStyle" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="#EFEFEF"/>
+                <Setter Property="BorderColor" Value="Black"/>
+                <Setter Property="BorderWidth" Value="1"/>
+                <Setter Property="CornerRadius" Value="20"/>
+            </Style>
+
+            <!-- Page Background Template -->
+            <ControlTemplate x:Key="BackgroundTemplate">
+                <Grid>
+                    <Background:BackgroundWave Grid.Row="0"/>
+                    <ContentPresenter />
+                </Grid>
+            </ControlTemplate>
+            
         </ResourceDictionary>        
     </Application.Resources>
 </Application>

@@ -3,42 +3,54 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="SWIM.Views.HelpAndSupportPage"
              Title="Help &amp; Support"
-             Style="{StaticResource PageStyle}">
+             Style="{StaticResource PageStyle}"
+             ControlTemplate="{StaticResource BackgroundTemplate}">
     
     <ContentPage.Content>
         <ScrollView>
-            <StackLayout>
+            <StackLayout Style="{StaticResource MainStackLayout}">
                 <!-- Grid of options/links-->
                 <Grid RowDefinitions="80, 80, 80"
-                      ColumnDefinitions="*, *"
-                      Margin="20">
-                    <Frame Grid.Row="0" Grid.Column="0" Padding="0">
-                        <Button HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"
-                                Text="FAQ" />
-                    </Frame>
-                    <Frame Grid.Row="0" Grid.Column="1" Padding="0">
-                        <Button Clicked="Button_Clicked" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"
-                               Text="Outages"/>
-                    </Frame>
-                    <Frame Grid.Row="1" Grid.Column="0" Padding="0">
-                        <Button HorizontalOptions="FillAndExpand"  
-                               Text="Eco-friendly Tips &amp; Tricks" />
-                    </Frame>
-                    <Frame Grid.Row="1" Grid.Column="1" Padding="0">
-                        <Button HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"
-                               Text="Sever Weather Preparation" />
-                    </Frame>
-                    <Frame Grid.Row="2" Grid.Column="0" Padding="0">
-                        <Button HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"
-                               Text="Submitted Enquiries" />
-                    </Frame>
-                    <Frame Grid.Row="2" Grid.Column="1" Padding="0">
-                        <Button HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"
-                               Text="How do I read my bill?" />
-                    </Frame>
+                      ColumnDefinitions="*, *">
+                    <Button Style="{StaticResource AltButtonStyle}"
+                            Grid.Row="0" Grid.Column="0"
+                            HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"
+                            Text="FAQ" />
+                    
+                    <Button Style="{StaticResource AltButtonStyle}"
+                            Grid.Row="0" Grid.Column="1"
+                            Clicked="Button_Clicked" 
+                            HorizontalOptions="FillAndExpand" 
+                            VerticalOptions="FillAndExpand"
+                            Text="Outages"/>
+                    
+                    <Button Style="{StaticResource AltButtonStyle}"
+                            Grid.Row="1" Grid.Column="0"
+                            HorizontalOptions="FillAndExpand"
+                            VerticalOptions="FillAndExpand"
+                            Text="Eco-friendly Tips &amp; Tricks" />
+                    
+                    <Button Style="{StaticResource AltButtonStyle}"
+                            Grid.Row="1" Grid.Column="1"
+                            HorizontalOptions="FillAndExpand" 
+                            VerticalOptions="FillAndExpand"
+                            Text="Sever Weather Preparation" />
+                    
+                    <Button Style="{StaticResource AltButtonStyle}"
+                            Grid.Row="2" Grid.Column="0"
+                            HorizontalOptions="FillAndExpand" 
+                            VerticalOptions="FillAndExpand"
+                            Text="Submitted Enquiries" />
+                    
+                    <Button Style="{StaticResource AltButtonStyle}"
+                            Grid.Row="2" Grid.Column="1"
+                            HorizontalOptions="FillAndExpand" 
+                            VerticalOptions="FillAndExpand"
+                            Text="How do I read my bill?" />
                 </Grid>
+                
                 <!-- Contact Form -->
-                <Frame Margin="20, 0">
+                <Frame>
                     <Grid RowDefinitions="*, 20, *, 20, *, 20, *, 20, *">
                         <Label HorizontalTextAlignment="Center" FontAttributes="Bold"
                                FontSize="Large" Text="Contact Us" />
@@ -54,7 +66,8 @@
                         <Label Grid.Row="7" 
                                Text="Enter description:" />
                         <Editor Grid.Row="8" AutoSize="TextChanges" />
-                        <Button Grid.Row="9" Text="Submit"/>
+                        <Button Style="{StaticResource MainButtonStyle}" 
+                                Grid.Row="9" Text="Submit"/>
                     </Grid>
                 </Frame>
             </StackLayout>

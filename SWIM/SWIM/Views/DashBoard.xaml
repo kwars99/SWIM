@@ -4,7 +4,8 @@
              xmlns:local="clr-namespace:SWIM.ViewModels"
              x:Class="SWIM.Views.DashBoard"
              Title="Dashboard"
-             Style="{StaticResource PageStyle}">
+             Style="{StaticResource PageStyle}"
+             ControlTemplate="{StaticResource BackgroundTemplate}">
 
     <ContentPage.BindingContext>
         <local:DashBoardViewModel/>
@@ -12,7 +13,7 @@
 
     <ContentPage.Content>
         <ScrollView>
-            <StackLayout>
+            <StackLayout Style="{StaticResource MainStackLayout}">
                 <Frame>
                     <StackLayout>
                         <StackLayout BindableLayout.ItemsSource="{Binding BillUsage}">
@@ -42,11 +43,13 @@
                                    HorizontalTextAlignment="Center"
                                    TextColor="red"
                                    FontAttributes="Bold"/>
-                            <Button Grid.Row="1" 
+                            <Button Style="{StaticResource MainButtonStyle}" 
+                                    Grid.Row="1" 
                                     Grid.Column="0"
                                     Text="Pay Bill"
                                     Clicked="Button_Clicked"/>
-                            <Button Grid.Row="1" 
+                            <Button Style="{StaticResource MainButtonStyle}"
+                                    Grid.Row="1" 
                                     Grid.Column="2"
                                     Text="View Bill"
                                     Clicked="Button_Clicked"/>
@@ -55,14 +58,16 @@
                 </Frame>
 
                 <Grid>
-                    <Button Grid.Column="0"
+                    <Button Style="{StaticResource AltButtonStyle}" 
+                            Grid.Column="0"
                             Text="My Account" />
 
-                    <Button Grid.Column="1"
+                    <Button Style="{StaticResource AltButtonStyle}"
+                            Grid.Column="1"
                             Text="Outages" />
                 </Grid>
-                
-                <!-- Water Saving Tips -->
+
+                    <!-- Water Saving Tips -->
                     <Frame HeightRequest="200">
                         <Grid>
                             <CarouselView Grid.Row="0" 

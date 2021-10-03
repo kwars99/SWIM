@@ -1,0 +1,59 @@
+﻿<Grid xmlns="http://xamarin.com/schemas/2014/forms" 
+      xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+      x:Class="SWIM.Views.Controls.BackgroundWave"
+      RowDefinitions="400">
+
+    <Grid RowDefinitions="380">
+        <Path Grid.Row="0" Aspect="Fill"
+          StrokeThickness="0"
+          Data="m253.99807,96.52148l292.00009,0c-0.33333,76.87612 0.33517,153.75224 0.00184,230.62836c-126.00004,84 -154.00188,-81.65043 -292.00193,1.28732l0,-231.91568z">
+
+            <Path.Fill>
+                <LinearGradientBrush StartPoint="0,0"
+                                     EndPoint="1,0">
+                    <GradientStop Color="#0066af"
+                                  Offset="0.1"/>
+                    <!--<GradientStop Color="#1FA2FF"
+                              Offset="0.1"/>-->
+                    <!--<GradientStop Color="#4776E6"
+                              Offset="0.1"/>-->
+                    <!--<GradientStop Color="#24C6DC"
+                              Offset="1.0"/> -->
+
+                    <GradientStop Color="#05ccee"
+                              Offset="0.8"/>
+
+                    <!--<GradientStop Color="#24C6DC"
+                              Offset="1.0"/>-->
+                </LinearGradientBrush>
+            </Path.Fill>
+        </Path>
+    </Grid>
+
+    <Grid RowDefinitions="335">
+        <Path Grid.Row="0" Aspect="Fill"
+          StrokeThickness="0"
+          Data="m253.99807,97.52148l292.00009,0c-0.33333,76.87612 1.33517,140.75224 1.00184,217.62836c-161.00004,98 -154.00188,-32.65043 -294.00193,1.28732l1,-218.91568z">
+
+            <Path.Fill>
+                <LinearGradientBrush StartPoint="0,0"
+                               EndPoint="1,0">
+
+                    <GradientStop Color="#007bd2"
+                              Offset="0.1"/>
+                    <!--<GradientStop Color="#1FA2FF"
+                              Offset="0.1"/>-->
+                    <!--<GradientStop Color="#4776E6"
+                              Offset="0.1"/>-->
+                    <!--<GradientStop Color="#24C6DC"
+                              Offset="1.0"/> -->
+
+                    <GradientStop Color="#12D8FA"
+                              Offset="0.8"/>
+                    <!--<GradientStop Color="#24C6DC"
+                              Offset="1.0"/>-->
+                </LinearGradientBrush>
+            </Path.Fill>
+        </Path>
+    </Grid>
+</Grid> 

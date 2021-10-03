@@ -131,7 +131,7 @@ namespace SWIM.ViewModels
             billData = App.Database.GetBillAsync();
             usageData.Reverse();
 
-            billData = App.Database.GetBillsAsync();
+            billData = App.Database.GetBillAsync();
             FormatBillData();
 
             InitialiseTips();

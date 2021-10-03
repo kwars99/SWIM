@@ -8,6 +8,14 @@
     <ContentPage.BindingContext>
         <local:MorePageViewModel/>
     </ContentPage.BindingContext>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Frame">
+                <Setter Property="CornerRadius" Value="0"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
     
     <ContentPage.Content>
         <ScrollView>
@@ -58,11 +66,12 @@
                 <Frame Padding="15">
                     <Label Text="Rate App" />
                 </Frame>
-                <Frame Padding="0" >
-                    <Button HorizontalOptions="Fill"
-                            Text="Logout" 
-                            Clicked="OnLogoutButtonClicked" />
-                </Frame>
+
+                <Button Style="{StaticResource MainButtonStyle}"
+                        Margin="10"
+                        HorizontalOptions="Fill"
+                        Text="Logout" 
+                        Clicked="OnLogoutButtonClicked" />
                 <Frame >
                     <Grid>
                         <Label HorizontalTextAlignment="Center"
@@ -83,7 +92,7 @@
                                Text="Email: company@swim.com.au" />
                         <Label Grid.Row="5"
                                HorizontalTextAlignment="Center"
-                               Text="Address: 123 Lamingto Drive, Brisbane, QLD" />
+                               Text="Address: 123 Lamington Drive, Brisbane, QLD" />
                     </Grid>
                 </Frame>
             </StackLayout>
