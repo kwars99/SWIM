@@ -20,14 +20,14 @@
                             <BindableLayout.ItemTemplate>
                                 <DataTemplate>
                                     <Grid>
-                                        <Label Grid.Row="0" 
-                                               Text="{Binding Cost, StringFormat= '{0: Outstanding Bill of $###.##}'}"
-                                               FontSize="Medium"
-                                               HorizontalTextAlignment="Center"
-                                               TextColor="Red"/>
-                                        <Label Grid.Row="1"
-                                               Text="{Binding TimePeriod}"
-                                               FontSize="Small"
+                                        <Label Grid.Row="0"
+                                               Text="Amount Owing:"
+                                               FontSize="Large"
+                                               FontFamily="OS-Bold"
+                                               HorizontalTextAlignment="Center"/>
+                                        <Label Grid.Row="1" 
+                                               Text="{Binding Cost, StringFormat= '{0: $###.##}'}"
+                                               FontSize="Large"
                                                HorizontalTextAlignment="Center"/>
                                         <Label Grid.Row="2"
                                                Text="{Binding TotalUsage, StringFormat='{0: Usage Amount: ##.# kL}'}"
@@ -36,13 +36,15 @@
                                 </DataTemplate>
                             </BindableLayout.ItemTemplate>
                         </StackLayout>
+                        
                         <Grid>
                             <Label Grid.ColumnSpan="3" 
                                 Text="{Binding DueDate}"
-                                   FontSize="Medium"
-                                   HorizontalTextAlignment="Center"
-                                   TextColor="red"
-                                   FontAttributes="Bold"/>
+                                FontSize="Medium"
+                                HorizontalTextAlignment="Center"
+                                TextColor="red"
+                                FontFamily="OS-Bold"/>
+                            
                             <Button Style="{StaticResource MainButtonStyle}" 
                                     Grid.Row="1" 
                                     Grid.Column="0"
@@ -69,22 +71,26 @@
 
                     <!-- Water Saving Tips -->
                     <Frame HeightRequest="200">
-                        <Grid>
-                            <CarouselView Grid.Row="0" 
+                        <Grid RowDefinitions="30, 150, 20">
+                        <Label Text="Water Saving Tips &amp; Tricks"
+                               FontSize="Title"/>
+                        <CarouselView Grid.Row="1" 
                                           ItemsSource="{Binding WaterSavingTips}"
                                           IndicatorView="tipsIndicatorView">
                                 <CarouselView.ItemTemplate>
                                     <DataTemplate>
                                     <StackLayout>
                                         <StackLayout>
-                                                <Label Text="{Binding Title}"/>
+                                                <Label Text="{Binding Title}"
+                                                       FontSize="Large"/>
+                                            
                                                 <Label Text="{Binding Description}"/>
                                             </StackLayout>
                                     </StackLayout>
                                     </DataTemplate>
                                 </CarouselView.ItemTemplate>
                             </CarouselView>
-                            <IndicatorView Grid.Row="1" 
+                            <IndicatorView Grid.Row="2" 
                                            x:Name="tipsIndicatorView"
                                            IndicatorColor="LightGray"
                                            SelectedIndicatorColor="DarkGray"
@@ -93,32 +99,35 @@
                     </Frame>
 
                     <!-- News -->
-                <Frame HeightRequest="500">
-                    <Grid>
-                        <CarouselView Grid.Row="0" 
+                <Frame Margin="0, 0, 0, 10">
+                    <Grid RowDefinitions="30, 220">
+                        <Label Grid.Row="0" 
+                               Text="Newsfeed"
+                               FontSize="Title"/>
+                        <CarouselView Grid.Row="1" 
                                           ItemsSource="{Binding NewsItems}"
                                           IndicatorView="newsIndicatorView">
                             <CarouselView.ItemTemplate>
                                 <DataTemplate>
                                     <StackLayout>
                                         <StackLayout>
-                                            <Label Text="{Binding Title}"/>
+                                            <Label Text="{Binding Title}"
+                                                   FontSize="Large"/>
                                             <Label Text="{Binding DatePublished}"/>
                                             <Label Text="{Binding Description}"/>
+                                            <Label Text="Read more"
+                                                   TextColor="Blue"
+                                                   TextDecorations="Underline">
+                                                <Label.GestureRecognizers>
+                                                    <TapGestureRecognizer Command="{Binding TapCommand}"
+                                                      CommandParameter="{Binding Link}"/>
+                                                </Label.GestureRecognizers>
+                                            </Label>
                                         </StackLayout>
                                     </StackLayout>
                                 </DataTemplate>
                             </CarouselView.ItemTemplate>
                         </CarouselView>
-                        <Label Grid.Row="1" 
-                               Text="Read more"
-                               TextColor="Blue"
-                               TextDecorations="Underline">
-                            <Label.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding TapCommand}"
-                                                      CommandParameter="https://docs.microsoft.com/xamarin/"/>
-                            </Label.GestureRecognizers>
-                        </Label>
                         <IndicatorView Grid.Row="2" 
                                            x:Name="newsIndicatorView"
                                            IndicatorColor="LightGray"

@@ -16,10 +16,13 @@
             <Color x:Key="Primary">#2196F3</Color>
             <Color x:Key="PageBackgroundColour">#EFEFEF</Color>
             <Color x:Key="RadioButtonColor">#15BB0A</Color>
+            <Color x:Key="GradientColorOne">#05CCEE</Color>
+            <Color x:Key="GradientColorTwo">#0066AF</Color>
+            
 
             <LinearGradientBrush x:Key="ButtonGradient" EndPoint="1,0">
-                <GradientStop Color="#05ccee" Offset="0.2"/>
-                <GradientStop Color="#0066af" Offset="0.9"/>
+                <GradientStop Color="{StaticResource GradientColorOne}" Offset="0.2"/>
+                <GradientStop Color="{StaticResource GradientColorTwo}" Offset="0.9"/>
             </LinearGradientBrush>
             
             <!-- Implicit Styles -->
@@ -27,18 +30,22 @@
                 <Setter Property="BackgroundColor" Value="{StaticResource PageBackgroundColour}" />
             </Style>
 
+            <Style TargetType="Label">
+                <Setter Property="FontFamily" Value="OS-Medium"/>
+            </Style>
+
             <Style x:Key="MainStackLayout" TargetType="StackLayout">
                 <Setter Property="Margin" Value="{StaticResource PageMargin}"/>
             </Style>
 
             <Style TargetType="Frame">
-                <Setter Property="BorderColor" Value="Transparent"/>
                 <Setter Property="HasShadow" Value="True"/>
                 <Setter Property="CornerRadius" Value="30"/>
             </Style>
 
             <Style x:Key="MainButtonStyle" TargetType="Button">
-                <Setter Property="TextColor" Value="White"></Setter>
+                <Setter Property="TextColor" Value="White"/>
+                <Setter Property="FontFamily" Value="OS-Medium"/>
                 <Setter Property="CornerRadius" Value="80"/>
                 <Setter Property="Background" Value="{StaticResource ButtonGradient}"/>
                 <!--

@@ -4,10 +4,9 @@
              xmlns:local="clr-namespace:SWIM.ViewModels"
              xmlns:chart="clr-namespace:Syncfusion.SfChart.XForms;assembly=Syncfusion.SfChart.XForms"
              x:Class="SWIM.Views.UsagePage"
-             Title="Usage">
-    <!--
-    Style="{StaticResource PageStyle}"
-             ControlTemplate="{StaticResource BackgroundTemplate}">-->
+             Title="Usage"
+             Style="{StaticResource PageStyle}"
+             ControlTemplate="{StaticResource BackgroundTemplate}">
 
     <ContentPage.BindingContext>
         <local:UsageViewModel/>
@@ -15,11 +14,10 @@
 
     <ContentPage.Content>
         <ScrollView>
-            <StackLayout>
+            <StackLayout Margin="{StaticResource PageMargin}">
                 <Grid RowDefinitions="370, Auto, Auto, Auto, 50">
                     
                     <!-- Chart-->
-                    <!--
                     <Frame Padding="10, 20, 10, 0"
                            Margin="0, 0, 0, 0"
                            HasShadow="False">
@@ -68,8 +66,8 @@
                                         <chart:ChartColorModel.CustomGradientColors>
                                             <chart:ChartGradientColor StartPoint="0.5,1" EndPoint="0.5,0">
                                                 <chart:ChartGradientColor.GradientStops>
-                                                    <chart:ChartGradientStop Color="#A3CEF1" Offset= "0"/>
-                                                    <chart:ChartGradientStop Color="#2196F3" Offset= "1"/>
+                                                    <chart:ChartGradientStop Color="{StaticResource GradientColorOne}" Offset= "0"/>
+                                                    <chart:ChartGradientStop Color="{StaticResource GradientColorTwo}" Offset= "1"/>
                                                 </chart:ChartGradientColor.GradientStops>
                                             </chart:ChartGradientColor>
                                         </chart:ChartColorModel.CustomGradientColors>
@@ -93,24 +91,16 @@
                             </Grid>
                         </StackLayout>
                     </Frame>
-                    -->
+
                     <!-- Monthly Usage -->
                     <Frame Grid.Row="2"
                            Padding="5, 5, 5, 0"
                            Margin="0, 0, 0, 0"
                            HasShadow="False">
                         <StackLayout>
-                            <BoxView Grid.Row="2"
-                                     Color="#6096BA"
-                                     HeightRequest="2"
-                                     HorizontalOptions="Fill"/>
                             <Label Text="Current Quarter"
                                    FontSize="Large"
                                    HorizontalTextAlignment="Center"/>
-                            <BoxView Grid.Row="2"
-                                     Color="#6096BA"
-                                     HeightRequest="2"
-                                     HorizontalOptions="Fill"/>
                             <StackLayout>
                                 <Grid ColumnDefinitions="*, 100, 100">
                                     <Label Margin="25, 10, 0, 0"
@@ -180,17 +170,9 @@
                            Margin="0, 0, 0 , 0"
                            HasShadow="False">
                         <StackLayout>
-                            <BoxView Grid.Row="2"
-                                     Color="#6096BA"
-                                     HeightRequest="2"
-                                     HorizontalOptions="Fill"/>
                             <Label Text="Usage History"
                                    FontSize="Large"
                                    HorizontalTextAlignment="Center"/>
-                            <BoxView Grid.Row="2"
-                                     Color="#6096BA"
-                                     HeightRequest="2"
-                                     HorizontalOptions="Fill"/>
                             <StackLayout Margin="0, 10, 0, 0">
                                 <Grid ColumnDefinitions="*, 100, 100">
                                     <Label Margin="25, 2, 0, 0"
@@ -248,7 +230,8 @@
                     </Frame>
                     
                     <!-- Report Usage Button -->
-                    <Button Grid.Row ="4" 
+                    <Button Style="{StaticResource MainButtonStyle}" 
+                            Grid.Row ="4" 
                             Margin="10, 0, 10, 10"
                             HeightRequest="100"
                             Text="Report a Usage" />

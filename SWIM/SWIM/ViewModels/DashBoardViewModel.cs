@@ -159,7 +159,7 @@ namespace SWIM.ViewModels
 
             string formatDueDate = "Due On: ";
 
-            dueDate = unpaidBills[0].DueDate.ToString(formatDueDate + "dd/MMM");
+            dueDate = unpaidBills[0].DueDate.ToString(formatDueDate + "dd-MMM");
 
 
             FormattedUsage formattedUsage = new FormattedUsage(formatBillingPeriod, waterUsage, billCost);
@@ -187,7 +187,7 @@ namespace SWIM.ViewModels
                 TipID = 1,
                 Title = "Kitchen",
                 Description = "Use the dishwasher with a full load. Running a full load in a water-efficient " +
-                               "dishwasher uses less water than washing dishes by hand",
+                               "dishwasher uses less water than washing dishes by hand.",
 
                 ImageSource = ""
             };

@@ -9,7 +9,9 @@
              x:Class="SWIM.Views.LoginPage"
              x:DataType="local:LoginViewModel"
              Shell.FlyoutBehavior="Disabled"
-             Shell.NavBarIsVisible="False">
+             Shell.NavBarIsVisible="False"
+             Style="{StaticResource PageStyle}"
+             ControlTemplate="{StaticResource BackgroundTemplate}">
 
     <ContentPage.BindingContext>
         <local:LoginViewModel/>
@@ -20,46 +22,33 @@
             <converter:InverseBoolConverter x:Key="InverseBool"/>
         </ResourceDictionary>
     </ContentPage.Resources>
-    
-    <ContentPage.Content>
-        <Frame>
-            <Frame.Background>
-                <!-- StartPoint defaults to (0,0)      
-             Endpoint defaults to (1,1) -->
-                <LinearGradientBrush>
-                    <GradientStop Color="#E7ECEF"
-                          Offset="0.0" />
-                    <GradientStop Color="#A3CEF1"
-                          Offset="0.25" />
-                    <GradientStop Color="#6096BA"
-                          Offset="0.75" />
-                    <GradientStop Color="#274C77"
-                          Offset="1.0" />
-                </LinearGradientBrush>
-            </Frame.Background>
-            <StackLayout Padding="10,20,10,20" VerticalOptions="Start" Margin="10, 30, 10, 30">
 
-                <Label Margin="0, 0, 0, 15" VerticalOptions="Start" Text="SMART WATER INFORMATION MONITORING" FontSize="20" 
+    <ContentPage.Content>
+        <StackLayout Padding="10,20,10,20" VerticalOptions="Start" Margin="10, 30, 10, 30">
+
+            <Label Margin="0, 0, 0, 15" VerticalOptions="Start" Text="SMART WATER INFORMATION MONITORING" FontSize="20" 
                    FontAttributes="Bold" HorizontalTextAlignment="Center"/>
 
-                <Image HeightRequest="200" Source="swim_logo.png" />
+            <Image HeightRequest="200" Source="swim_logo.png" />
 
-                <Label Margin="0" Text="Sign in"  HorizontalTextAlignment="Center"
+            <Label Margin="0" Text="Sign in"  HorizontalTextAlignment="Center"
                    FontSize="25"/>
 
-                <Entry x:Name="emailEntry" Placeholder="Email" Text="{Binding Email}"/>
+            <Entry x:Name="emailEntry" Placeholder="Email" Text="{Binding Email}"/>
 
-                <Entry x:Name="passwordEntry" IsPassword="True" Placeholder="Password" Text="{Binding Password}"/>
-                
-                <Label Text="{Binding ErrorMessage}" IsVisible="{Binding IsVisible, Converter={StaticResource InverseBool}}"/>
+            <Entry x:Name="passwordEntry" IsPassword="True" Placeholder="Password" Text="{Binding Password}"/>
 
-                <Button VerticalOptions="End" Text="Sign in" Command="{Binding LoginCommand}"/>
+            <Label Text="{Binding ErrorMessage}" IsVisible="{Binding IsVisible, Converter={StaticResource InverseBool}}"/>
 
-                <StackLayout Orientation="Horizontal" Margin="50, 10">
-                    <Label Text="Remember me: "/>
-                    <CheckBox IsChecked="{Binding RememberMe}"/>
-                </StackLayout>
+            <Button Style="{StaticResource MainButtonStyle}" 
+                    VerticalOptions="End" 
+                    Text="Sign in" 
+                    Command="{Binding LoginCommand}"/>
+
+            <StackLayout Orientation="Horizontal" Margin="50, 10">
+                <Label Text="Remember me: "/>
+                <CheckBox IsChecked="{Binding RememberMe}"/>
             </StackLayout>
-        </Frame>
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>
