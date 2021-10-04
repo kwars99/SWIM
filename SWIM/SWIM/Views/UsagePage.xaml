@@ -15,7 +15,9 @@
         <ScrollView>
             <StackLayout>
                 <Grid RowDefinitions="370, Auto, Auto, Auto, 50">
+                    
                     <!-- Chart-->
+                    
                     <Frame Padding="10, 20, 10, 0"
                            Margin="0, 0, 0, 0"
                            HasShadow="False">
@@ -89,22 +91,28 @@
                             </Grid>
                         </StackLayout>
                     </Frame>
+                    
 
+                     <!-- testing -->
+                    <!--
                     <Frame>
-                        <StackLayout BindableLayout.ItemsSource="{Binding Data}">
+                        <StackLayout BindableLayout.ItemsSource="{Binding MonthlyUsages}">
                             <BindableLayout.ItemTemplate>
                                 <DataTemplate>
                                     <StackLayout>
                                         <Grid>
-                                            <Label Text="{Binding ReadingDate}"/>
+                                            <Label Text="{Binding TimePeriod}"/>
                                             <Label Grid.Column="1"
-                                                   Text="{Binding Amount}"/>
+                                                   Text="{Binding TotalUsage}"/>
+                                            <Label Grid.Column="2"
+                                                   Text="{Binding Cost}"/>
                                         </Grid>
                                     </StackLayout>
                                 </DataTemplate>
                             </BindableLayout.ItemTemplate>
                         </StackLayout>
                     </Frame>
+                    -->
 
                     <!-- Monthly Usage -->
                     <Frame Grid.Row="2"
@@ -151,6 +159,7 @@
                                          HeightRequest="2"
                                          HorizontalOptions="Fill"/>
                             </StackLayout>
+                            
                             <StackLayout BindableLayout.ItemsSource="{Binding LastThreeEntries}">
                                 <BindableLayout.ItemTemplate>
                                     <DataTemplate>
@@ -183,6 +192,7 @@
                                     </DataTemplate>
                                 </BindableLayout.ItemTemplate>
                             </StackLayout> 
+                                                        
                         </StackLayout>                        
                     </Frame>
                     
@@ -228,6 +238,7 @@
                                          HeightRequest="2"
                                          HorizontalOptions="Fill"/>
                             </StackLayout>
+                            
                             <StackLayout BindableLayout.ItemsSource="{Binding QuarterlyUsages}">
                                 <BindableLayout.ItemTemplate>
                                     <DataTemplate>

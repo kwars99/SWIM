@@ -23,6 +23,7 @@ namespace SWIM.Views
 
         void OnRadioButtonCheckedChanged(object sender, CheckedChangedEventArgs e)
         {
+            /*
             RadioButton button = sender as RadioButton;
             
             if (button.Content.ToString() == "Cost")
@@ -39,6 +40,7 @@ namespace SWIM.Views
                 yAxis.Interval = 2;
                 chartSeries.Animate();
             }
+            */
         }
     }
 }
