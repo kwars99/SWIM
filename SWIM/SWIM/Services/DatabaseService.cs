@@ -64,6 +64,12 @@ namespace SWIM.Services
             return result;
         }
 
+        public List<Enquiry> GetEnquiryAsync()
+        {
+            var result = database.Table<Enquiry>().ToListAsync().Result;
+            return result;
+        }
+
         public Task<int> InsertUsageAsync(Usage usage)
         {
             return database.InsertAsync(usage);
@@ -78,10 +84,15 @@ namespace SWIM.Services
         {
             return database.InsertAsync(transaction);
         }
+                
+        public Task<int> InsertEnquiryAsync(Enquiry enquiry)
+        {
+            return database.InsertAsync(enquiry);
+        }
 
         public Task<int> UpdateBillAsync(Bill bill)
         {
             return database.UpdateAsync(bill);
-        }        
+        }       
     }
 }

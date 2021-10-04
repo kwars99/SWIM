@@ -17,7 +17,7 @@
                                 Text="FAQ" />
                     </Frame>
                     <Frame Grid.Row="0" Grid.Column="1" Padding="0">
-                        <Button Clicked="Button_Clicked" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"
+                        <Button Clicked="OutageButton_Clicked" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"
                                Text="Outages"/>
                     </Frame>
                     <Frame Grid.Row="1" Grid.Column="0" Padding="0">
@@ -29,7 +29,7 @@
                                Text="Sever Weather Preparation" />
                     </Frame>
                     <Frame Grid.Row="2" Grid.Column="0" Padding="0">
-                        <Button HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"
+                        <Button Clicked="SubEnqPageButton_Clicked" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"
                                Text="Submitted Enquiries" />
                     </Frame>
                     <Frame Grid.Row="2" Grid.Column="1" Padding="0">
@@ -53,8 +53,8 @@
                         <Entry Grid.Row="6" />
                         <Label Grid.Row="7" 
                                Text="Enter description:" />
-                        <Editor Grid.Row="8" AutoSize="TextChanges" />
-                        <Button Grid.Row="9" Text="Submit"/>
+                        <Editor x:Name="description" Grid.Row="8" AutoSize="TextChanges" />
+                        <Button Clicked="SubmitEnqButton_Clicked" Grid.Row="9" Text="Submit"/>
                     </Grid>
                 </Frame>
             </StackLayout>

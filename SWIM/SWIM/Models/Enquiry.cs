@@ -22,6 +22,6 @@ namespace SWIM.Models
         public DateTime EnquiryDate { get; set; }
         
         [Column("status")]
-        public bool EnquiryOpen { get; set; }
+        public string EnquiryOpen { get; set; }
     }
 }
