@@ -24,30 +24,49 @@
     </ContentPage.Resources>
 
     <ContentPage.Content>
-        <StackLayout Padding="10,20,10,20" VerticalOptions="Start" Margin="10, 30, 10, 30">
+        <StackLayout Padding="0" Margin="20">
 
-            <Label Margin="0, 0, 0, 15" VerticalOptions="Start" Text="SMART WATER INFORMATION MONITORING" FontSize="20" 
-                   FontAttributes="Bold" HorizontalTextAlignment="Center"/>
+            <Label Margin="20, 0, 0, 20" 
+                   VerticalOptions="Start" 
+                   Text="SMART WATER INFORMATION MONITORING"
+                   TextColor="White"
+                   FontSize="Title"
+                   FontAttributes="Bold" 
+                   HorizontalTextAlignment="Center"/>
 
-            <Image HeightRequest="200" Source="swim_logo.png" />
+            <Image HeightRequest="200" 
+                   Source="swim_logo.png" />
 
-            <Label Margin="0" Text="Sign in"  HorizontalTextAlignment="Center"
+            <Label Margin="0, 50, 0, 10" 
+                   Text="Sign in"  
+                   HorizontalTextAlignment="Center"
                    FontSize="25"/>
 
-            <Entry x:Name="emailEntry" Placeholder="Email" Text="{Binding Email}"/>
+            <Entry x:Name="emailEntry"
+                   Margin="20, 10, 20, 5"
+                   Placeholder="Email" 
+                   Text="{Binding Email}"/>
 
-            <Entry x:Name="passwordEntry" IsPassword="True" Placeholder="Password" Text="{Binding Password}"/>
+            <Entry x:Name="passwordEntry" 
+                   Margin="20, 5, 20, 5"
+                   IsPassword="True" 
+                   Placeholder="Password" 
+                   Text="{Binding Password}"/>
 
-            <Label Text="{Binding ErrorMessage}" IsVisible="{Binding IsVisible, Converter={StaticResource InverseBool}}"/>
+            <Label Text="{Binding ErrorMessage}" 
+                   Margin="20, 5, 20, 5"
+                   IsVisible="{Binding IsVisible, Converter={StaticResource InverseBool}}"/>
 
-            <Button Style="{StaticResource MainButtonStyle}" 
+            <Button Style="{StaticResource MainButtonStyle}"
+                    Margin="20, 5, 20, 5"
                     VerticalOptions="End" 
                     Text="Sign in" 
                     Command="{Binding LoginCommand}"/>
 
-            <StackLayout Orientation="Horizontal" Margin="50, 10">
-                <Label Text="Remember me: "/>
+            <StackLayout Orientation="Horizontal" Margin="20, 10">
+                <Label Text="Forgot your password?"/>
                 <CheckBox IsChecked="{Binding RememberMe}"/>
+                <Label Text="Remember me"/>
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>
