@@ -22,7 +22,6 @@ namespace SWIM
             Routing.RegisterRoute(nameof(PaymentExtensionPage), typeof(PaymentExtensionPage));
             Routing.RegisterRoute(nameof(OutagePage), typeof(OutagePage));
             Routing.RegisterRoute(nameof(BillingPreferencesPage), typeof(BillingPreferencesPage));
-            Routing.RegisterRoute(nameof(ReportUsagePage), typeof(ReportUsagePage));
         }
 
     }

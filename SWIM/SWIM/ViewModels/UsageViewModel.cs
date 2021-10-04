@@ -2,13 +2,10 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Input;
 using SWIM.Models;
-using SWIM.Views;
 using Xamarin.Forms;
 
 namespace SWIM.ViewModels
@@ -16,32 +13,10 @@ namespace SWIM.ViewModels
     public class UsageViewModel : INotifyPropertyChanged
     {
         private const int NumOfEntries = 3;
-        private const int NumOfHistory = 12;
 
         private List<Usage> data = new List<Usage>();
         private List<FormattedUsage> lastThreeEntries = new List<FormattedUsage>();
         private List<FormattedUsage> quarterlyUsages = new List<FormattedUsage>();
-        private List<FormattedUsage> monthlyUsages = new List<FormattedUsage>();
-
-        private List<Usage> byMonthlyUsages = new List<Usage>();
-
-        public ICommand OpenReportUsageCommand { get; set; }
-
-        public List<Usage> ByMonthlyUsages
-        {
-            get
-            {
-                return byMonthlyUsages;
-            }
-            set
-            {
-                if (byMonthlyUsages != value)
-                {
-                    byMonthlyUsages = value;
-                    OnPropertyChanged(nameof(ByMonthlyUsages));
-                }
-            }
-        }
 
         public List<Usage> Data
         {
@@ -55,22 +30,6 @@ namespace SWIM.ViewModels
                 {
                     data = value;
                     OnPropertyChanged(nameof(Data));
-                }
-            }
-        }
-
-        public List<FormattedUsage> MonthlyUsages
-        {
-            get
-            {
-                return monthlyUsages;
-            }
-            set
-            {
-                if (monthlyUsages != value)
-                {
-                    monthlyUsages = value;
-                    OnPropertyChanged(nameof(MonthlyUsages));
                 }
             }
         }
@@ -109,56 +68,10 @@ namespace SWIM.ViewModels
 
         public UsageViewModel()
         {
-            OpenReportUsageCommand = new Command(OnSubmitReadingClicked);
             data = App.Database.GetUsageAsync();
             data.Reverse();
-            GetMonthlyUsages();
             FormatLastThree();
             ComputeQuarterlyUsage();
-            
-        }
-
-        private async void OnSubmitReadingClicked(object obj)
-        {
-            var route = $"{nameof(ReportUsagePage)}";
-            await Shell.Current.GoToAsync(route);
-        }
-
-        private List<FormattedUsage> GetMonthlyUsages()
-        {
-            var groupedByMonth = data.GroupBy(x => x.ReadingDate.Month);
-
-            var usagesByMonth = groupedByMonth.Select(x => x.ToList()).ToList();
-
-            for (int i = 0; i < usagesByMonth.Count; i++)
-            {
-                for (int j = 0; j < usagesByMonth[i].Count; j++)
-                {
-                    byMonthlyUsages.Add(usagesByMonth[i][j]);
-                }
-            }
-
-            for (int i = 0; i < usagesByMonth.Count; i++)
-            {
-                double monthlyUsage = usagesByMonth[i].Sum(y => y.Amount);
-
-                int monthIndex = usagesByMonth[i][0].ReadingDate.Month;
-
-                string month = DateTimeFormatInfo.CurrentInfo.GetAbbreviatedMonthName(monthIndex);
-
-                string readingDate = usagesByMonth[i][0].ReadingDate.ToString("MMM \"'\"yy");
-
-                int numOfDays = DateTime.DaysInMonth(usagesByMonth[i][0].ReadingDate.Year, 
-                                                     usagesByMonth[i][0].ReadingDate.Month);
-
-                double cost = CalculateCost(monthlyUsage, numOfDays);
-
-                FormattedUsage formattedUsage = new FormattedUsage(readingDate, monthlyUsage, cost);
-
-                monthlyUsages.Add(formattedUsage);
-            }
-
-            return monthlyUsages;
         }
 
         /// <summary>
@@ -170,7 +83,15 @@ namespace SWIM.ViewModels
         {
             for (int i = 0; i < NumOfEntries; i++)
             {
-                lastThreeEntries.Add(monthlyUsages[i]);
+                string month = data[i].ReadingDate.ToString("MMMM");
+                double waterUsage = data[i].Amount;
+                int numOfDays = DateTime.DaysInMonth(data[i].ReadingDate.Year, 
+                                                     data[i].ReadingDate.Month);
+                double cost = CalculateCost(waterUsage, numOfDays);
+
+                FormattedUsage usage = new FormattedUsage(month, waterUsage, cost);
+
+                lastThreeEntries.Add(usage);
             }
 
             return lastThreeEntries;
@@ -183,14 +104,19 @@ namespace SWIM.ViewModels
         /// <returns></returns>
         private List<FormattedUsage> ComputeQuarterlyUsage()
         {
-            for (int i = 0; i < NumOfHistory; i += 3)
+            for (int i = 0; i < data.Count; i += 3)
             {
-                string period = monthlyUsages[i + 2].TimePeriod + "-" + monthlyUsages[i].TimePeriod;
+                string period = data[i + 2].ReadingDate.ToString("MMM \"'\"yy") + "-" + 
+                                data[i].ReadingDate.ToString("MMM \"'\"yy");
 
-                double totalUsage = monthlyUsages[i].TotalUsage + monthlyUsages[i + 1].TotalUsage +
-                                    monthlyUsages[i + 2].TotalUsage;
+                double totalUsage = data[i].Amount + data[i + 1].Amount + 
+                                    data[i + 2].Amount;
 
-                double cost = monthlyUsages[i].Cost + monthlyUsages[i + 1].Cost + monthlyUsages[i].Cost;
+                int numOfDays = GetNumberOfDays(data[i].ReadingDate, 
+                                                data[i + 1].ReadingDate, 
+                                                data[i + 2].ReadingDate);
+
+                double cost = CalculateCost(totalUsage, numOfDays);
 
                 FormattedUsage usage = new FormattedUsage(period, totalUsage, cost);
                 quarterlyUsages.Add(usage);
