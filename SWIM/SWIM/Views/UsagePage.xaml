@@ -91,6 +91,27 @@
                             </Grid>
                         </StackLayout>
                     </Frame>
+                    
+
+                     <!-- testing -->
+                    <!--
+                    <Frame>
+                        <StackLayout BindableLayout.ItemsSource="{Binding ByMonthlyUsages}">
+                            <BindableLayout.ItemTemplate>
+                                <DataTemplate>
+                                    <StackLayout>
+                                        <Grid>
+                                            <Label Text="{Binding ReadingDate}"/>
+                                            <Label Grid.Column="1"
+                                                   Text="{Binding Amount}"/>
+                                        </Grid>
+                                    </StackLayout>
+                                </DataTemplate>
+                            </BindableLayout.ItemTemplate>
+                        </StackLayout>
+                    </Frame>
+                    -->
+                   
 
                     <!-- Monthly Usage -->
                     <Frame Grid.Row="2"
@@ -129,6 +150,7 @@
                                          HeightRequest="2"
                                          HorizontalOptions="Fill"/>
                             </StackLayout>
+                            
                             <StackLayout BindableLayout.ItemsSource="{Binding LastThreeEntries}">
                                 <BindableLayout.ItemTemplate>
                                     <DataTemplate>
@@ -161,6 +183,7 @@
                                     </DataTemplate>
                                 </BindableLayout.ItemTemplate>
                             </StackLayout> 
+                                                        
                         </StackLayout>                        
                     </Frame>
                     
@@ -198,6 +221,7 @@
                                          HeightRequest="2"
                                          HorizontalOptions="Fill"/>
                             </StackLayout>
+                            
                             <StackLayout BindableLayout.ItemsSource="{Binding QuarterlyUsages}">
                                 <BindableLayout.ItemTemplate>
                                     <DataTemplate>
@@ -234,7 +258,8 @@
                             Grid.Row ="4" 
                             Margin="10, 0, 10, 10"
                             HeightRequest="100"
-                            Text="Report a Usage" />
+                            Text="Report a Usage" 
+                            Command="{Binding OpenReportUsageCommand}"/>
                 </Grid>
             </StackLayout>
         </ScrollView>
