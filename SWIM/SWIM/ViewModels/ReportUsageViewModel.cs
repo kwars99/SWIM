@@ -11,7 +11,7 @@ namespace SWIM.ViewModels
     public class ReportUsageViewModel : BaseViewModel
     {
         private DateTime dateReported, minimumDate, currentDate;
-        private double meterReading;
+        private double meterReading = 0;
 
         public ICommand SubmitReadingCommand { get; set; }
 
@@ -95,6 +95,8 @@ namespace SWIM.ViewModels
             };
 
             await App.Database.InsertUsageAsync(selfReading);
+
+            Application.Current.MainPage = new AppShell();
 
             var route = $"///{nameof(UsagePage)}";
             await Shell.Current.GoToAsync(route);

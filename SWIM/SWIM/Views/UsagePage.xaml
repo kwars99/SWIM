@@ -16,8 +16,7 @@
             <StackLayout>
                 <Grid RowDefinitions="370, Auto, Auto, Auto, 50">
                     
-                    <!-- Chart-->
-                    
+                    <!-- Chart-->                  
                     <Frame Padding="10, 20, 10, 0"
                            Margin="0, 0, 0, 0"
                            HasShadow="False">
@@ -96,16 +95,14 @@
                      <!-- testing -->
                     <!--
                     <Frame>
-                        <StackLayout BindableLayout.ItemsSource="{Binding MonthlyUsages}">
+                        <StackLayout BindableLayout.ItemsSource="{Binding ByMonthlyUsages}">
                             <BindableLayout.ItemTemplate>
                                 <DataTemplate>
                                     <StackLayout>
                                         <Grid>
-                                            <Label Text="{Binding TimePeriod}"/>
+                                            <Label Text="{Binding ReadingDate}"/>
                                             <Label Grid.Column="1"
-                                                   Text="{Binding TotalUsage}"/>
-                                            <Label Grid.Column="2"
-                                                   Text="{Binding Cost}"/>
+                                                   Text="{Binding Amount}"/>
                                         </Grid>
                                     </StackLayout>
                                 </DataTemplate>
@@ -113,6 +110,7 @@
                         </StackLayout>
                     </Frame>
                     -->
+                   
 
                     <!-- Monthly Usage -->
                     <Frame Grid.Row="2"

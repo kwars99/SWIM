@@ -22,9 +22,26 @@ namespace SWIM.ViewModels
         private List<FormattedUsage> lastThreeEntries = new List<FormattedUsage>();
         private List<FormattedUsage> quarterlyUsages = new List<FormattedUsage>();
         private List<FormattedUsage> monthlyUsages = new List<FormattedUsage>();
-        
+
+        private List<Usage> byMonthlyUsages = new List<Usage>();
 
         public ICommand OpenReportUsageCommand { get; set; }
+
+        public List<Usage> ByMonthlyUsages
+        {
+            get
+            {
+                return byMonthlyUsages;
+            }
+            set
+            {
+                if (byMonthlyUsages != value)
+                {
+                    byMonthlyUsages = value;
+                    OnPropertyChanged(nameof(ByMonthlyUsages));
+                }
+            }
+        }
 
         public List<Usage> Data
         {
@@ -115,18 +132,28 @@ namespace SWIM.ViewModels
 
             for (int i = 0; i < usagesByMonth.Count; i++)
             {
+                for (int j = 0; j < usagesByMonth[i].Count; j++)
+                {
+                    byMonthlyUsages.Add(usagesByMonth[i][j]);
+                }
+            }
+
+            for (int i = 0; i < usagesByMonth.Count; i++)
+            {
                 double monthlyUsage = usagesByMonth[i].Sum(y => y.Amount);
 
                 int monthIndex = usagesByMonth[i][0].ReadingDate.Month;
 
                 string month = DateTimeFormatInfo.CurrentInfo.GetAbbreviatedMonthName(monthIndex);
 
+                string readingDate = usagesByMonth[i][0].ReadingDate.ToString("MMM \"'\"yy");
+
                 int numOfDays = DateTime.DaysInMonth(usagesByMonth[i][0].ReadingDate.Year, 
                                                      usagesByMonth[i][0].ReadingDate.Month);
 
                 double cost = CalculateCost(monthlyUsage, numOfDays);
 
-                FormattedUsage formattedUsage = new FormattedUsage(month, monthlyUsage, cost);
+                FormattedUsage formattedUsage = new FormattedUsage(readingDate, monthlyUsage, cost);
 
                 monthlyUsages.Add(formattedUsage);
             }
@@ -158,13 +185,7 @@ namespace SWIM.ViewModels
         {
             for (int i = 0; i < NumOfHistory; i += 3)
             {
-                // add year somehow
                 string period = monthlyUsages[i + 2].TimePeriod + "-" + monthlyUsages[i].TimePeriod;
-
-                /*
-                string period = data[i + 2].ReadingDate.ToString("MMM \"'\"yy") + "-" + 
-                                data[i].ReadingDate.ToString("MMM \"'\"yy");
-                */
 
                 double totalUsage = monthlyUsages[i].TotalUsage + monthlyUsages[i + 1].TotalUsage +
                                     monthlyUsages[i + 2].TotalUsage;
