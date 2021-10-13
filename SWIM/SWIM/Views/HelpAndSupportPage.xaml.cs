@@ -23,5 +23,11 @@ namespace SWIM.Views
             var route = $"{nameof(OutagePage)}";
             await Shell.Current.GoToAsync(route);
         }
+
+        private async void HowToReadBillButton_Clicked(object sender, EventArgs e)
+        {
+            var route = $"{nameof(HowToReadBillPage)}";
+            await Shell.Current.GoToAsync(route);
+        }
     }
 }

@@ -44,6 +44,7 @@
                     
                     <Button Style="{StaticResource AltButtonStyle}"
                             Grid.Row="2" Grid.Column="1"
+                            Clicked="HowToReadBillButton_Clicked"
                             HorizontalOptions="FillAndExpand" 
                             VerticalOptions="FillAndExpand"
                             Text="How do I read my bill?" />
