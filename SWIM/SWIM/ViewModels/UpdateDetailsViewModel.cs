@@ -51,19 +51,23 @@ namespace SWIM.ViewModels
 
         public UpdateDetailsViewModel()
         {
-            data = App.Database.GetUserDetailsAsync();
+            //data = App.Database.GetUserDetailsAsync(user);
             FormatUsers();
         }
 
         private List<FormattedUser> FormatUsers()
-        {          
-            string fullname = data[0].FirstName + " " + data[0].LastName;
-            string email = data[0].Email;
-            string address = data[0].Address;
+        {
+            for(int i = 0; i < data.Count; i++)
+            {
+                string fullname = data[i].FirstName + " " + data[i].LastName;
+                string email = data[i].Email;
+                string address = data[i].Address;
 
-            FormattedUser user = new FormattedUser(fullname, email, address);
-               
-            formattedUsers.Add(user);        
+                FormattedUser user = new FormattedUser(fullname, email, address);
+
+                formattedUsers.Add(user);
+            }
+              
 
             return formattedUsers;
         }

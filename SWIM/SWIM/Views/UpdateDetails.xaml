@@ -12,6 +12,37 @@
     
     <ContentPage.Content>
         <ScrollView>
+            <StackLayout>
+                <Frame>
+                    <Label Text="Select Account" FontSize="Large"/>
+                </Frame>
+                <Frame>
+                    <StackLayout>
+                        <Entry x:Name="addressEntry" Placeholder="Enter Address"/>
+                        <Entry x:Name="emailEntry" Placeholder="Enter Email"/>
+                        <Button Text="Update" Clicked="Button_Clicked"/>
+                    </StackLayout>                    
+                </Frame>
+                <CollectionView x:Name="Collection" ItemsSource="{Binding FormattedUsers}" SelectionMode="Single" SelectionChanged="CollectionView_SelectionChanged">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout>                                
+                                <Frame>
+                                    <StackLayout>
+                                        <Label Text="{Binding Fullname}"/>
+                                        <Label Text="{Binding Address}"/>
+                                        <Label Text="{Binding Email}"/>
+                                    </StackLayout>
+                                </Frame>                                
+                            </StackLayout>                            
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>                
+            </StackLayout>
+        </ScrollView>
+
+
+        <!--<ScrollView>
             <StackLayout>             
                 <Frame>
                     <StackLayout BindableLayout.ItemsSource="{Binding FormattedUsers}">
@@ -30,7 +61,7 @@
                     </StackLayout>
                 </Frame>
             </StackLayout>
-        </ScrollView>
+        </ScrollView>-->
         
     </ContentPage.Content>
 </ContentPage>

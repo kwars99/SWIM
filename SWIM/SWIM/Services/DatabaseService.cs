@@ -59,7 +59,7 @@ namespace SWIM.Services
             return result;
         }
 
-        public List<User> GetUserDetailsAsync()
+        public List<User> GetUserDetailsAsync(User user)
         {
             var result = database.Table<User>().ToListAsync().Result;
             return result;
@@ -67,7 +67,8 @@ namespace SWIM.Services
 
         public Task<int> UpdateUserAsync(User user)
         {
-            return database.UpdateAsync(user);
+            var result = database.UpdateAsync(user);
+            return result;
         }
 
         public Task<int> InsertFaultAsync(Fault fault)
