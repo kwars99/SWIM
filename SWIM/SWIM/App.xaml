@@ -77,12 +77,13 @@
 
             <!-- Page Background Template -->
             <ControlTemplate x:Key="BackgroundTemplate">
-                <Grid>
-                    <Background:BackgroundWave Grid.Row="0"/>
-                    <ContentPresenter />
-                </Grid>
+                <ScrollView>
+                    <Grid>
+                        <Background:BackgroundWave Grid.Row="0"/>
+                        <ContentPresenter />
+                    </Grid>
+                </ScrollView>
             </ControlTemplate>
-            
         </ResourceDictionary>        
     </Application.Resources>
 </Application>

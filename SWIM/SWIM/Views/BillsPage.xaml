@@ -16,46 +16,60 @@
             <StackLayout Style="{StaticResource MainStackLayout}">
                 <!-- Current Bill -->
                 <Frame IsVisible="{Binding IsReminderVisible}">
-                    <StackLayout BindableLayout.ItemsSource="{Binding UnPaidBills}">
-                        <BindableLayout.ItemTemplate>
-                            <DataTemplate>
-                                <Grid>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition Height="Auto" />
-                                    </Grid.RowDefinitions>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="*" />
-                                        <ColumnDefinition Width="150" />
-                                        <ColumnDefinition Width="*" />
-                                    </Grid.ColumnDefinitions>
-                                    <Label Grid.Column="1" 
+                    <StackLayout>
+                        <StackLayout BindableLayout.ItemsSource="{Binding UnPaidBills}">
+                            <BindableLayout.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="150" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+                                        <Label Grid.Column="1" 
                                            Text="Amount Due" 
                                            FontSize="Large" 
                                            Font="Bold" 
                                            HorizontalTextAlignment="Center"/>
 
-                                    <Label Grid.Column="1" Grid.Row="1" 
+                                        <Label Grid.Column="1" Grid.Row="1" 
                                            Text="{Binding Amount, StringFormat='{0:C2}'}" 
                                            FontSize="Medium" 
                                            HorizontalTextAlignment="Center"/>
+                                    </Grid>
+                                </DataTemplate>
+                            </BindableLayout.ItemTemplate>
+                        </StackLayout>
+                        
+                        <StackLayout BindableLayout.ItemsSource="{Binding Charges}">
+                            <BindableLayout.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="150" />
+                                        </Grid.ColumnDefinitions>
+                                        <Label Grid.Column="1" Text="{Binding Description}"/>
+                                        <Label Grid.Column="2" Text="{Binding Cost, StringFormat='{0:C2}'}"/>
+                                    </Grid>
+                                </DataTemplate>
+                            </BindableLayout.ItemTemplate>
+                        </StackLayout>
 
-                                    <Button Style="{StaticResource MainButtonStyle}" 
+                        <Button Style="{StaticResource MainButtonStyle}" 
                                             Grid.Row="2" Grid.Column="0"
                                             Text="Pay Now" 
                                             HorizontalOptions="Center"
                                             Command="{Binding Source={RelativeSource AncestorType={x:Type local:BillViewModel}},
                                                                                      Path=GoToPayment}"/>
-                                    <Button Style="{StaticResource MainButtonStyle}"
+                        <Button Style="{StaticResource MainButtonStyle}"
                                             Grid.Column="2" Grid.Row="2" 
                                             Text="View Bill" />
-                                    <Label Grid.Column="1" Grid.Row="3" 
-                                           Text="Direct Debit Active" 
-                                           HorizontalOptions="Center"/>
-                                </Grid>
-                            </DataTemplate>
-                        </BindableLayout.ItemTemplate>
                     </StackLayout>
                 </Frame>
 

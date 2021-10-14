@@ -38,6 +38,7 @@
                     
                     <Button Style="{StaticResource AltButtonStyle}"
                             Grid.Row="2" Grid.Column="0"
+                            Clicked="SubEnqPageButton_Clicked"
                             HorizontalOptions="FillAndExpand" 
                             VerticalOptions="FillAndExpand"
                             Text="Submitted Enquiries" />
@@ -66,9 +67,11 @@
                         <Entry Grid.Row="6" />
                         <Label Grid.Row="7" 
                                Text="Enter description:" />
-                        <Editor Grid.Row="8" AutoSize="TextChanges" />
+                        <Editor Grid.Row="8" AutoSize="TextChanges" 
+                                x:Name="description"/>
                         <Button Style="{StaticResource MainButtonStyle}" 
-                                Grid.Row="9" Text="Submit"/>
+                                Grid.Row="9" Text="Submit"
+                                Clicked="SubmitEnqButton_Clicked"/>
                     </Grid>
                 </Frame>
             </StackLayout>
