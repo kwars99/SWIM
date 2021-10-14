@@ -77,9 +77,13 @@
                         <Label HorizontalTextAlignment="Center"
                                FontSize="Medium"
                                Text="Connect With Us" />
-                        <Label Grid.Row="1" 
-                               HorizontalTextAlignment="Center"
-                               Text="Social Media Icons go here" /> <!-- Insert Facebook, Email, Twitter Icons -->
+                        <StackLayout Grid.Row="1"
+                                     Orientation="Horizontal"
+                                     HeightRequest="25"
+                                     HorizontalOptions="CenterAndExpand">
+                            <Image Source="facebook_icon.png"/>
+                            <Image Source="twitter_icon.png"/>
+                        </StackLayout>
                         <Label Grid.Row="2" 
                                HorizontalTextAlignment="Center"
                                FontSize="Medium"
@@ -92,7 +96,7 @@
                                Text="Email: company@swim.com.au" />
                         <Label Grid.Row="5"
                                HorizontalTextAlignment="Center"
-                               Text="Address: 123 Lamington Drive, Brisbane, QLD" />
+                               Text="Address: 123 Example St, Brisbane, QLD" />
                     </Grid>
                 </Frame>
             </StackLayout>

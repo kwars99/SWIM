@@ -36,7 +36,7 @@
                                 </DataTemplate>
                             </BindableLayout.ItemTemplate>
                         </StackLayout>
-                        
+
                         <Grid>
                             <Label Grid.ColumnSpan="3" 
                                 Text="{Binding DueDate}"
@@ -44,7 +44,7 @@
                                 HorizontalTextAlignment="Center"
                                 TextColor="red"
                                 FontFamily="OS-Bold"/>
-                            
+
                             <Button Style="{StaticResource MainButtonStyle}" 
                                     Grid.Row="1" 
                                     Grid.Column="0"
@@ -59,17 +59,7 @@
                     </StackLayout>
                 </Frame>
 
-                <Grid>
-                    <Button Style="{StaticResource AltButtonStyle}" 
-                            Grid.Column="0"
-                            Text="My Account" />
-
-                    <Button Style="{StaticResource AltButtonStyle}"
-                            Grid.Column="1"
-                            Text="Outages" />
-                </Grid>
-
-                    <!-- Water Saving Tips -->
+                <!-- Water Saving Tips -->
                     <Frame HeightRequest="200">
                         <Grid RowDefinitions="30, 150, 20">
                         <Label Text="Water Saving Tips &amp; Tricks"
@@ -99,7 +89,8 @@
                     </Frame>
 
                     <!-- News -->
-                <Frame Margin="0, 0, 0, 10">
+                <Frame Margin="0, 0, 0, 10"
+                       VerticalOptions="FillAndExpand">
                     <Grid RowDefinitions="30, 220">
                         <Label Grid.Row="0" 
                                Text="Newsfeed"
@@ -128,6 +119,7 @@
                                 </DataTemplate>
                             </CarouselView.ItemTemplate>
                         </CarouselView>
+                        
                         <IndicatorView Grid.Row="2" 
                                            x:Name="newsIndicatorView"
                                            IndicatorColor="LightGray"

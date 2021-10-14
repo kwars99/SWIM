@@ -19,8 +19,7 @@
                     
                     <!-- Chart-->
                     <Frame Padding="10, 20, 10, 0"
-                           Margin="0, 0, 0, 0"
-                           HasShadow="False">
+                           Margin="0, 0, 0, 0">
                         <StackLayout>
                             <chart:SfChart x:Name="barChart" 
                                    HeightRequest="300">
@@ -35,8 +34,9 @@
 
                                 <chart:SfChart.SecondaryAxis>
                                     <chart:NumericalAxis x:Name="yAxis"
-                                                         ShowMajorGridLines="True"
-                                                         RangePadding="AppendInterval">
+                                                         ShowMajorGridLines="False"
+                                                         RangePadding="AppendInterval"
+                                                         PlotOffsetEnd="10">
                                         <chart:NumericalAxis.LabelStyle>
                                             <chart:ChartAxisLabelStyle LabelFormat="## kL"
                                                                        FontSize="Small"/>
@@ -94,9 +94,7 @@
 
                     <!-- Monthly Usage -->
                     <Frame Grid.Row="2"
-                           Padding="5, 5, 5, 0"
-                           Margin="0, 0, 0, 0"
-                           HasShadow="False">
+                           Padding="5, 5, 5, 0">
                         <StackLayout>
                             <Label Text="Current Quarter"
                                    FontSize="Large"
@@ -166,9 +164,7 @@
                     
                     <!-- Previous Quarters -->
                     <Frame Grid.Row="3" 
-                           Padding="5, 5, 5, 0"
-                           Margin="0, 0, 0 , 0"
-                           HasShadow="False">
+                           Padding="5, 5, 5, 0">
                         <StackLayout>
                             <Label Text="Usage History"
                                    FontSize="Large"
@@ -232,7 +228,7 @@
                     <!-- Report Usage Button -->
                     <Button Style="{StaticResource MainButtonStyle}" 
                             Grid.Row ="4" 
-                            Margin="10, 0, 10, 10"
+                            Margin="0, 0, 0, 10"
                             HeightRequest="100"
                             Text="Report a Usage" />
                 </Grid>

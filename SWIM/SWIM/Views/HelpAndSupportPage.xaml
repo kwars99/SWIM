@@ -8,7 +8,8 @@
     
     <ContentPage.Content>
         <ScrollView>
-            <StackLayout Style="{StaticResource MainStackLayout}">
+            <StackLayout Style="{StaticResource MainStackLayout}"
+                         Spacing="20">
                 <!-- Grid of options/links-->
                 <Grid RowDefinitions="80, 80, 80"
                       ColumnDefinitions="*, *">
@@ -34,7 +35,7 @@
                             Grid.Row="1" Grid.Column="1"
                             HorizontalOptions="FillAndExpand" 
                             VerticalOptions="FillAndExpand"
-                            Text="Sever Weather Preparation" />
+                            Text="Severe Weather Preparation" />
                     
                     <Button Style="{StaticResource AltButtonStyle}"
                             Grid.Row="2" Grid.Column="0"

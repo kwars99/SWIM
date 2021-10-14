@@ -185,7 +185,7 @@ namespace SWIM.ViewModels
             List<Bill> paid = data.Where(x => x.PaidStatus == "paid").ToList();
             for (int i = 0; i < paid.Count; i++)
             {
-                string period = paid[i].PeriodStart.ToString("MMM \"'\"yy") + "-" + 
+                string period = paid[i].PeriodStart.ToString("MMM \"'\"yy") + "-\n" + 
                     paid[i].PeriodEnd.ToString("MMM \"'\"yy");
                 double amount = paid[i].Amount;
 

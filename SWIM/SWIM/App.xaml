@@ -18,13 +18,13 @@
             <Color x:Key="RadioButtonColor">#15BB0A</Color>
             <Color x:Key="GradientColorOne">#05CCEE</Color>
             <Color x:Key="GradientColorTwo">#0066AF</Color>
-            
 
-            <LinearGradientBrush x:Key="ButtonGradient" EndPoint="1,0">
+
+            <LinearGradientBrush x:Key="MainButtonGradient" EndPoint="1,0">
                 <GradientStop Color="{StaticResource GradientColorOne}" Offset="0.2"/>
                 <GradientStop Color="{StaticResource GradientColorTwo}" Offset="0.9"/>
             </LinearGradientBrush>
-            
+
             <!-- Implicit Styles -->
             <Style x:Key="PageStyle" TargetType="{x:Type ContentPage}">
                 <Setter Property="BackgroundColor" Value="{StaticResource PageBackgroundColour}" />
@@ -47,7 +47,7 @@
                 <Setter Property="TextColor" Value="White"/>
                 <Setter Property="FontFamily" Value="OS-Medium"/>
                 <Setter Property="CornerRadius" Value="80"/>
-                <Setter Property="Background" Value="{StaticResource ButtonGradient}"/>
+                <Setter Property="Background" Value="{StaticResource MainButtonGradient}"/>
                 <!--
                 <Setter Property="VisualStateManager.VisualStateGroups">
                     <VisualStateGroupList>
@@ -70,19 +70,19 @@
 
             <Style x:Key="AltButtonStyle" TargetType="Button">
                 <Setter Property="BackgroundColor" Value="#EFEFEF"/>
-                <Setter Property="BorderColor" Value="Black"/>
+                <Setter Property="FontFamily" Value="OS-Medium"/>
                 <Setter Property="BorderWidth" Value="1"/>
                 <Setter Property="CornerRadius" Value="20"/>
             </Style>
 
             <!-- Page Background Template -->
             <ControlTemplate x:Key="BackgroundTemplate">
-                <ScrollView>
+                <!-- <ScrollView>-->
                     <Grid>
                         <Background:BackgroundWave Grid.Row="0"/>
                         <ContentPresenter />
                     </Grid>
-                </ScrollView>
+                <!-- </ScrollView>-->
             </ControlTemplate>
         </ResourceDictionary>        
     </Application.Resources>
