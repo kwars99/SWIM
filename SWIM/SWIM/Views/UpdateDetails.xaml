@@ -12,19 +12,22 @@
     
     <ContentPage.Content>
         <ScrollView>
-            <StackLayout>
-                <Frame>  
-                    <StackLayout BindableLayout.ItemsSource="{Binding Data}">
+            <StackLayout>             
+                <Frame>
+                    <StackLayout BindableLayout.ItemsSource="{Binding FormattedUsers}">
                         <BindableLayout.ItemTemplate>
                             <DataTemplate>
                                 <StackLayout>
-                                    <Label Text="{Binding Email}"/>
-                                    <Label Text="{Binding FirstName}"/>
-                                    <Label Text="{Binding LastName}"/>
+                                    <Label Text="{Binding Fullname}" FontSize="Large"/>
+                                    <Label Text="{Binding Address, StringFormat='Address: {0}'}"/>
+                                    <Label Text="{Binding Email, StringFormat='Email: {0}'}"/>
+                                    <Entry Placeholder="Enter Updated Address"/>
+                                    <Entry Placeholder="Enter Updated Email Address"/>
+                                    <Button Text="Update" Clicked="UpdateBtn"/>
                                 </StackLayout>
                             </DataTemplate>
                         </BindableLayout.ItemTemplate>
-                    </StackLayout>                                        
+                    </StackLayout>
                 </Frame>
             </StackLayout>
         </ScrollView>

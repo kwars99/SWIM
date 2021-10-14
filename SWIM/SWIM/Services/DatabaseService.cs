@@ -65,6 +65,11 @@ namespace SWIM.Services
             return result;
         }
 
+        public Task<int> UpdateUserAsync(User user)
+        {
+            return database.UpdateAsync(user);
+        }
+
         public Task<int> InsertFaultAsync(Fault fault)
         {
             return database.InsertAsync(fault);
