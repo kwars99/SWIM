@@ -10,17 +10,17 @@ namespace SWIM.ViewModels
     public class MorePageViewModel
     {
         public ICommand ViewTransactionHistoryCommand { get; }
-        public ICommand ViewBillingPreferencesCommand { get; }
+        public ICommand ViewMyAccountCommand { get; }
 
         public MorePageViewModel()
         {
             ViewTransactionHistoryCommand = new Command(OnTransactionHistoryClicked);
-            ViewBillingPreferencesCommand = new Command(OnBillingPreferencesClicked);
+            ViewMyAccountCommand = new Command(OnMyAccountClicked);
         }
 
-        private async void OnBillingPreferencesClicked(object obj)
+        private async void OnMyAccountClicked(object obj)
         {
-            var route = $"{nameof(BillingPreferencesPage)}";
+            var route = $"{nameof(MyAccountPage)}";
             await Shell.Current.GoToAsync(route);
         }
 

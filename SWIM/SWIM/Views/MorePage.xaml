@@ -22,19 +22,16 @@
             <StackLayout Spacing="1">
                 <Frame Padding="15">
                     <Label Text="My Account" />
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer
+                                Command="{Binding ViewMyAccountCommand}"/>
+                    </Frame.GestureRecognizers>
                 </Frame>
+
                 <Frame Padding="15">
                     <Label Text="Move or Add Property" />
                 </Frame>
-                
-                <Frame Padding="15">
-                    <Frame.GestureRecognizers>
-                        <TapGestureRecognizer
-                                Command="{Binding ViewBillingPreferencesCommand}"/>
-                    </Frame.GestureRecognizers>
-                    <Label Text="Change Billing Preferences" />
-                </Frame>
-                
+
                 <Frame Padding="15">
                     <Label Text="Manage Payment Details" />
                 </Frame>

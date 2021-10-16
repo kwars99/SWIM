@@ -56,13 +56,19 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Views\MyAccountPage.xaml.cs">
+      <DependentUpon>MyAccountPage.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\PaymentExtensionPage.xaml.cs">
       <DependentUpon>PaymentExtensionPage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="Views\BillingPreferencesPage.xaml">
+    <EmbeddedResource Update="Views\EditDetailsPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\MyAccountPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\BillsPage.xaml">
