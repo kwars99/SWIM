@@ -1,4 +1,6 @@
-﻿using System;
+﻿using SWIM.Models;
+using SWIM.Views;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
@@ -8,7 +10,7 @@ using Xamarin.Forms;
 
 namespace SWIM.ViewModels
 {
-    public class BillingPreferencesViewModel : BaseViewModel
+    public class MyAccountViewModel : BaseViewModel
     {
         private bool isEmailChecked, isPostChecked, is1MonthChecked, is2WeeksChecked,
                      is1WeekChecked, isReminderEmailChecked, isSMSChecked, isWeeklyChecked,
@@ -17,7 +19,14 @@ namespace SWIM.ViewModels
         private string receivingBillSelection, receivingBillTimeSelection, receivingReminderSelection,
                        reminderTimeSelection;
 
+        private List<User> userData = new List<User>();
+
+        private string name, address, phoneNumber, email;
+
         public ICommand SavePreferencesCommand { get; }
+        public ICommand EditDetailsCommand { get; }
+
+        public INavigation Navigation { get; set; }
 
         public bool IsEmailChecked
         {
@@ -230,12 +239,96 @@ namespace SWIM.ViewModels
 
         }
 
-        public BillingPreferencesViewModel()
+        public string Name
         {
-            SavePreferencesCommand = new Command(OnSaveButtonClicked);
-            LoadPreferences();
+            get
+            {
+                return name;
+            }
+            set
+            {
+                if (name != value)
+                {
+                    name = value;
+                    OnPropertyChanged(nameof(Name));
+                }
+            }
         }
-        
+
+        public string Address
+        {
+            get
+            {
+                return address;
+            }
+            set
+            {
+                if (address != value)
+                {
+                    address = value;
+                    OnPropertyChanged(nameof(Address));
+                }
+            }
+        }
+
+        public string PhoneNumber
+        {
+            get
+            {
+                return phoneNumber;
+            }
+            set
+            {
+                if (phoneNumber != value)
+                {
+                    phoneNumber = value;
+                    OnPropertyChanged(nameof(PhoneNumber));
+                }
+            }
+        }
+
+        public string Email
+        {
+            get
+            {
+                return email;
+            }
+            set
+            {
+                if (email != value)
+                {
+                    email = value;
+                    OnPropertyChanged(nameof(Email));
+                }
+            }
+        }
+
+        public MyAccountViewModel(INavigation navigation)
+        {
+            this.Navigation = navigation;
+            SavePreferencesCommand = new Command(OnSaveButtonClicked);
+            EditDetailsCommand = new Command(OnEditClicked);
+            LoadPreferences();
+
+            userData = App.Database.GetUsersAsync();
+
+            name = userData[0].FirstName + userData[0].LastName;
+            email = userData[0].Email;
+            phoneNumber = userData[0].PhoneNumber;
+            address = userData[0].Address;
+        }
+
+        //Default constructor
+        public MyAccountViewModel()
+        {
+
+        }
+
+        private async void OnEditClicked(object obj)
+        {
+            await Navigation.PushAsync(new EditDetailsPage(userData));
+        }
+
         private void OnSaveButtonClicked(object obj)
         {
             Preferences.Set(nameof(ReceivingBillSelection), receivingBillSelection);          

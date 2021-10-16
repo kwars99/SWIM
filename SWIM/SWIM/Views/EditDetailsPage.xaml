@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:local="clr-namespace:SWIM.ViewModels"
+             x:Class="SWIM.Views.EditDetailsPage"
+             Title="Update Your Details">
+
+    <ContentPage.BindingContext>
+        <local:EditDetailsViewModel/>
+    </ContentPage.BindingContext>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Entry">
+                <Setter Property="IsSpellCheckEnabled" Value="False"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <ScrollView>
+            
+            <Frame>
+                <StackLayout>
+                    <Label Text="Street Address:"/>
+                    <Entry Text="{Binding StreetAddress}"/>
+
+                    <Label Text="City/Town:"/>
+                    <Entry Text="{Binding CityOrTown}"/>
+                    
+                    <Label Text="State:"/>
+                    <Entry  Text="{Binding State}"/>
+                    
+                    <Label Text="Postcode:"/>
+                    <Entry Text="{Binding Postcode}"/>
+                    
+                    <Label Text="Email:"/>
+                    <Entry Text="{Binding Email}"/>
+                    
+                    <Label Text="Phone Number:"/>
+                    <Entry Text="{Binding PhoneNumber}"/>
+
+                    <Button Text="Update Details" 
+                            Command="{Binding UpdateDetailsCommand}"/>
+                </StackLayout>
+            </Frame>
+            
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
