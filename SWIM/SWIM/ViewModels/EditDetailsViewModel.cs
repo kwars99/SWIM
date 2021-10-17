@@ -121,7 +121,7 @@ namespace SWIM.ViewModels
             data = userData;
 
             UpdateDetailsCommand = new Command(OnUpdateDetailsClicked);
-            
+
             //splitting the address into appropriate sub parts for entry binding
             string[] addressSubs = userData[0].Address.Split(',');
             streetAddress = addressSubs[0];
@@ -146,7 +146,6 @@ namespace SWIM.ViewModels
 
         private async void OnUpdateDetailsClicked(object obj)
         {
-            // need to check if there are any changes i.e. newxyz == ""
             data[0].Address = StreetAddress + "," + CityOrTown + "," + State + " " + Postcode;
             data[0].Email = Email;
             data[0].PhoneNumber = PhoneNumber;
@@ -156,6 +155,6 @@ namespace SWIM.ViewModels
             Application.Current.MainPage = new AppShell();
             var route = $"{nameof(MyAccountPage)}";
             await Shell.Current.GoToAsync(route);
-        }        
+        }
     }
 }

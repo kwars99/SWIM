@@ -17,7 +17,7 @@
 
                         <Image Source="baseline_account_circle_white_18.png"/>
 
-                        <Label Text="John Smith"/>
+                        <Label Text="{Binding Name}"/>
 
                         <Frame>
                             <Grid RowDefinitions="0.5*, 1, *, *, *, *"
