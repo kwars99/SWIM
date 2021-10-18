@@ -5,7 +5,9 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using SWIM.Models;
+using SWIM.Views;
 using Xamarin.Forms;
 
 namespace SWIM.ViewModels
@@ -17,6 +19,8 @@ namespace SWIM.ViewModels
         private List<Usage> data = new List<Usage>();
         private List<FormattedUsage> lastThreeEntries = new List<FormattedUsage>();
         private List<FormattedUsage> quarterlyUsages = new List<FormattedUsage>();
+
+        public ICommand OpenReportUsageCommand { get; set; }
 
         public List<Usage> Data
         {
@@ -68,6 +72,8 @@ namespace SWIM.ViewModels
 
         public UsageViewModel()
         {
+            OpenReportUsageCommand = new Command(OnSubmitReadingClicked);
+
             data = App.Database.GetUsageAsync();
             data.Reverse();
             FormatLastThree();
@@ -173,6 +179,13 @@ namespace SWIM.ViewModels
 
             return numOfDays;
         }
+
+        private async void OnSubmitReadingClicked(object obj)
+        {
+            var route = $"{nameof(ReportUsagePage)}";
+            await Shell.Current.GoToAsync(route);
+        }
+
         private void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));

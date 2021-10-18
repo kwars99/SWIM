@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:local="clr-namespace:SWIM.ViewModels"
+             x:Class="SWIM.Views.ReportUsagePage"
+             Title="Report Usage"
+             Style="{StaticResource PageStyle}"
+             ControlTemplate="{StaticResource BackgroundTemplate}">
+
+    <ContentPage.BindingContext>
+        <local:ReportUsageViewModel/>
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Style="{StaticResource MainStackLayout}">
+                <Frame>
+                    <StackLayout Spacing="10">
+                       
+                        <Label Margin="10, 0, 0, 0" Text="Your details:"
+                               FontSize="Title"/>
+
+                        <Entry Placeholder="Full Name"/>
+
+                        <Entry Placeholder="Customer Reference Number"/>
+
+                        <Entry Placeholder="Email"/>
+
+                        <Entry Placeholder="Phone Number"/>
+
+                        <Label  Margin="10, 0, 0, 0"
+                                Text="Meter Read Details:"
+                                FontSize="Title"/>
+
+                        <Entry Placeholder="Meter Reading (kL)"
+                               Text="{Binding MeterReading}"/>
+
+                        <DatePicker MinimumDate="{Binding MinimumDate}"
+                                    MaximumDate="{Binding CurrentDate}"
+                            Date="{Binding DateReported}"/>
+
+                        <Button Style="{StaticResource MainButtonStyle}" 
+                                Text="Submit Reading"
+                                Command="{Binding SubmitReadingCommand}"/>
+
+                    </StackLayout>
+                </Frame>
+                
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

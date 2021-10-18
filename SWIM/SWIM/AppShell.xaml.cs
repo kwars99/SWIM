@@ -24,6 +24,7 @@ namespace SWIM
             Routing.RegisterRoute(nameof(HowToReadBillPage), typeof(HowToReadBillPage));
             Routing.RegisterRoute(nameof(MyAccountPage), typeof(MyAccountPage));
             Routing.RegisterRoute(nameof(EditDetailsPage), typeof(EditDetailsPage));
+            Routing.RegisterRoute(nameof(ReportUsagePage), typeof(ReportUsagePage));
 
         }
 

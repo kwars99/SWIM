@@ -95,7 +95,12 @@ namespace SWIM.Services
         {
             return database.InsertAsync(enquiry);
         }
-        
+
+        public Task<int> InsertUsageAsync(Usage usage)
+        {
+            return database.InsertAsync(usage);
+        }
+
         public Task<int> UpdateUserAsync(User user)
         {
             return database.UpdateAsync(user);

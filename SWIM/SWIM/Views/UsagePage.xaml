@@ -230,7 +230,8 @@
                             Grid.Row ="4" 
                             Margin="0, 0, 0, 10"
                             HeightRequest="100"
-                            Text="Report a Usage" />
+                            Text="Report a Usage"
+                            Command="{Binding OpenReportUsageCommand}"/>
                 </Grid>
             </StackLayout>
         </ScrollView>
