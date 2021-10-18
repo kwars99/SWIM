@@ -2,12 +2,13 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              xmlns:local="clr-namespace:SWIM.ViewModels"
-             x:Class="SWIM.Views.BillingPreferencesPage"
              Style="{StaticResource PageStyle}"
-             ControlTemplate="{StaticResource BackgroundTemplate}">
+             ControlTemplate="{StaticResource BackgroundTemplate}"
+             x:Class="SWIM.Views.MyAccountPage"
+             Title="My Account">
 
     <ContentPage.BindingContext>
-        <local:BillingPreferencesViewModel/>
+        <local:MyAccountViewModel/>
     </ContentPage.BindingContext>
     
     <ContentPage.Content>
@@ -15,10 +16,62 @@
             <StackLayout Margin="{StaticResource PageMargin}"
                          Spacing="10">
                 <Frame>
-                    <StackLayout Spacing="10">
-                        <Label Text="Billing Preferences"
-                               FontSize="Large"
-                               HorizontalOptions="CenterAndExpand"/>
+                    <StackLayout>
+
+                        <Image Source="baseline_account_circle_white_18.png"/>
+
+                        <Label Text="{Binding Name}"/>
+
+                        <Frame>
+                            <Grid RowDefinitions="0.5*, 1, *, *, *, *"
+                                  ColumnDefinitions="15">
+                                
+                                <Label Grid.Row="0"
+                                       Grid.ColumnSpan="3"
+                                       Text="Your Details:"/>
+
+                                <BoxView Grid.Row="1"
+                                         Grid.ColumnSpan="3"
+                                         Color="#6096BA"
+                                         HeightRequest="1"
+                                         HorizontalOptions="Fill"/>
+
+                                <Image Grid.Row="2"
+                                       Grid.Column="0"
+                                       Source="outline_place_black_18.png"/>
+
+                                <Label Grid.Row="2"
+                                       Grid.Column="1"
+                                       Grid.ColumnSpan="2"
+                                       Text="{Binding Address}"/>
+
+                                <Image Grid.Row="3"
+                                       Grid.Column="0"
+                                       Source="outline_phone_black_18.png"/>
+
+
+                                <Label Grid.Row="3"
+                                       Grid.Column="1" 
+                                       Grid.ColumnSpan="2"
+                                       Text="{Binding PhoneNumber}"/>
+
+                                <Image Grid.Row="4"
+                                       Grid.Column="0"
+                                       Source="outline_email_black_18.png"/>
+
+                                <Label Grid.Row="4" 
+                                       Grid.Column="1"
+                                       Grid.ColumnSpan="2"
+                                       Text="{Binding Email}"/>
+
+                                <Button Grid.Row="5"  
+                                        Grid.Column="2"
+                                        Text="Edit"
+                                        Command="{Binding EditDetailsCommand}"/>
+                            </Grid>
+                        </Frame>
+
+                        <Label Text="Billing Preferences"/>
 
                         <BoxView Grid.Row="2"
                                  Color="#8E8E8E"

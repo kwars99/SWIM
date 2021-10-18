@@ -1,4 +1,6 @@
-﻿using System;
+﻿using SWIM.Models;
+using SWIM.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,11 +12,12 @@ using Xamarin.Forms.Xaml;
 namespace SWIM.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class BillingPreferencesPage : ContentPage
+    public partial class EditDetailsPage : ContentPage
     {
-        public BillingPreferencesPage()
+        public EditDetailsPage(List<User> userData)
         {
             InitializeComponent();
+            BindingContext = new EditDetailsViewModel(userData, Navigation);
         }
     }
 }
