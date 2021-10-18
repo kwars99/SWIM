@@ -15,6 +15,7 @@ namespace SWIM.ViewModels
         private bool isCardPaymentVisible, isBPAYVisible, isOtherVisisble, displayPopup;
 
         private string cardHolder, cardNumber, cardExpiry, cardCVV;
+        private double billAmount;
 
         private List<Bill> unpaidBill = new List<Bill>();
 
@@ -26,6 +27,14 @@ namespace SWIM.ViewModels
         public ICommand ClosePopupCommand { get; set; }
 
         public ICommand MakePaymentCommand { get; set; }
+
+        public double BillAmount
+        {
+            get
+            {
+                return billAmount;
+            }
+        }
 
         public bool IsCardPaymentVisible
         {
@@ -124,6 +133,7 @@ namespace SWIM.ViewModels
                 }
             }
         }
+
         public string CardExpiry
         {
             get
@@ -139,6 +149,7 @@ namespace SWIM.ViewModels
                 }
             }
         }
+
         public string CardCVV
         {
             get
@@ -198,6 +209,9 @@ namespace SWIM.ViewModels
             IsCardPaymentVisible = true;
 
             unpaidBill = App.Database.GetBillAsync().Where(x => x.PaidStatus == "unpaid").ToList();
+
+            billAmount = unpaidBill[0].Amount;
+
             user = App.Database.GetUsersAsync().Where(x => x.FirstName == "John").ToList();
 
             
@@ -207,7 +221,7 @@ namespace SWIM.ViewModels
         {
             switch(parameter)
             {
-                case "Credit Card":
+                case "Card":
                     IsCardPaymentVisible = true;
                     IsBPAYVisible = false;
                     IsOtherVisible = false;

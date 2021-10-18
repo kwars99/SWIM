@@ -6,6 +6,7 @@ using System.Linq;
 using System.ServiceModel.Syndication;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 using System.Windows.Input;
 using System.Xml;
 using SWIM.Models;
@@ -22,11 +23,54 @@ namespace SWIM.ViewModels
         private List<FormattedUsage> billUsage = new List<FormattedUsage>();
         private List<WaterSavingTips> waterSavingTips = new List<WaterSavingTips>();
         private List<NewsItem> newsItems = new List<NewsItem>();
+        private bool isErrorVisible;
+        private string error;
 
         private string dueDate;
 
-        //public ICommand ReadMoreCommand => new Command<string>(async (url) => await Browser.OpenAsync(url, BrowserLaunchMode.SystemPreferred));
         public ICommand TapCommand => new Command<string>(async (url) => await Launcher.OpenAsync(url));
+
+        
+
+        public string Error
+        {
+            get
+            {
+                return error;
+            }
+            set
+            {
+                if (error != value)
+                {
+                    error = value;
+                    OnPropertyChanged(nameof(Error));
+                }
+            }
+        }
+
+        public bool IsErrorVisible
+        {
+            get
+            {
+                return isErrorVisible;
+            }
+            set
+            {
+                if (isErrorVisible != value)
+                {
+                    isErrorVisible = value;
+                    OnPropertyChanged(nameof(IsErrorVisible));
+                }
+            }
+        }
+
+        public int ItemCount
+        {
+            get
+            {
+                return newsItems.Count;
+            }
+        }
 
         public List<Bill> BillData
         {
@@ -229,16 +273,21 @@ namespace SWIM.ViewModels
 
         private void ParseRSS()
         {
+
             SyndicationFeed feed = null;
 
             try
             {
-                using (var reader = XmlReader.Create("http://www.environment.gov.au/rss/water"))
+                using (var reader = XmlReader.Create("https://www.awe.gov.au/rss/water"))
                 {
                     feed = SyndicationFeed.Load(reader);
                 }
             }
-            catch { } //Deal with unavailable resource
+            catch (Exception) //Catch when feed is not available
+            {
+                error = "Could not fetch feed at this time. Visit: https://www.awe.gov.au/about/news to see the latest news.";
+                IsErrorVisible = true;
+            }
 
             if (feed != null)
             {

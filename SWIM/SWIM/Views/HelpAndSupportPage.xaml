@@ -53,10 +53,10 @@
                 </Grid>
                 
                 <!-- Contact Form -->
-                <Frame>
+                <Frame Margin="0, 0, 0, 10">
                     <Grid RowDefinitions="*, 20, *, 20, *, 20, *, 20, *">
                         <Label HorizontalTextAlignment="Center" FontAttributes="Bold"
-                               FontSize="Large" Text="Contact Us" />
+                               FontSize="Large" Text="Submit an enquiry" />
                         <Label Grid.Row="1"
                                Text="Full Name:" />
                         <Entry Grid.Row="2" />

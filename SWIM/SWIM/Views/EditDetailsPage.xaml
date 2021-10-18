@@ -3,7 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              xmlns:local="clr-namespace:SWIM.ViewModels"
              x:Class="SWIM.Views.EditDetailsPage"
-             Title="Update Your Details">
+             Title="Update Your Details"
+             Style="{StaticResource PageStyle}"
+             ControlTemplate="{StaticResource BackgroundTemplate}">
 
     <ContentPage.BindingContext>
         <local:EditDetailsViewModel/>
@@ -19,32 +21,33 @@
 
     <ContentPage.Content>
         <ScrollView>
-            
-            <Frame>
-                <StackLayout>
-                    <Label Text="Street Address:"/>
-                    <Entry Text="{Binding StreetAddress}"/>
+            <StackLayout Style="{StaticResource MainStackLayout}">
+                <Frame Margin="0, 0, 0, 20">
+                    <StackLayout>
+                        <Label Text="Street Address:"/>
+                        <Entry Text="{Binding StreetAddress}"/>
 
-                    <Label Text="City/Town:"/>
-                    <Entry Text="{Binding CityOrTown}"/>
-                    
-                    <Label Text="State:"/>
-                    <Entry  Text="{Binding State}"/>
-                    
-                    <Label Text="Postcode:"/>
-                    <Entry Text="{Binding Postcode}"/>
-                    
-                    <Label Text="Email:"/>
-                    <Entry Text="{Binding Email}"/>
-                    
-                    <Label Text="Phone Number:"/>
-                    <Entry Text="{Binding PhoneNumber}"/>
+                        <Label Text="City/Town:"/>
+                        <Entry Text="{Binding CityOrTown}"/>
 
-                    <Button Text="Update Details" 
-                            Command="{Binding UpdateDetailsCommand}"/>
-                </StackLayout>
-            </Frame>
-            
+                        <Label Text="State:"/>
+                        <Entry  Text="{Binding State}"/>
+
+                        <Label Text="Postcode:"/>
+                        <Entry Text="{Binding Postcode}"/>
+
+                        <Label Text="Email:"/>
+                        <Entry Text="{Binding Email}"/>
+
+                        <Label Text="Phone Number:"/>
+                        <Entry Text="{Binding PhoneNumber}"/>
+
+                        <Button Style="{StaticResource MainButtonStyle}" 
+                                Text="Update Details" 
+                                Command="{Binding UpdateDetailsCommand}"/>
+                    </StackLayout>
+                </Frame>
+            </StackLayout>
         </ScrollView>
     </ContentPage.Content>
 </ContentPage>

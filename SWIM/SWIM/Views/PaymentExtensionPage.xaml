@@ -2,7 +2,10 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:SWIM.ViewModels"
-             x:Class="SWIM.Views.PaymentExtensionPage">
+             x:Class="SWIM.Views.PaymentExtensionPage"
+             Title="Request Extension"
+             Style="{StaticResource PageStyle}"
+             ControlTemplate="{StaticResource BackgroundTemplate}">
 
     <ContentPage.BindingContext>
         <local:PaymentExtensionViewModel/>
@@ -10,42 +13,52 @@
     
     <ContentPage.Content>
         <ScrollView>
-            <Frame>
-                <Grid RowDefinitions="50, 50, 50, 50, 50">
-                    <Label Grid.ColumnSpan="2"
-                           Text="Request Extension"
-                           FontSize="Title"/>
-                    
-                    <Label Grid.Row="1" 
+            <StackLayout Style="{StaticResource MainStackLayout}">
+                <Frame>
+                    <Grid RowDefinitions="50, 50, 50, 50, 50">
+                        <StackLayout Grid.ColumnSpan="2">
+                            <Label Text="WWhen would you like to pay?"
+                                   HorizontalOptions="CenterAndExpand"
+                                   FontSize="20"/>
+
+                            <BoxView Margin="0, 10, 0, 0"
+                                     Color="Gray"
+                                     HeightRequest="1"/>
+                        </StackLayout>
+                        
+                        <Label Grid.Row="1" 
                            Text="Bill amount: "/>
-                    
-                    <Label Grid.Row="1"
+
+                        <Label Grid.Row="1"
                            Grid.Column="1" 
                            Text="{Binding BillAmount, StringFormat='{0:C2}'}"/>
 
-                    <Label Grid.Row="2" Text="Orginal Due Date: "/>
-                    <Label Grid.Row="2" 
-                            Grid.Column="1"
-                            Text="{Binding DueDate, StringFormat='{dd/MM/yyyy}'}"/>
+                        <Label Grid.Row="2" Text="Orginal Due Date: "/>
+                        
+                        <Label Grid.Row="2" 
+                               Grid.Column="1"
+                               Text="{Binding DueDate, StringFormat='{0:dd/MM/yyyy}'}"/>
 
-                    <Label Grid.Row="3"
+                        <Label Grid.Row="3"
                            Text="Select a preferred date:"/>
-                    
-                    <DatePicker Margin="0, 0, 0, 14"
-                            Grid.Row="3" 
-                            Grid.Column="1" 
-                            MinimumDate="{Binding DueDate}"
-                            MaximumDate="{Binding MaximumDate}"
-                            Date="{Binding SelectedDate}"
-                            FontSize="Small"/>
 
-                    <Button Grid.Row="4"
-                            Grid.ColumnSpan="2"
-                            Text="Request Extension"
-                            Command="{Binding PaymentExtensionCommand}"/>
-                </Grid>
-                
-            </Frame>
+                        <DatePicker Margin="0, 0, 0, 14"
+                                    Grid.Row="3" 
+                                    Grid.Column="1" 
+                                    MinimumDate="{Binding DueDate}"
+                                    MaximumDate="{Binding MaximumDate}"
+                                    Date="{Binding SelectedDate}"
+                                    FontSize="Small"
+                                    Format="dd/MM/yyyy"/>
+
+                        <Button Grid.Row="4"
+                                Grid.ColumnSpan="2"
+                                Style="{StaticResource MainButtonStyle}"
+                                Text="Request Extension"
+                                Command="{Binding PaymentExtensionCommand}"/>
+                    </Grid>
+                </Frame>
+            </StackLayout>
         </ScrollView>
     </ContentPage.Content>
 </ContentPage>

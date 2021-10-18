@@ -14,16 +14,8 @@
     <ContentPage.Content>
         <ScrollView>
             <StackLayout Style="{StaticResource MainStackLayout}">
+                
                 <!-- Current Bill -->
-                <StackLayout BindableLayout.ItemsSource="{Binding UnPaidBills}">
-                    <BindableLayout.ItemTemplate>
-                        <DataTemplate>
-                            <StackLayout>
-                                
-                            </StackLayout>
-                        </DataTemplate>
-                    </BindableLayout.ItemTemplate>
-                </StackLayout>
                 
                 <Frame IsVisible="{Binding IsReminderVisible}">
                     <StackLayout>
@@ -106,7 +98,8 @@
                                                                                      Path=GoToPayment}"/>
                             <Button Style="{StaticResource MainButtonStyle}"
                                     WidthRequest="150"
-                                    Text="View Bill" />
+                                    Text="View Bill" 
+                                    Command="{Binding OpenPDFCommand}"/>
                         </StackLayout>
                         
                     </StackLayout>

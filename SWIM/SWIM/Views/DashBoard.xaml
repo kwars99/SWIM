@@ -62,24 +62,25 @@
                 <!-- Water Saving Tips -->
                     <Frame HeightRequest="200">
                         <Grid RowDefinitions="30, 150, 20">
-                        <Label Text="Water Saving Tips &amp; Tricks"
-                               FontSize="Title"/>
-                        <CarouselView Grid.Row="1" 
+                            <Label Text="Water Saving Tips &amp; Tricks"
+                               FontSize="Title"
+                               TextColor="#0066AF"/>
+                            <CarouselView Grid.Row="1" 
                                           ItemsSource="{Binding WaterSavingTips}"
                                           IndicatorView="tipsIndicatorView">
                                 <CarouselView.ItemTemplate>
                                     <DataTemplate>
-                                    <StackLayout>
                                         <StackLayout>
+                                            <StackLayout>
                                                 <Label Text="{Binding Title}"
                                                        FontSize="Large"/>
-                                            
+
                                                 <Label Text="{Binding Description}"/>
                                             </StackLayout>
-                                    </StackLayout>
+                                        </StackLayout>
                                     </DataTemplate>
                                 </CarouselView.ItemTemplate>
-                            </CarouselView>
+                        </CarouselView>
                             <IndicatorView Grid.Row="2" 
                                            x:Name="tipsIndicatorView"
                                            IndicatorColor="LightGray"
@@ -94,7 +95,8 @@
                     <Grid RowDefinitions="30, 220">
                         <Label Grid.Row="0" 
                                Text="Newsfeed"
-                               FontSize="Title"/>
+                               FontSize="Title"
+                               TextColor="#0066AF"/>
                         <CarouselView Grid.Row="1" 
                                           ItemsSource="{Binding NewsItems}"
                                           IndicatorView="newsIndicatorView">
@@ -119,7 +121,16 @@
                                 </DataTemplate>
                             </CarouselView.ItemTemplate>
                         </CarouselView>
-                        
+
+                        <Label Grid.Row="1"  
+                               Text="{Binding Error}"
+                               IsVisible="{Binding IsErrorVisible}">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding TapCommand}"
+                                                      CommandParameter="https://www.awe.gov.au/about/news"/>
+                            </Label.GestureRecognizers>
+                        </Label>
+
                         <IndicatorView Grid.Row="2" 
                                            x:Name="newsIndicatorView"
                                            IndicatorColor="LightGray"

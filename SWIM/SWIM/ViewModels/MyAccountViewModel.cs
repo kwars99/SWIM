@@ -312,7 +312,7 @@ namespace SWIM.ViewModels
 
             userData = App.Database.GetUsersAsync();
 
-            name = userData[0].FirstName + userData[0].LastName;
+            name = userData[0].FirstName + " " + userData[0].LastName;
             email = userData[0].Email;
             phoneNumber = userData[0].PhoneNumber;
             address = userData[0].Address;
