@@ -13,17 +13,40 @@
 
     <ContentPage.Content>
         <ScrollView>
-            <StackLayout>
-                <Frame Margin="10">
-                    <Image Source="howtoreadbill.png"/>
-                </Frame>
-                <Frame Margin="10">
-                    <StackLayout>
-                        <Label Text="1 - Name and postal address: The name of the account holder (there may be more than one) and the address the bill is sent to."/>
-                        <Label Text="2 - Property location: The physical location of the property being billed."/>
-                        <Label Text="3 - Account summary: Period, This is based on the dates we read your water meter. On your older bills (before April 2018) they reflected the fixed access charge dates. You can confirm the dates are correct for each charge by referring to the second page of your bills. Amount billed, Is the amount billed on your previous quarterly account excluding overdue charges and interest. Amount paid, This is the amount you paid during the previous billing period. Your current account, Is your account balance before current charges are applied. Current charges, This is the total of all account charges for the period. Please refer to page two of your bill for information on how your charges are calculated. Direct Debit message, This confirms your account is set to be paid Direct Debit. If you do not see this message, your account is not set up for Direct Debit."/>
-                        <Label Text="4 - Bill details: Customer reference number, Unique to your property, this is the number you need for account enquiries or when paying bills via post, phone, online banking or at any Commonwealth Bank branch. Bill number, Is a unique number assigned to each bill issued. Total due and due date, Now highlighted blue, the total due must be received by the due date to avoid interest being charged to your account. Please contact us to discuss options if you are having difficulty making payment by the due date."/>
-                        <Label Text="5 - Your water usage (graphs): The graphs show a comparison of your average daily usage across the current billing period, previous billing period and corresponding period last year, as well as local and regional averages. If you have recently purchased a new property this information may not be available on your first bills."/>
+            <StackLayout Style="{StaticResource MainStackLayout}">
+                <Frame Margin="0, 0, 0, 20">
+                    <StackLayout Spacing="20">
+                        <Image Source="howtoreadbill.png"/>
+                        <StackLayout>
+                            <Label Text="1 - Name and postal address"
+                                   FontSize="20"/>
+                            <Label Text="The name of the account holder (there may be more than one) and the address the bill is sent to."/>
+
+
+                            <Label Margin="0, 20, 0, 0"  
+                                   Text="2 - Property location"
+                                   FontSize="20"/>
+                            <Label Text="The physical location of the property being billed."/>
+
+
+                            <Label Margin="0, 20, 0, 0" 
+                                   Text="3 - Account summary"
+                                   FontSize="20"/>
+                            <Label Text="Period, This is based on the dates we read your water meter. On your older bills (before April 2018) they reflected the fixed access charge dates. You can confirm the dates are correct for each charge by referring to the second page of your bills. Amount billed, Is the amount billed on your previous quarterly account excluding overdue charges and interest. Amount paid, This is the amount you paid during the previous billing period. Your current account, Is your account balance before current charges are applied. Current charges, This is the total of all account charges for the period. Please refer to page two of your bill for information on how your charges are calculated. Direct Debit message, This confirms your account is set to be paid Direct Debit. If you do not see this message, your account is not set up for Direct Debit."/>
+
+
+                            <Label Margin="0, 20, 0, 0" 
+                                   Text="4 - Bill details"
+                                   FontSize="20"/>
+                            <Label Text="Customer reference number, Unique to your property, this is the number you need for account enquiries or when paying bills via post, phone, online banking or at any Commonwealth Bank branch. Bill number, Is a unique number assigned to each bill issued. Total due and due date, Now highlighted blue, the total due must be received by the due date to avoid interest being charged to your account. Please contact us to discuss options if you are having difficulty making payment by the due date."/>
+
+
+
+                            <Label Margin="0, 20, 0, 0" 
+                                   Text="5 - Your water usage (graphs)"
+                                   FontSize="20"/>
+                            <Label Text="The graphs show a comparison of your average daily usage across the current billing period, previous billing period and corresponding period last year, as well as local and regional averages. If you have recently purchased a new property this information may not be available on your first bills."/>
+                        </StackLayout>
                     </StackLayout>
                 </Frame>
             </StackLayout>
