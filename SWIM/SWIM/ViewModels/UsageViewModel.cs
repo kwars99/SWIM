@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,6 +20,8 @@ namespace SWIM.ViewModels
         private List<Usage> data = new List<Usage>();
         private List<FormattedUsage> lastThreeEntries = new List<FormattedUsage>();
         private List<FormattedUsage> quarterlyUsages = new List<FormattedUsage>();
+        private List<FormattedUsage> monthlyUsages = new List<FormattedUsage>();
+        private List<FormattedUsage> usagesByQuarter = new List<FormattedUsage>();
 
         public ICommand OpenReportUsageCommand { get; set; }
 
@@ -76,60 +79,117 @@ namespace SWIM.ViewModels
 
             data = App.Database.GetUsageAsync();
             data.Reverse();
-            FormatLastThree();
-            ComputeQuarterlyUsage();
-        }
+            CalculateMonthlyUsages();
+            CalculateQuarterlyUsage();            
 
-        /// <summary>
-        /// Formats the usage data to be in correct form for displaying the chart 
-        /// and the current quarters usage
-        /// </summary>
-        /// <returns> List of the mot current three usages </returns>
-        private List<FormattedUsage> FormatLastThree()
-        {
-            for (int i = 0; i < NumOfEntries; i++)
+            for (int i = 0; i < 3; i++)
             {
-                string month = data[i].ReadingDate.ToString("MMMM");
-                double waterUsage = data[i].Amount;
-                int numOfDays = DateTime.DaysInMonth(data[i].ReadingDate.Year, 
-                                                     data[i].ReadingDate.Month);
-                double cost = CalculateCost(waterUsage, numOfDays);
-
-                FormattedUsage usage = new FormattedUsage(month, waterUsage, cost);
-
-                lastThreeEntries.Add(usage);
+                lastThreeEntries.Add(monthlyUsages[i]);
             }
-
-            return lastThreeEntries;
         }
 
-        /// <summary>
-        /// Formats the usage data to be in correct form to display the previous 
-        /// quarters' usages.
-        /// </summary>
-        /// <returns></returns>
-        private List<FormattedUsage> ComputeQuarterlyUsage()
+        private void CalculateMonthlyUsages()
         {
-            for (int i = 0; i < data.Count; i += 3)
+            var groupedByMonth = data.GroupBy(usage => new { Year = usage.ReadingDate.Year, Month = usage.ReadingDate.Month });
+
+            var usagesByMonth = groupedByMonth.Select(x => x.ToList()).ToList();
+
+            for (int i = 0; i < usagesByMonth.Count; i++)
             {
-                string period = data[i + 2].ReadingDate.ToString("MMM \"'\"yy") + "-" + 
-                                data[i].ReadingDate.ToString("MMM \"'\"yy");
+                double monthlyUsage = usagesByMonth[i].Sum(y => y.Amount);
 
-                double totalUsage = data[i].Amount + data[i + 1].Amount + 
-                                    data[i + 2].Amount;
+                var month = usagesByMonth[i][0].ReadingDate.Month;
 
-                int numOfDays = GetNumberOfDays(data[i].ReadingDate, 
-                                                data[i + 1].ReadingDate, 
-                                                data[i + 2].ReadingDate);
+                int numOfDays = DateTime.DaysInMonth(usagesByMonth[i][0].ReadingDate.Year,
+                                                     usagesByMonth[i][0].ReadingDate.Month);
 
-                double cost = CalculateCost(totalUsage, numOfDays);
 
-                FormattedUsage usage = new FormattedUsage(period, totalUsage, cost);
-                quarterlyUsages.Add(usage);
+                FormattedUsage formattedUsage = new FormattedUsage()
+                {
+                    TimePeriod = usagesByMonth[i][0].ReadingDate.ToString("MMM \"'\"yy"),
+                    TotalUsage = monthlyUsage,
+                    Cost = CalculateCost(monthlyUsage, numOfDays)
+                };
+                
+                monthlyUsages.Add(formattedUsage);
             }
-
-            return quarterlyUsages;
         }
+
+
+        private void CalculateQuarterlyUsage()
+        {
+            for (int i = 0; i < monthlyUsages.Count; i++)
+            {
+                string month = monthlyUsages[i].TimePeriod;
+                int date = DateTime.ParseExact(month, "MMM \"'\"yy", CultureInfo.CurrentCulture).Month;
+                int quarter = GetQuarter(date);
+
+                usagesByQuarter.Add(new FormattedUsage
+                {
+                    TimePeriod = monthlyUsages[i].TimePeriod,
+                    TotalUsage = monthlyUsages[i].TotalUsage,
+                    Cost = monthlyUsages[i].Cost,
+                    Quarter = quarter
+                });
+            }
+            
+            var groupedByQuarter = usagesByQuarter.GroupBy(usage => new { Year = DateTime.ParseExact(usage.TimePeriod, "MMM \"'\"yy", CultureInfo.CurrentCulture).Year,
+                                                                          Quarter = usage.Quarter});
+
+            var quarterlyUsages = groupedByQuarter.Select(x => x.ToList()).ToList();
+
+            for (int i = 0; i < quarterlyUsages.Count; i++)
+            {
+                double TotalQuarterUsage = quarterlyUsages[i].Sum(y => y.TotalUsage);
+                string beginningMonth;
+
+                switch (quarterlyUsages[i][0].Quarter)
+                {
+                    case 1:
+                        beginningMonth = "Jan";
+                        break;
+
+                    case 2:
+                        beginningMonth = "Apr";
+                        break;
+
+                    case 3:
+                        beginningMonth = "Jul";
+                        break;
+
+                    case 4:
+                        beginningMonth = "Oct";
+                        break;
+
+                    default:
+                        beginningMonth = "unknown";
+                        break;
+                }
+
+                string endingMonth = DateTime.ParseExact(beginningMonth, "MMM", CultureInfo.CurrentCulture).AddMonths(2).ToString("MMM");
+
+                string quarterTimePeriod = beginningMonth + " - " + endingMonth;
+
+                double cost = quarterlyUsages[i].Sum(z => z.Cost);
+
+
+                FormattedUsage formattedUsage = new FormattedUsage()
+                {
+                    TimePeriod = quarterTimePeriod,
+                    TotalUsage = TotalQuarterUsage,
+                    Cost = cost
+                };
+
+                QuarterlyUsages.Add(formattedUsage);
+            } 
+        }
+
+
+        private int GetQuarter(int date)
+        {
+            return (date + 2) / 3;
+        }
+
 
         /// <summary>
         /// Helper method that calculates the cost in a given quarter.
@@ -141,9 +201,6 @@ namespace SWIM.ViewModels
         /// <returns>(double) total cost for the quarter</returns>
         private double CalculateCost(double totalUsage, int numOfDays)
         {
-            // need to add in logic to calculate cost for both tiers
-            // i.e. calculate first cost of up to tier 1 threshold
-            // then calculate cost for tier 2
             double cost, tierCharge;
 
             if (totalUsage >= Constants.Tier1Threshold)
@@ -163,22 +220,6 @@ namespace SWIM.ViewModels
             return cost;
         }
 
-        /// <summary>
-        /// Helper method to calculate the number of days in a quarter.
-        /// To assist in calculating the total cost for a quarter
-        /// </summary>
-        /// <param name="month1"></param>
-        /// <param name="month2"></param>
-        /// <param name="month3"></param>
-        /// <returns>(int) number of days in a quarter</returns>
-        private int GetNumberOfDays(DateTime month1, DateTime month2, DateTime month3)
-        {
-            int numOfDays = DateTime.DaysInMonth(month1.Year, month1.Month) +
-                            DateTime.DaysInMonth(month2.Year, month2.Month) +
-                            DateTime.DaysInMonth(month3.Year, month3.Month);
-
-            return numOfDays;
-        }
 
         private async void OnSubmitReadingClicked(object obj)
         {
@@ -186,10 +227,12 @@ namespace SWIM.ViewModels
             await Shell.Current.GoToAsync(route);
         }
 
+
         private void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+
 
         public event PropertyChangedEventHandler PropertyChanged;
     }

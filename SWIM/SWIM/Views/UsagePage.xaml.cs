@@ -40,7 +40,6 @@ namespace SWIM.Views
                 yAxis.Interval = 2;
                 chartSeries.Animate();
             }
-            
         }
     }
 }
