@@ -92,8 +92,7 @@
                 </Frame>
 
                 <!-- Monthly Usage -->
-                <Frame Grid.Row="2"
-                           Padding="5, 5, 5, 0">
+                <Frame Padding="5, 5, 5, 0">
                     <StackLayout>
                         <Label Text="Current Quarter"
                                    FontSize="Large"
@@ -158,9 +157,11 @@
                     </StackLayout>
                 </Frame>
 
+                <Label Text="*Note: amount shown includes fixed access charges precalculated for this period."
+                       FontFamily="OS-MediumItalic"/>
+
                 <!-- Previous Quarters -->
-                <Frame Grid.Row="3" 
-                           Padding="5, 5, 5, 0">
+                <Frame Padding="5, 5, 5, 0">
                     <StackLayout>
                         <Label Text="Usage History"
                                    FontSize="Large"
@@ -220,21 +221,6 @@
                         </StackLayout>
                     </StackLayout>
                 </Frame>
-
-                <Frame>
-                    <StackLayout BindableLayout.ItemsSource="{Binding UsagesByQuarter}">
-                        <BindableLayout.ItemTemplate>
-                            <DataTemplate>
-                                <Grid>
-                                    <Label Text="{Binding Quarter}"/>
-                                    <Label Grid.Column="1" Text="{Binding TotalUsage}"/>
-                                    <Label Grid.Column="2" Text="{Binding Cost}"/>
-                                </Grid>
-                            </DataTemplate>
-                        </BindableLayout.ItemTemplate>
-                    </StackLayout>
-                </Frame>
-
 
                 <!-- Report Usage Button -->                
                 <Button Style="{StaticResource MainButtonStyle}" 

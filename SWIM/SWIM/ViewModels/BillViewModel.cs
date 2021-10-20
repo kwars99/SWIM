@@ -152,9 +152,10 @@ namespace SWIM.ViewModels
 
             //For testing the payment function
             //adds in an unpaid bill
+            //Also in dashboard
             //--------------------------------------------------------------
-            data[data.Count - 1].PaidStatus = "unpaid";
-            App.Database.UpdateBillAsync(data[data.Count - 1]);
+            //data[data.Count - 1].PaidStatus = "unpaid";
+            //App.Database.UpdateBillAsync(data[data.Count - 1]);
             //---------------------------------------------------------------
 
             unpaidBills = data.Where(x => x.PaidStatus == "unpaid").ToList();
@@ -167,6 +168,7 @@ namespace SWIM.ViewModels
             }
             else
             {
+                CalculateCharges();
                 IsReminderVisible = true;
                 IsLabelVisible = false;
                 IsEnabled = true;
@@ -174,8 +176,7 @@ namespace SWIM.ViewModels
 
             data.Reverse();
             FormatPaidBills();
-            CalculateCharges();
-
+           
         }
             
         

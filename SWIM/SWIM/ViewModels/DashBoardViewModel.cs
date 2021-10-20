@@ -23,7 +23,10 @@ namespace SWIM.ViewModels
         private List<FormattedUsage> billUsage = new List<FormattedUsage>();
         private List<WaterSavingTips> waterSavingTips = new List<WaterSavingTips>();
         private List<NewsItem> newsItems = new List<NewsItem>();
+
         private bool isErrorVisible;
+        private bool isReminderVisible, isLabelVisible;
+
         private string error;
 
         private string dueDate;
@@ -63,6 +66,39 @@ namespace SWIM.ViewModels
                 }
             }
         }
+
+        public bool IsReminderVisible
+        {
+            get
+            {
+                return isReminderVisible;
+            }
+            set
+            {
+                if (isReminderVisible != value)
+                {
+                    isReminderVisible = value;
+                    OnPropertyChanged(nameof(IsReminderVisible));
+                }
+            }
+        }
+
+        public bool IsLabelVisible
+        {
+            get
+            {
+                return isLabelVisible;
+            }
+            set
+            {
+                if (isLabelVisible != value)
+                {
+                    isLabelVisible = value;
+                    OnPropertyChanged(nameof(IsLabelVisible));
+                }
+            }
+        }
+
 
         public int ItemCount
         {
@@ -176,7 +212,28 @@ namespace SWIM.ViewModels
             usageData.Reverse();
 
             billData = App.Database.GetBillAsync();
-            FormatBillData();
+
+            //For testing the payment function
+            //adds in an unpaid bill
+            //Also in bills page
+            //--------------------------------------------------------------
+            //billData[billData.Count - 1].PaidStatus = "unpaid";
+            //App.Database.UpdateBillAsync(billData[billData.Count - 1]);
+            //---------------------------------------------------------------
+
+            unpaidBills = billData.Where(x => x.PaidStatus == "unpaid").ToList();
+
+            if (unpaidBills.Count == 0)
+            {
+                IsLabelVisible = true;
+                IsReminderVisible = false;
+            }
+            else
+            {
+                FormatBillData();
+                IsReminderVisible = true;
+                IsLabelVisible = false;
+            }
 
             InitialiseTips();
 
@@ -188,16 +245,10 @@ namespace SWIM.ViewModels
 
             string billingPeriod = usageData[2].ReadingDate.ToString("MMM \"'\"yy") + "-" +
                                 usageData[0].ReadingDate.ToString("MMM \"'\"yy");
+
             string formatBillingPeriod = "Billing Period: "+ billingPeriod;
+
             double waterUsage = usageData[0].Amount + usageData[1].Amount + usageData[2].Amount;
-
-            //string usageID1 = usageData[0].UsageID.ToString();
-            //string usageID2 = usageData[1].UsageID.ToString();
-            //string usageID3 = usageData[2].UsageID.ToString();
-
-            //string IDs = String.Format("{0},{1},{2}", usageID1, usageID2, usageID3);
-
-            unpaidBills = billData.Where(x => x.PaidStatus == "unpaid").ToList();
 
             double billCost = unpaidBills[0].Amount;
 

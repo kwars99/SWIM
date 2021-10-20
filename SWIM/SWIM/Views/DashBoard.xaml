@@ -14,7 +14,7 @@
     <ContentPage.Content>
         <ScrollView>
             <StackLayout Style="{StaticResource MainStackLayout}">
-                <Frame>
+                <Frame IsVisible="{Binding IsReminderVisible}">
                     <StackLayout>
                         <StackLayout BindableLayout.ItemsSource="{Binding BillUsage}">
                             <BindableLayout.ItemTemplate>
@@ -57,6 +57,12 @@
                                     Clicked="Button_Clicked"/>
                         </Grid>
                     </StackLayout>
+                </Frame>
+
+                <Frame IsVisible="{Binding IsLabelVisible}">
+                    <Label HorizontalOptions="Center"
+                           VerticalOptions="Center"
+                           Text="You have no current bills"/>
                 </Frame>
 
                 <!-- Water Saving Tips -->

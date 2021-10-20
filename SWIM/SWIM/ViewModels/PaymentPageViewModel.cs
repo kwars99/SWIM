@@ -22,9 +22,6 @@ namespace SWIM.ViewModels
         private List<User> user = new List<User>();
 
         public ICommand PaymentMethodSelection { get; set; }
-        public ICommand OpenPopupCommand { get; set; }
-
-        public ICommand ClosePopupCommand { get; set; }
 
         public ICommand MakePaymentCommand { get; set; }
 
@@ -202,8 +199,6 @@ namespace SWIM.ViewModels
         public PaymentPageViewModel()
         {
             PaymentMethodSelection = new Command(OnPaymentSelectionClicked);
-            OpenPopupCommand = new Command(OnPaymentReviewClicked);
-            ClosePopupCommand = new Command(OnCancelButtonClicked);
             MakePaymentCommand = new Command(OnPayBillButtonClicked);
 
             IsCardPaymentVisible = true;
@@ -241,26 +236,6 @@ namespace SWIM.ViewModels
             }
         }
 
-        private void OnPaymentReviewClicked()
-        {
-            //if all card details are valid, display payment review popup
-            if (!(string.IsNullOrEmpty(cardNumber)))
-            {
-                DisplayPopup = true;
-            }
-            // display incorrect details
-            // how to get the incorrect entry
-            else
-            {
-                return;
-            }
-        }
-
-        private void OnCancelButtonClicked()
-        {
-            DisplayPopup = false;
-        }
-
         
         private async void OnPayBillButtonClicked()
         {
@@ -282,8 +257,6 @@ namespace SWIM.ViewModels
             bill.PaidStatus = "paid";
                 
             await App.Database.UpdateBillAsync(bill);
-
-            DisplayPopup = false;
 
             await Shell.Current.GoToAsync($"///{nameof(BillsPage)}");
         }       
