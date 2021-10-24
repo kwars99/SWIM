@@ -1,5 +1,6 @@
 ﻿using SWIM.Models;
 using SWIM.Services;
+using SWIM.Styles;
 using SWIM.Views;
 using System;
 using System.IO;
@@ -17,6 +18,8 @@ namespace SWIM
 
         private LoginService loginService;
 
+        const int smallWidth = 360;
+        const int smallHeight = 740;
         public static DatabaseService Database
         {
             get
@@ -36,7 +39,10 @@ namespace SWIM
 
             loginService = new LoginService();
 
+            DependencyService.Register<IDisplayInfo>();
+
             InitializeComponent();
+            LoadStyles();
 
             if (!IsUserLoggedIn)
             {
@@ -46,6 +52,27 @@ namespace SWIM
                 MainPage = new AppShell();
             }
         }
+
+        void LoadStyles()
+        {
+            if (IsSmallDevice())
+            {
+                dictionary.MergedDictionaries.Add(SmallDeviceStyle.SharedInstance);
+            }
+            else
+            {
+                dictionary.MergedDictionaries.Add(GeneralDeviceStyle.SharedInstance);
+            }
+        }
+        
+        private bool IsSmallDevice()
+        {
+            double screenWidth  = DeviceDisplay.MainDisplayInfo.Width / DeviceDisplay.MainDisplayInfo.Density;
+            double screenHeight  = DeviceDisplay.MainDisplayInfo.Height / DeviceDisplay.MainDisplayInfo.Density;
+
+            return (screenWidth <= smallWidth && screenHeight <= smallHeight);
+        }
+        
 
         protected override void OnStart()
         {

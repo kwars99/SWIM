@@ -17,7 +17,7 @@
                 <Frame>
                     <Grid RowDefinitions="50, 50, 50, 50, 50">
                         <StackLayout Grid.ColumnSpan="2">
-                            <Label Text="WWhen would you like to pay?"
+                            <Label Text="When would you like to pay?"
                                    HorizontalOptions="CenterAndExpand"
                                    FontSize="20"/>
 

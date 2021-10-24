@@ -24,59 +24,67 @@
     </ContentPage.Resources>
 
     <ContentPage.Content>
-        <StackLayout Padding="0" Margin="20">
+        <ScrollView>
+            <StackLayout Padding="0" Margin="20">
 
-            <Label Margin="20, 0, 0, 20" 
-                   VerticalOptions="Start" 
-                   Text="SMART WATER 
-                   INFORMATION MONITORING"
-                   TextColor="White"
-                   FontSize="25"
-                   FontAttributes="Bold" 
-                   HorizontalTextAlignment="Center"/>
+                <Label x:Name="SWIMTitle"  
+                       Margin="20, 0, 0, 20" 
+                       VerticalOptions="Start" 
+                       Text="SMART WATER 
+                       INFORMATION MONITORING"
+                       TextColor="White"
+                       FontSize="Large"
+                       FontAttributes="Bold" 
+                       HorizontalTextAlignment="Center"/>
 
-            <Image HeightRequest="200" 
-                   Source="swim_logo.png" />
+                <Image x:Name="LoginLogo" 
+                       HeightRequest="200" 
+                       Source="swim_logo.png" />
 
-            <Label Margin="0, 70, 0, 0" 
-                   Text="Please sign in to continue"  
-                   HorizontalTextAlignment="Center"
-                   FontSize="18"/>
+                <Label x:Name="SignInLabel"
+                       Style="{StaticResource SignInLabel}"
+                       Text="Please sign in to continue"  
+                       HorizontalTextAlignment="Center"/>
 
-            <Entry x:Name="emailEntry"
+                <Entry x:Name="emailEntry"
+                   Placeholder="Email"
                    Margin="20, 0, 20, 0"
-                   Placeholder="Email" 
                    Text="{Binding Email}"/>
 
-            <Entry x:Name="passwordEntry" 
-                   Margin="20, 5, 20, 0"
+                <Entry x:Name="passwordEntry" 
                    IsPassword="True" 
-                   Placeholder="Password" 
+                   Placeholder="Password"
+                   Margin="20, 0, 20, 0"
                    Text="{Binding Password}"/>
 
-            <Label Text="{Binding ErrorMessage}" 
+                <Label Text="{Binding ErrorMessage}" 
                    Margin="20, 0, 20, 0"
-                   IsVisible="{Binding IsVisible, Converter={StaticResource InverseBool}}"/>
+                   IsVisible="{Binding IsVisible, Converter={StaticResource InverseBool}}"
+                   Style="{StaticResource SmallLabel}"/>
 
-            <Button Style="{StaticResource MainButtonStyle}"
+                <Button Style="{StaticResource MainButtonStyle}"
                     Margin="20, 5, 20, 5"
-                    VerticalOptions="End" 
+                    VerticalOptions="CenterAndExpand" 
                     Text="Sign in" 
                     Command="{Binding LoginCommand}"/>
 
-            <Grid ColumnDefinitions="1.4*, 25, *"
+                <Grid ColumnDefinitions="1.4*, 25, *"
                   Margin="25, 0, 0, 0">
-                
-                <Label Grid.Column="0"
-                       VerticalTextAlignment="Center"
-                       Text="Forgot your password?"/>
-                
-                <CheckBox Grid.Column="1"
-                          IsChecked="{Binding RememberMe}"/>
-                <Label Grid.Column="2" 
-                       VerticalTextAlignment="Center"
-                       Text="Remember me"/>
-            </Grid>
-        </StackLayout>
+
+                    <Label Grid.Column="0"
+                           VerticalTextAlignment="Center"
+                           Text="Forgot your password?"
+                           Style="{StaticResource SmallLabel}"/>
+
+                    <CheckBox Grid.Column="1"
+                              IsChecked="{Binding RememberMe}"/>
+
+                    <Label Grid.Column="2" 
+                           VerticalTextAlignment="Center"
+                           Text="Remember me"
+                           Style="{StaticResource SmallLabel}"/>
+                </Grid>
+            </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

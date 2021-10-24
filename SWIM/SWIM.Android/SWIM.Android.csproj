@@ -79,6 +79,7 @@
   <ItemGroup>
     <Compile Include="CustomRenderer\AlertViewAndroid.cs" />
     <Compile Include="CustomRenderer\CustomPrintDocumentAdapter.cs" />
+    <Compile Include="CustomRenderer\DisplayInfo.cs" />
     <Compile Include="CustomRenderer\PrintService.cs" />
     <Compile Include="CustomRenderer\SaveAndroid.cs" />
     <Compile Include="MainActivity.cs" />
