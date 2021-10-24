@@ -25,7 +25,7 @@
                        FontSize="Large"/>
 
                 <Frame>
-                    <Grid RowDefinitions="0.5*, 1, 0.5*, 0.5*, 0.5*, *"
+                    <Grid RowDefinitions="40, 1, 40, 40, 40, 50"
                           ColumnDefinitions="20, *, *">
 
                         <Label Grid.Row="0"
@@ -78,7 +78,7 @@
                                 Grid.Column="2"
                                 Style="{StaticResource MainButtonStyle}"
                                 Text="Edit Details"
-                                FontSize="Subtitle"
+                                FontSize="Small"
                                 Command="{Binding EditDetailsCommand}"/>
                     </Grid>
                 </Frame>
@@ -86,7 +86,7 @@
                 <Frame>
                     <StackLayout>
                         <Label Text="Billing Preferences"
-                               FontSize="20"
+                               FontSize="Medium"
                                HorizontalOptions="CenterAndExpand"/>
 
                         <BoxView Grid.Row="2"
@@ -130,7 +130,7 @@
                 <Frame Grid.Row="1">
                     <StackLayout Spacing="10">
                         <Label Text="Payment Reminder Preferences"
-                               FontSize="20"
+                               FontSize="Medium"
                                HorizontalOptions="CenterAndExpand"/>
                         <BoxView Grid.Row="2"
                                  Color="#8E8E8E"

@@ -22,16 +22,19 @@
                                     <Grid>
                                         <Label Grid.Row="0"
                                                Text="Amount Owing:"
-                                               FontSize="Large"
                                                FontFamily="OS-Bold"
-                                               HorizontalTextAlignment="Center"/>
+                                               HorizontalTextAlignment="Center"
+                                               Style="{StaticResource LargeLabel}"/>
+                                        
                                         <Label Grid.Row="1" 
                                                Text="{Binding Cost, StringFormat= '{0: $###.##}'}"
-                                               FontSize="Large"
-                                               HorizontalTextAlignment="Center"/>
+                                               HorizontalTextAlignment="Center"
+                                               Style="{StaticResource LargeLabel}"/>
+                                        
                                         <Label Grid.Row="2"
                                                Text="{Binding TotalUsage, StringFormat='{0: Usage Amount: ##.# kL}'}"
-                                               HorizontalTextAlignment="Center"/>
+                                               HorizontalTextAlignment="Center"
+                                               Style="{StaticResource MediumLabel}"/>
                                     </Grid>
                                 </DataTemplate>
                             </BindableLayout.ItemTemplate>
@@ -40,10 +43,10 @@
                         <Grid>
                             <Label Grid.ColumnSpan="3" 
                                 Text="{Binding DueDate}"
-                                FontSize="Medium"
                                 HorizontalTextAlignment="Center"
                                 TextColor="red"
-                                FontFamily="OS-Bold"/>
+                                FontFamily="OS-Bold"
+                                Style="{StaticResource MediumLabel}"/>
 
                             <Button Style="{StaticResource MainButtonStyle}" 
                                     Grid.Row="1" 
@@ -79,7 +82,7 @@
                                         <StackLayout>
                                             <StackLayout>
                                                 <Label Text="{Binding Title}"
-                                                       FontSize="Large"/>
+                                                       Style="{StaticResource LargeLabel}"/>
 
                                                 <Label Text="{Binding Description}"/>
                                             </StackLayout>
@@ -99,9 +102,10 @@
                 <Frame Margin="0, 0, 0, 10"
                        VerticalOptions="FillAndExpand">
                     <Grid RowDefinitions="30, 200, 20">
+                        
                         <Label Grid.Row="0" 
                                Text="Newsfeed"
-                               FontSize="Title"
+                               Style="{StaticResource TitleLabel}"
                                TextColor="#0066AF"/>
 
                         <CarouselView Grid.Row="1" 
@@ -112,7 +116,7 @@
                                     <StackLayout>
                                         <StackLayout>
                                             <Label Text="{Binding Title}"
-                                                   FontSize="Large"/>
+                                                   Style="{StaticResource LargeLabel}"/>
                                             <Label Text="{Binding Description}"/>
                                         </StackLayout>
                                     </StackLayout>

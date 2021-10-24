@@ -133,6 +133,7 @@
                                     Style="{StaticResource MainButtonStyle}"
                                     Margin="0, 10, 0, 0"
                                     Text="Pay Bill"
+                                    VerticalOptions="Center"
                                     Command="{Binding MakePaymentCommand}"/>
                         </Grid>
 

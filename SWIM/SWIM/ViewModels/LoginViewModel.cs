@@ -23,23 +23,6 @@ namespace SWIM.ViewModels
 
         public ICommand LoginCommand { get; }
 
-        public double ScreenWidth
-        {
-            get
-            {
-                return DeviceDisplay.MainDisplayInfo.Width / DeviceDisplay.MainDisplayInfo.Density;
-            }
-        }
-          
-        public double ScreenHeight
-        {
-            get
-            {
-                return DeviceDisplay.MainDisplayInfo.Height / DeviceDisplay.MainDisplayInfo.Density;
-            }
-        }
-
-
         public string Email
         {
             get

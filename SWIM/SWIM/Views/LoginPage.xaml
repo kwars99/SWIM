@@ -41,8 +41,7 @@
                        HeightRequest="200" 
                        Source="swim_logo.png" />
 
-                <Label x:Name="SignInLabel"
-                       Style="{StaticResource SignInLabel}"
+                <Label Style="{StaticResource SignInLabel}"
                        Text="Please sign in to continue"  
                        HorizontalTextAlignment="Center"/>
 

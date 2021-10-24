@@ -16,12 +16,18 @@
         <Setter Property="FontFamily" Value="OS-Medium"/>
     </Style>
 
+    <Style TargetType="Button">
+        <Setter Property="FontSize" Value="Small"/>
+    </Style>
+    
+    
+
     <Style x:Key="TitleLabel" TargetType="Label">
-        <Setter Property="FontSize" Value="18" />
+        <Setter Property="FontSize" Value="22" />
     </Style>
 
     <Style x:Key="LargeLabel" TargetType="Label">
-        <Setter Property="FontSize" Value="15"/>
+        <Setter Property="FontSize" Value="20"/>
     </Style>
 
     <Style x:Key="MediumLabel" TargetType="Label">
@@ -34,11 +40,7 @@
 
     <Style x:Key="SignInLabel" TargetType="Label">
         <Setter Property="Margin" Value="0, 0, 0, 0"/>
-        <Setter Property="FontSize" Value="15"/>
-    </Style>
-
-    <Style x:Key="LoginPageLabel" TargetType="Label">
-        <Setter Property="FontSize" Value="12" />
+        <Setter Property="FontSize" Value="Small"/>
     </Style>
 
     <Style TargetType="Entry">
@@ -55,9 +57,10 @@
         <Setter Property="TextColor" Value="White"/>
         <Setter Property="FontFamily" Value="OS-Medium"/>
         <Setter Property="FontSize" Value="14"/>
-        <Setter Property="HeightRequest" Value="30"/>
+        <Setter Property="HeightRequest" Value="40"/>
         <Setter Property="CornerRadius" Value="80"/>
         <Setter Property="Background" Value="{StaticResource MainButtonGradient}"/>
+        <Setter Property="VerticalOptions" Value="Center"/>
     </Style>
 
     <Style x:Key="AltButtonStyle" TargetType="Button">

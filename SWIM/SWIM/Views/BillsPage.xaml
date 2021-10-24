@@ -91,11 +91,12 @@
                                      HorizontalOptions="CenterAndExpand">
                             <Button Style="{StaticResource MainButtonStyle}"
                                     Text="Pay Now" 
-                                    HorizontalOptions="Center"
+                                    HorizontalOptions="Start"
                                     Command="{Binding Source={RelativeSource AncestorType={x:Type local:BillViewModel}},
                                                                                      Path=GoToPayment}"/>
                             <Button Style="{StaticResource MainButtonStyle}"
                                     Text="View Bill" 
+                                    HorizontalOptions="Start"
                                     Command="{Binding OpenPDFCommand}"/>
                         </StackLayout>
                         
