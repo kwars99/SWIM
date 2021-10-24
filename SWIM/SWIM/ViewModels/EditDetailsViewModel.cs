@@ -12,11 +12,9 @@ namespace SWIM.ViewModels
     {
         private string streetAddress, cityOrTown, state, postcode, email, phoneNumber;
 
-        private List<User> data { get; set; }
+        private List<User> userData { get; set; }
 
         public ICommand UpdateDetailsCommand { get; set; }
-
-        public INavigation Navigation { get; set; }
 
         public string StreetAddress
         {
@@ -114,11 +112,9 @@ namespace SWIM.ViewModels
             }
         }
 
-        public EditDetailsViewModel(List<User> userData, INavigation navigation)
+        public EditDetailsViewModel()
         {
-            this.Navigation = navigation;
-
-            data = userData;
+            userData = App.Database.GetUsersAsync();
 
             UpdateDetailsCommand = new Command(OnUpdateDetailsClicked);
 
@@ -134,26 +130,20 @@ namespace SWIM.ViewModels
             state = postcodeSplit[0];
             postcode = postcodeSplit[1];
             
-            email = data[0].Email;
-            phoneNumber = data[0].PhoneNumber;
-        }
-
-        //Deafult constructor
-        public EditDetailsViewModel()
-        {
-
+            email = userData[0].Email;
+            phoneNumber = userData[0].PhoneNumber;
         }
 
         private async void OnUpdateDetailsClicked(object obj)
         {
-            data[0].Address = StreetAddress + "," + CityOrTown + "," + State + " " + Postcode;
-            data[0].Email = Email;
-            data[0].PhoneNumber = PhoneNumber;
+            userData[0].Address = StreetAddress + "," + CityOrTown + "," + State + " " + Postcode;
+            userData[0].Email = Email;
+            userData[0].PhoneNumber = PhoneNumber;
 
-            await App.Database.UpdateUserAsync(data[0]);
+            await App.Database.UpdateUserAsync(userData[0]);
 
             Application.Current.MainPage = new AppShell();
-            var route = $"{nameof(MyAccountPage)}";
+            var route = $"///{nameof(MorePage)}/{nameof(MyAccountPage)}";
             await Shell.Current.GoToAsync(route);
         }
     }

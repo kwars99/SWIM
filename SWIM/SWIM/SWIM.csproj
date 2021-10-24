@@ -20,6 +20,8 @@
     <None Remove="Fonts\OpenSans-SemiBold.ttf" />
     <None Remove="Fonts\OpenSans-SemiBoldItalic.ttf" />
     <None Remove="GettingStarted.txt" />
+    <None Remove="Resources\rss_feed.xml" />
+    <None Remove="Resources\rss_water.xml" />
     <None Remove="Resources\sample_bill.pdf" />
   </ItemGroup>
 
@@ -38,6 +40,7 @@
     <EmbeddedResource Include="Fonts\OpenSans-SemiBold.ttf" />
     <EmbeddedResource Include="Fonts\OpenSans-SemiBoldItalic.ttf" />
     <EmbeddedResource Include="GettingStarted.txt" />
+    <EmbeddedResource Include="Resources\rss_water.xml" />
     <EmbeddedResource Include="Resources\sample_bill.pdf" />
   </ItemGroup>
 
@@ -53,6 +56,10 @@
     <PackageReference Include="System.ServiceModel.Syndication" Version="5.0.0" /> 
     <PackageReference Include="Xamarin.Forms" Version="5.0.0.2125" />  
     <PackageReference Include="Xamarin.Essentials" Version="1.6.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\rss_feed.xml" />
   </ItemGroup>
 
   <ItemGroup>

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<rss version="2.0" xml:base="https://www.awe.gov.au/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:foaf="http://xmlns.com/foaf/0.1/" xmlns:og="http://ogp.me/ns#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:schema="http://schema.org/" xmlns:sioc="http://rdfs.org/sioc/ns#" xmlns:sioct="http://rdfs.org/sioc/types#" xmlns:skos="http://www.w3.org/2004/02/skos/core#" xmlns:xsd="http://www.w3.org/2001/XMLSchema#">
+  <channel>
+    <title>Water News</title>
+    <link>https://www.awe.gov.au/</link>
+    <description></description>
+    <language>en</language>
+    <item>
+      <title>A conversation about water for the environment in the Murray-Darling Basin</title>
+      <link>https://www.awe.gov.au/water/cewo/media-release/conversation-about-water-for-the-environment-murray-darling-basin</link>
+      <description>Commonwealth Environmental Water Office
+MEDIA RELEASE</description>
+      <pubDate></pubDate>
+    </item>
+    <item>
+      <title>Going in early to help native fish</title>
+      <link>https://www.awe.gov.au/water/cewo/media-release/going-early-help-native-fish</link>
+      <description>Commonwealth Environmental Water Office
+...</description>
+      <pubDate></pubDate>
+    </item>
+    <item>
+      <title>Statement on ‘Carrying over’ water for the environment</title>
+      <link>https://www.awe.gov.au/water/cewo/media-release/statement-carrying-over-water-environment</link>
+      <description>Commonwealth Environmental Water Office
+MEDIA RELEASE</description>
+      <pubDate></pubDate>
+    </item>
+    <item>
+      <title>Statement on ‘Carrying over’ water for the environment</title>
+      <link>https://www.awe.gov.au/water/cewo/media-release/statement-carrying-over-water-environment</link>
+      <description>Commonwealth Environmental Water Office
+MEDIA RELEASE</description>
+      <pubDate></pubDate>
+    </item>
+    <item>
+      <title>Gwydir booms during summer and autumn 2020-21</title>
+      <link>https://www.awe.gov.au/news/2021/08/31/gwydir-booms-during-summer-and-autumn-2020-21</link>
+      <description>The flows of December 2020, January 2021 and the flooding of March 2021 finally broke the driest four years on record in the Gwydir.</description>
+      <pubDate></pubDate>
+    </item>
+    <item>
+      <title>Delivering water for the environment in 2021-22</title>
+      <link>https://www.awe.gov.au/water/cewo/media-release/delivering-water-for-the-environment-2021-22</link>
+      <description>Commonwealth Environmental Water Office
+...</description>
+      <pubDate></pubDate>
+    </item>
+    <item>
+      <title>Peel flow to target water quality and river health</title>
+      <link>https://www.awe.gov.au/water/cewo/media-release/peel-flow-target-water-quality-river-health</link>
+      <description>Commonwealth Environmental Water Office
+...</description>
+      <pubDate></pubDate>
+    </item>
+    <item>
+      <title>Autumn top-up for young fish in the lower Darling/Baaka</title>
+      <link>https://www.awe.gov.au/water/cewo/media-release/autumn-top-up-young-fish-lower-darling-baaka</link>
+      <description>Commonwealth Environmental Water Office
+...</description>
+      <pubDate></pubDate>
+    </item>
+    <item>
+      <title>Autumn top-up for young fish in the lower Darling/Baaka</title>
+      <link>https://www.awe.gov.au/news/2021/04/30/autumn-top-young-fish-lower-darlingbaaka</link>
+      <description>A small release of water for the environment from Menindee Lakes will begin this week to give young fish living in the lower Darling/Baaka an extra helping hand.</description>
+      <pubDate></pubDate>
+    </item>
+    <item>
+      <title>Snippets from the Scientists</title>
+      <link>https://www.awe.gov.au/about/news/2021/03/04/snippets-scientists</link>
+      <description>Science improves our understanding of how plants and animals respond to water for the environment and informs how we deliver flows to best support them. Recent highlights from Flow-MER scientists are now available.</description>
+      <pubDate></pubDate>
+    </item>
+    </channel>
+</rss>

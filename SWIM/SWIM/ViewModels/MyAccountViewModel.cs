@@ -26,8 +26,6 @@ namespace SWIM.ViewModels
         public ICommand SavePreferencesCommand { get; }
         public ICommand EditDetailsCommand { get; }
 
-        public INavigation Navigation { get; set; }
-
         public bool IsEmailChecked
         {
             get
@@ -303,9 +301,8 @@ namespace SWIM.ViewModels
             }
         }
 
-        public MyAccountViewModel(INavigation navigation)
+        public MyAccountViewModel()
         {
-            this.Navigation = navigation;
             SavePreferencesCommand = new Command(OnSaveButtonClicked);
             EditDetailsCommand = new Command(OnEditClicked);
             LoadPreferences();
@@ -316,17 +313,13 @@ namespace SWIM.ViewModels
             email = userData[0].Email;
             phoneNumber = userData[0].PhoneNumber;
             address = userData[0].Address;
-        }
-
-        //Default constructor
-        public MyAccountViewModel()
-        {
-
+        
         }
 
         private async void OnEditClicked(object obj)
         {
-            await Navigation.PushAsync(new EditDetailsPage(userData));
+            var route = $"{nameof(EditDetailsPage)}";
+            await Shell.Current.GoToAsync(route);
         }
 
         private void OnSaveButtonClicked(object obj)

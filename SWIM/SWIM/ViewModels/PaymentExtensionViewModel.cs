@@ -82,6 +82,7 @@ namespace SWIM.ViewModels
             unpaidBills[0].DueDate = SelectedDate;
             await App.Database.UpdateBillAsync(unpaidBills[0]);
 
+            Application.Current.MainPage = new AppShell();
             var route = $"///{nameof(BillsPage)}";
             await Shell.Current.GoToAsync(route);
             //update bill duie date to selected date

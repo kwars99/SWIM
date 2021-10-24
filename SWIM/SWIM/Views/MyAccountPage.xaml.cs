@@ -16,7 +16,7 @@ namespace SWIM.Views
         public MyAccountPage()
         {
             InitializeComponent();
-            BindingContext = new MyAccountViewModel(Navigation);
+            BindingContext = new MyAccountViewModel();
         }
     }
 }

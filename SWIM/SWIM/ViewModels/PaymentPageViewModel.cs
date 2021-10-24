@@ -258,6 +258,7 @@ namespace SWIM.ViewModels
                 
             await App.Database.UpdateBillAsync(bill);
 
+            Application.Current.MainPage = new AppShell();
             await Shell.Current.GoToAsync($"///{nameof(BillsPage)}");
         }       
     }

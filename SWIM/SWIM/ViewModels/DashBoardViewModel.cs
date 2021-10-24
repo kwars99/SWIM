@@ -2,13 +2,16 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.ServiceModel.Syndication;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 using System.Windows.Input;
 using System.Xml;
+using System.Xml.Linq;
 using SWIM.Models;
 using Xamarin.Essentials;
 using Xamarin.Forms;
@@ -237,7 +240,7 @@ namespace SWIM.ViewModels
 
             InitialiseTips();
 
-            ParseRSS();
+            //ParseRSS();
         }
 
         private List<FormattedUsage> FormatBillData()
@@ -322,14 +325,33 @@ namespace SWIM.ViewModels
             waterSavingTips.Add(Tip5);
         }
 
-        private void ParseRSS()
+        private async void ParseRSS()
         {
 
+            /*
+            var assembly = typeof(App).GetTypeInfo().Assembly;
+            Stream stream = assembly.GetManifestResourceStream("SWIM.Resources.rss_feed.xml");
+            await Task.Factory.StartNew(delegate
+            {
+            XDocument doc = XDocument.Load(stream);
+            IEnumerable<NewsItem> news = from item in doc.Descendants("NewsItem")
+                                         select new NewsItem
+                                         {
+                                             Title = (string)item.Element("title"),
+                                             DatePublished = (string)item.Element("pubDate"),
+                                             Description = (string)item.Element("description"),
+                                             Link = (string)item.Element("link")
+                                         };
+                newsItems = news.ToList();
+            }); 
+            */
+
+            /*
             SyndicationFeed feed = null;
 
             try
             {
-                using (var reader = XmlReader.Create("https://www.awe.gov.au/rss/water"))
+                using (var reader = XmlReader.Create("SWIM.Resources.rss_feed.xml"))
                 {
                     feed = SyndicationFeed.Load(reader);
                 }
@@ -356,6 +378,7 @@ namespace SWIM.ViewModels
                     newsItems.Add(newsItem);
                 }
             }
+            */
         }
 
         private void OnPropertyChanged(string property)

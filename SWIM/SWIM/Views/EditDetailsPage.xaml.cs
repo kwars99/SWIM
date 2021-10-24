@@ -14,10 +14,10 @@ namespace SWIM.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class EditDetailsPage : ContentPage
     {
-        public EditDetailsPage(List<User> userData)
+        public EditDetailsPage()
         {
             InitializeComponent();
-            BindingContext = new EditDetailsViewModel(userData, Navigation);
+            BindingContext = new EditDetailsViewModel();
         }
     }
 }

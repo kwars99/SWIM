@@ -38,24 +38,24 @@
             <Image HeightRequest="200" 
                    Source="swim_logo.png" />
 
-            <Label Margin="0, 70, 0, 10" 
+            <Label Margin="0, 70, 0, 0" 
                    Text="Please sign in to continue"  
                    HorizontalTextAlignment="Center"
                    FontSize="18"/>
 
             <Entry x:Name="emailEntry"
-                   Margin="20, 0, 20, 5"
+                   Margin="20, 0, 20, 0"
                    Placeholder="Email" 
                    Text="{Binding Email}"/>
 
             <Entry x:Name="passwordEntry" 
-                   Margin="20, 5, 20, 5"
+                   Margin="20, 5, 20, 0"
                    IsPassword="True" 
                    Placeholder="Password" 
                    Text="{Binding Password}"/>
 
             <Label Text="{Binding ErrorMessage}" 
-                   Margin="20, 5, 20, 5"
+                   Margin="20, 0, 20, 0"
                    IsVisible="{Binding IsVisible, Converter={StaticResource InverseBool}}"/>
 
             <Button Style="{StaticResource MainButtonStyle}"
@@ -66,9 +66,11 @@
 
             <Grid ColumnDefinitions="1.4*, 25, *"
                   Margin="25, 0, 0, 0">
+                
                 <Label Grid.Column="0"
                        VerticalTextAlignment="Center"
                        Text="Forgot your password?"/>
+                
                 <CheckBox Grid.Column="1"
                           IsChecked="{Binding RememberMe}"/>
                 <Label Grid.Column="2" 

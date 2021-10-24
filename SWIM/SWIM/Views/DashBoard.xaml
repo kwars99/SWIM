@@ -103,6 +103,7 @@
                                Text="Newsfeed"
                                FontSize="Title"
                                TextColor="#0066AF"/>
+ 
                         <CarouselView Grid.Row="1" 
                                           ItemsSource="{Binding NewsItems}"
                                           IndicatorView="newsIndicatorView">
