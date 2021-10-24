@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Reflection;
 using System.ServiceModel.Syndication;
 using System.Text;
@@ -13,6 +14,7 @@ using System.Windows.Input;
 using System.Xml;
 using System.Xml.Linq;
 using SWIM.Models;
+using SWIM.Views;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 
@@ -30,9 +32,7 @@ namespace SWIM.ViewModels
         private bool isErrorVisible;
         private bool isReminderVisible, isLabelVisible;
 
-        private string error;
-
-        private string dueDate;
+        private string error, dueDate, link;
 
         public ICommand TapCommand => new Command<string>(async (url) => await Launcher.OpenAsync(url));
 
@@ -180,7 +180,7 @@ namespace SWIM.ViewModels
         {
             get
             {
-                return newsItems.Take(5).ToList();
+                return newsItems;
             }
             set
             {
@@ -190,6 +190,15 @@ namespace SWIM.ViewModels
                     OnPropertyChanged(nameof(NewsItems));
                 }
             }
+        }
+
+        public string Link
+        {
+            get
+            {
+                return link;
+            }
+            set { }
         }
 
         public string DueDate
@@ -240,7 +249,7 @@ namespace SWIM.ViewModels
 
             InitialiseTips();
 
-            //ParseRSS();
+            ParseRSS();
         }
 
         private List<FormattedUsage> FormatBillData()
@@ -325,33 +334,16 @@ namespace SWIM.ViewModels
             waterSavingTips.Add(Tip5);
         }
 
-        private async void ParseRSS()
-        {
-
-            /*
-            var assembly = typeof(App).GetTypeInfo().Assembly;
-            Stream stream = assembly.GetManifestResourceStream("SWIM.Resources.rss_feed.xml");
-            await Task.Factory.StartNew(delegate
-            {
-            XDocument doc = XDocument.Load(stream);
-            IEnumerable<NewsItem> news = from item in doc.Descendants("NewsItem")
-                                         select new NewsItem
-                                         {
-                                             Title = (string)item.Element("title"),
-                                             DatePublished = (string)item.Element("pubDate"),
-                                             Description = (string)item.Element("description"),
-                                             Link = (string)item.Element("link")
-                                         };
-                newsItems = news.ToList();
-            }); 
-            */
-
-            /*
+        private void ParseRSS()
+        {            
             SyndicationFeed feed = null;
+
+            var assembly = typeof(App).GetTypeInfo().Assembly;
+            Stream stream = assembly.GetManifestResourceStream("SWIM.Resources.rss_water.xml");
 
             try
             {
-                using (var reader = XmlReader.Create("SWIM.Resources.rss_feed.xml"))
+                using (var reader = XmlReader.Create(stream))
                 {
                     feed = SyndicationFeed.Load(reader);
                 }
@@ -370,15 +362,15 @@ namespace SWIM.ViewModels
                     NewsItem newsItem = new NewsItem()
                     {
                         Title = element.Title.Text,
-                        DatePublished = element.PublishDate.DateTime,
                         Description = element.Summary.Text,
                         Link = element.Links[0].Uri.ToString()                       
                     };
 
+                    link = element.Links[0].Uri.ToString();
+
                     newsItems.Add(newsItem);
                 }
-            }
-            */
+            }         
         }
 
         private void OnPropertyChanged(string property)

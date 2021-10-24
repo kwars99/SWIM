@@ -98,12 +98,12 @@
                     <!-- News -->
                 <Frame Margin="0, 0, 0, 10"
                        VerticalOptions="FillAndExpand">
-                    <Grid RowDefinitions="30, 220">
+                    <Grid RowDefinitions="30, 200, 20">
                         <Label Grid.Row="0" 
                                Text="Newsfeed"
                                FontSize="Title"
                                TextColor="#0066AF"/>
- 
+
                         <CarouselView Grid.Row="1" 
                                           ItemsSource="{Binding NewsItems}"
                                           IndicatorView="newsIndicatorView">
@@ -113,16 +113,7 @@
                                         <StackLayout>
                                             <Label Text="{Binding Title}"
                                                    FontSize="Large"/>
-                                            <Label Text="{Binding DatePublished}"/>
                                             <Label Text="{Binding Description}"/>
-                                            <Label Text="Read more"
-                                                   TextColor="Blue"
-                                                   TextDecorations="Underline">
-                                                <Label.GestureRecognizers>
-                                                    <TapGestureRecognizer Command="{Binding TapCommand}"
-                                                      CommandParameter="{Binding Link}"/>
-                                                </Label.GestureRecognizers>
-                                            </Label>
                                         </StackLayout>
                                     </StackLayout>
                                 </DataTemplate>
@@ -138,7 +129,16 @@
                             </Label.GestureRecognizers>
                         </Label>
 
-                        <IndicatorView Grid.Row="2" 
+                        <Label Grid.Row="2" Text="Read more"
+                               TextColor="Blue"
+                               TextDecorations="Underline">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding TapCommand}"
+                                                      CommandParameter="{Binding Link}"/>
+                            </Label.GestureRecognizers>
+                        </Label>
+
+                        <IndicatorView Grid.Row="3" 
                                            x:Name="newsIndicatorView"
                                            IndicatorColor="LightGray"
                                            SelectedIndicatorColor="DarkGray"
