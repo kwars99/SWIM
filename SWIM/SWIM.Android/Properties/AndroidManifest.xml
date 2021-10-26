@@ -1,20 +1,17 @@
-<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" package="com.companyname.swim">
-    <uses-sdk android:minSdkVersion="21" android:targetSdkVersion="30" />
-    <supports-screens android:resizeable="true"
-                    android:smallScreens="true"
-                    android:normalScreens="true"
-                    android:largeScreens="true"/>
-    <application android:label="SWIM.Android" android:theme="@style/MainTheme"></application>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <queries>
-      <intent>
-        <action android:name="android.intent.action.VIEW" />
-        <data android:scheme="http"/>
-      </intent>
-      <intent>
-        <action android:name="android.intent.action.VIEW" />
-        <data android:scheme="https"/>
-      </intent>
-    </queries>
+﻿<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" package="com.companyname.swim" android:installLocation="auto">
+	<uses-sdk android:minSdkVersion="21" android:targetSdkVersion="30" />
+	<supports-screens android:resizeable="true" android:smallScreens="true" android:normalScreens="true" android:largeScreens="true" />
+	<application android:label="SWIM.Android" android:theme="@style/MainTheme" android:icon="@mipmap/swim_icon"></application>
+	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+	<queries>
+		<intent>
+			<action android:name="android.intent.action.VIEW" />
+			<data android:scheme="http" />
+		</intent>
+		<intent>
+			<action android:name="android.intent.action.VIEW" />
+			<data android:scheme="https" />
+		</intent>
+	</queries>
 </manifest>
