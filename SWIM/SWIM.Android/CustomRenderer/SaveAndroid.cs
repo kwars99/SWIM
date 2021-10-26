@@ -25,7 +25,8 @@ namespace SavePDFUsingNative.Droid
             string fileName = "SavedDocument.pdf";
             if (Android.OS.Environment.IsExternalStorageEmulated)
             {
-                root = Android.OS.Environment.ExternalStorageDirectory.ToString();
+                //root = Android.OS.Environment.ExternalStorageDirectory.ToString();
+                root = Android.OS.Environment.GetExternalStoragePublicDirectory(Android.OS.Environment.DirectoryDownloads).AbsolutePath;
             }
             Java.IO.File myDir = new Java.IO.File(root + "/SWIM");
             myDir.Mkdir();

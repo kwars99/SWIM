@@ -34,13 +34,16 @@
                         <Entry  Text="{Binding State}"/>
 
                         <Label Text="Postcode:"/>
-                        <Entry Text="{Binding Postcode}"/>
+                        <Entry Text="{Binding Postcode}"
+                               Keyboard="Numeric"/>
 
                         <Label Text="Email:"/>
-                        <Entry Text="{Binding Email}"/>
+                        <Entry Text="{Binding Email}"
+                               Keyboard="Email"/>
 
                         <Label Text="Phone Number:"/>
-                        <Entry Text="{Binding PhoneNumber}"/>
+                        <Entry Text="{Binding PhoneNumber}"
+                               Keyboard="Telephone"/>
 
                         <Button Style="{StaticResource MainButtonStyle}" 
                                 Text="Update Details" 

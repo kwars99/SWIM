@@ -43,6 +43,11 @@ namespace SWIM.Views
                     EnquiryOpen = "open"
                 });
             }
+
+            fullName.Text = "";
+            emailAddress.Text = "";
+            phoneNumber.Text = "";
+            description.Text = "";         
         }
 
         private async void SubEnqPageButton_Clicked(object sender, EventArgs e)

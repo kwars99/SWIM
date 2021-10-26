@@ -7,7 +7,7 @@ namespace SWIM.Models
     public class Constants
     {
         public const string APIKey = "NDc4ODkyQDMxMzkyZTMyMmUzMGtSWmFjN1ptS1NwOU5FQXBtQUY0MlNYMy9BaXR0SmlZaDI5cGZhL3lYcXM9";
-        public const string Email = "swim";
+        public const string Email = "johnsmith@gmail.com";
         public const string Password = "password";
         public const string UserKey = "user_token";
         public const string PwdKey = "pwd_token";

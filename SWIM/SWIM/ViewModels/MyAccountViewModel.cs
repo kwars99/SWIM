@@ -322,12 +322,16 @@ namespace SWIM.ViewModels
             await Shell.Current.GoToAsync(route);
         }
 
-        private void OnSaveButtonClicked(object obj)
+        private async void OnSaveButtonClicked(object obj)
         {
             Preferences.Set(nameof(ReceivingBillSelection), receivingBillSelection);          
             Preferences.Set(nameof(ReceivingBillTimeSelection), receivingBillTimeSelection);           
             Preferences.Set(nameof(ReceivingReminderSelection), receivingReminderSelection);           
             Preferences.Set(nameof(ReminderTimeSelection), reminderTimeSelection);
+
+            Application.Current.MainPage = new AppShell();
+            var route = $"{nameof(MyAccountPage)}";
+            await Shell.Current.GoToAsync(route);
         }
 
         private void LoadPreferences()

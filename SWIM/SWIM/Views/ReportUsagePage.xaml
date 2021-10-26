@@ -24,16 +24,19 @@
 
                         <Entry Placeholder="Customer Reference Number"/>
 
-                        <Entry Placeholder="Email"/>
+                        <Entry Placeholder="Email"
+                               Keyboard="Email"/>
 
-                        <Entry Placeholder="Phone Number"/>
+                        <Entry Placeholder="Phone Number"
+                               Keyboard="Telephone"/>
 
                         <Label  Margin="10, 0, 0, 0"
                                 Text="Meter Read Details:"
                                 FontSize="Title"/>
 
                         <Entry Placeholder="Meter Reading (kL)"
-                               Text="{Binding MeterReading}"/>
+                               Text="{Binding MeterReading}"
+                               Keyboard="Numeric"/>
 
                         <DatePicker MinimumDate="{Binding MinimumDate}"
                                     MaximumDate="{Binding CurrentDate}"

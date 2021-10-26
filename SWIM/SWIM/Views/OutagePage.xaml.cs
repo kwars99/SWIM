@@ -29,6 +29,7 @@ namespace SWIM.Views
                     Location = location.Text });
             }
 
+            Application.Current.MainPage = new AppShell();
             var route = $"{nameof(OutagePage)}";
             await Shell.Current.GoToAsync(route);
         }

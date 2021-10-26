@@ -17,6 +17,7 @@
             <StackLayout Margin="{StaticResource PageMargin}">
 
                 <!-- Chart-->
+                
                 <Frame Padding="10, 20, 10, 0"
                            Margin="0, 0, 0, 0">
                     <StackLayout>
@@ -90,11 +91,12 @@
                         </Grid>
                     </StackLayout>
                 </Frame>
+                
 
                 <!-- Monthly Usage -->
                 <Frame Padding="5, 5, 5, 0">
                     <StackLayout>
-                        <Label Text="Current Quarter"
+                        <Label Text="Previous Months"
                                    FontSize="Large"
                                    HorizontalTextAlignment="Center"/>
                         <StackLayout>

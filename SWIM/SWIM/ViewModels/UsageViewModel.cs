@@ -141,7 +141,7 @@ namespace SWIM.ViewModels
             for (int i = 0; i < quarterlyUsages.Count; i++)
             {
                 double TotalQuarterUsage = quarterlyUsages[i].Sum(y => y.TotalUsage);
-                string beginningMonth;
+                string beginningMonth, endingMonth;
 
                 switch (quarterlyUsages[i][0].Quarter)
                 {
@@ -166,7 +166,33 @@ namespace SWIM.ViewModels
                         break;
                 }
 
-                string endingMonth = DateTime.ParseExact(beginningMonth, "MMM", CultureInfo.CurrentCulture).AddMonths(2).ToString("MMM");
+                //Fixes DateTime.ParseEsact Error on Android
+                switch (beginningMonth)
+                {
+                    case "Jan":
+                        endingMonth = "Mar";
+                        break;
+
+                    case "Apr":
+                        endingMonth = "June";
+                        break;
+
+                    case "Jul":
+                        endingMonth = "Sept";
+                        break;
+
+                    case "Oct":
+                        endingMonth = "Dec";
+                        break;
+
+                    default:
+                        endingMonth = "End";
+                        break;
+                }
+
+                //DateTime beginningToDateTime = DateTime.ParseExact(beginningMonth, "MMM", CultureInfo.CurrentCulture);
+
+                ///string endingMonth = DateTime.ParseExact(beginningMonth, "MMM", CultureInfo.CurrentCulture).AddMonths(2).ToString("MMM");
 
                 string quarterTimePeriod = beginningMonth + " - " + endingMonth;
 
