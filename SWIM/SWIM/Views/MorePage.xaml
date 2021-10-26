@@ -30,10 +30,18 @@
 
                 <Frame Padding="15">
                     <Label Text="Move or Add Property" />
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer
+                                Tapped="OnNotImplementedClicked"/>
+                    </Frame.GestureRecognizers>
                 </Frame>
 
                 <Frame Padding="15">
                     <Label Text="Manage Payment Details" />
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer
+                                Tapped="OnNotImplementedClicked"/>
+                    </Frame.GestureRecognizers>
                 </Frame>
                 
                 <Frame Padding="15">
@@ -46,22 +54,46 @@
                 
                 <Frame Padding="15">
                     <Label Text="Tenant Portal" />
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer
+                                Tapped="OnNotImplementedClicked"/>
+                    </Frame.GestureRecognizers>
                 </Frame>
                 <Frame Padding="15">
-                    <Label Text="Link to Smart Water Metre" />
+                    <Label Text="Link to Smart Water Meter" />
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer
+                                Tapped="OnNotImplementedClicked"/>
+                    </Frame.GestureRecognizers>
                 </Frame>
                 <Frame Padding="15">
                     <Label Text="About Us" />
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer
+                                Tapped="OnFAQOrAboutClicked"/>
+                    </Frame.GestureRecognizers>
                 </Frame>
                 <Frame Padding="15">
                     <Label Text="FAQ" />
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer
+                                Tapped="OnFAQOrAboutClicked"/>
+                    </Frame.GestureRecognizers>
                 </Frame>
                 
                 <Frame Padding="15">
                     <Label Text="Feedback" />
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer
+                                Tapped="OnNotImplementedClicked"/>
+                    </Frame.GestureRecognizers>
                 </Frame>
                 <Frame Padding="15">
                     <Label Text="Rate App" />
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer
+                                Tapped="OnNotImplementedClicked"/>
+                    </Frame.GestureRecognizers>
                 </Frame>
 
                 <Button Style="{StaticResource MainButtonStyle}"

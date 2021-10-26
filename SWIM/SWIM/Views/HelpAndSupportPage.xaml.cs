@@ -54,5 +54,15 @@ namespace SWIM.Views
         {
             await Navigation.PushAsync(new EnquiriesPage());
         }
+
+        async void OnNotImplementedClicked(object sender, EventArgs e)
+        {
+            await DisplayAlert("Out of scope", "Feature not implemented.", "Back");
+        }
+
+        async void OnFAQClicked(object sender, EventArgs e)
+        {
+            await DisplayAlert("Out of scope", "Feature not implemented. Company information would go here.", "Back");
+        }
     }
 }

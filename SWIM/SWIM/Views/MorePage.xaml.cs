@@ -26,5 +26,15 @@ namespace SWIM.Views
             App.IsUserLoggedIn = false;
             await Shell.Current.GoToAsync($"//{nameof(LoginPage)}");
         }
+
+        async void OnNotImplementedClicked(object sender, EventArgs e)
+        {
+            await DisplayAlert("Out of scope", "Feature not implemented.", "Back");
+        }
+
+        async void OnFAQOrAboutClicked(object sender, EventArgs e)
+        {
+            await DisplayAlert("Out of scope", "Feature not implemented. Company information would go here.", "Back");
+        }
     }
 }

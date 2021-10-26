@@ -27,6 +27,10 @@ namespace SWIM.Views
                 await Shell.Current.GoToAsync($"//{nameof(DashBoard)}");
             }
         }
-        
+
+        async void OnNotImplementedClicked (object sender, EventArgs e)
+        {
+            await DisplayAlert("Out of scope", "Feature not implemented due to not having access to server", "Back");
+        }      
     }
 }

@@ -73,7 +73,11 @@
                     <Label Grid.Column="0"
                            VerticalTextAlignment="Center"
                            Text="Forgot your password?"
-                           Style="{StaticResource SmallLabel}"/>
+                           Style="{StaticResource SmallLabel}">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnNotImplementedClicked"/>
+                        </Label.GestureRecognizers>
+                    </Label>
 
                     <CheckBox Grid.Column="1"
                               IsChecked="{Binding RememberMe}"/>

@@ -16,7 +16,8 @@
                     <Button Style="{StaticResource AltButtonStyle}"
                             Grid.Row="0" Grid.Column="0"
                             HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"
-                            Text="FAQ" />
+                            Text="FAQ" 
+                            Clicked="OnFAQClicked"/>
                     
                     <Button Style="{StaticResource AltButtonStyle}"
                             Grid.Row="0" Grid.Column="1"
@@ -29,13 +30,15 @@
                             Grid.Row="1" Grid.Column="0"
                             HorizontalOptions="FillAndExpand"
                             VerticalOptions="FillAndExpand"
-                            Text="Eco-friendly Tips &amp; Tricks" />
+                            Text="Eco-friendly Tips &amp; Tricks" 
+                            Clicked="OnNotImplementedClicked"/>
                     
                     <Button Style="{StaticResource AltButtonStyle}"
                             Grid.Row="1" Grid.Column="1"
                             HorizontalOptions="FillAndExpand" 
                             VerticalOptions="FillAndExpand"
-                            Text="Severe Weather Preparation" />
+                            Text="Severe Weather Preparation" 
+                            Clicked="OnNotImplementedClicked"/>
                     
                     <Button Style="{StaticResource AltButtonStyle}"
                             Grid.Row="2" Grid.Column="0"

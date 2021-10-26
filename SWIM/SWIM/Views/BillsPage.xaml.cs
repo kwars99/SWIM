@@ -18,5 +18,11 @@ namespace SWIM.Views
         {
             InitializeComponent();
         }
+
+        async void OnNotImplementedClicked(object sender, EventArgs e)
+        {
+            await DisplayAlert("Out of scope", "Feature not implemented.", "Back");
+        }
+        
     }
 }
