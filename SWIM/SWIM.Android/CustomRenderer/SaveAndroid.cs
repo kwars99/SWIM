@@ -28,9 +28,7 @@ namespace SavePDFUsingNative.Droid
                 //root = Android.OS.Environment.ExternalStorageDirectory.ToString();
                 root = Android.OS.Environment.GetExternalStoragePublicDirectory(Android.OS.Environment.DirectoryDownloads).AbsolutePath;
             }
-            Java.IO.File myDir = new Java.IO.File(root + "/SWIM");
-            myDir.Mkdir();
-            Java.IO.File file = new Java.IO.File(myDir, fileName);
+            Java.IO.File file = new Java.IO.File(root, fileName);
             string filePath = file.Path;
             if (file.Exists()) file.Delete();
             Java.IO.FileOutputStream outs = new Java.IO.FileOutputStream(file);

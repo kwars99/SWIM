@@ -14,37 +14,42 @@
 
     <Style TargetType="Label">
         <Setter Property="FontFamily" Value="OS-Medium"/>
+        <Setter Property="TextColor" Value="{StaticResource FontColor}"/>
     </Style>
 
     <Style TargetType="Button">
         <Setter Property="FontSize" Value="Small"/>
     </Style>
-    
-    
 
     <Style x:Key="TitleLabel" TargetType="Label">
         <Setter Property="FontSize" Value="22" />
+        <Setter Property="TextColor" Value="{StaticResource FontColor}"/>
     </Style>
 
     <Style x:Key="LargeLabel" TargetType="Label">
         <Setter Property="FontSize" Value="20"/>
+        <Setter Property="TextColor" Value="{StaticResource FontColor}"/>
     </Style>
 
     <Style x:Key="MediumLabel" TargetType="Label">
         <Setter Property="FontSize" Value="14"/>
+        <Setter Property="TextColor" Value="{StaticResource FontColor}"/>
     </Style>
 
     <Style x:Key="SmallLabel" TargetType="Label">
         <Setter Property="FontSize" Value="12"/>
+        <Setter Property="TextColor" Value="{StaticResource FontColor}"/>
     </Style>
 
     <Style x:Key="SignInLabel" TargetType="Label">
         <Setter Property="Margin" Value="0, 0, 0, 0"/>
         <Setter Property="FontSize" Value="Small"/>
+        <Setter Property="TextColor" Value="{StaticResource FontColor}"/>
     </Style>
 
     <Style TargetType="Entry">
         <Setter Property="FontSize" Value="14" />
+        <Setter Property="TextColor" Value="{StaticResource FontColor}"/>
     </Style>
 
     <Style TargetType="Frame">
