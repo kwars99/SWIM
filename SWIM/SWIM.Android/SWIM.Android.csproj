@@ -53,6 +53,7 @@
     <BundleAssemblies>false</BundleAssemblies>
     <EmbedAssembliesIntoApk>true</EmbedAssembliesIntoApk>
     <MandroidI18n />
+    <AndroidSupportedAbis />
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Mono.Android" />
