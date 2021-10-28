@@ -10,7 +10,7 @@ using Xamarin.Forms;
 
 namespace SWIM.ViewModels
 {
-    public class OutageViewModel : INotifyPropertyChanged
+    public class OutageViewModel : BaseViewModel
     {
         List<Fault> data = new List<Fault>();
 
@@ -34,12 +34,5 @@ namespace SWIM.ViewModels
         {
             data = App.Database.GetFaultAsync();
         }
-
-        private void OnPropertyChanged(string propertyName)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
     }
 }

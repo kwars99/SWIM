@@ -20,7 +20,7 @@ using Xamarin.Forms;
 
 namespace SWIM.ViewModels
 {
-    class DashBoardViewModel : INotifyPropertyChanged
+    class DashBoardViewModel : BaseViewModel
     {
         private List<Bill> billData = new List<Bill>();
         private List<Bill> unpaidBills = new List<Bill>();
@@ -35,6 +35,8 @@ namespace SWIM.ViewModels
         private string error, dueDate, link;
 
         public ICommand TapCommand => new Command<string>(async (url) => await Launcher.OpenAsync(url));
+        public ICommand ViewBillCommand { get; set; }
+        public ICommand PayBillCommand { get; set; }
 
         
 
@@ -219,6 +221,10 @@ namespace SWIM.ViewModels
 
         public DashBoardViewModel()
         {
+
+            ViewBillCommand = new Command(OnViewBillClicked);
+            PayBillCommand = new Command(OnPayBillClicked);
+
             usageData = App.Database.GetUsageAsync();
             billData = App.Database.GetBillAsync();
             usageData.Reverse();
@@ -250,6 +256,18 @@ namespace SWIM.ViewModels
             InitialiseTips();
 
             ParseRSS();
+        }
+
+        private async void OnPayBillClicked(object obj)
+        {
+            var route = $"{nameof(PaymentPage)}";
+            await Shell.Current.GoToAsync(route);
+        }
+
+        private async void OnViewBillClicked(object obj)
+        {
+            var route = $"{nameof(PdfPage)}";
+            await Shell.Current.GoToAsync(route);
         }
 
         private List<FormattedUsage> FormatBillData()
@@ -372,13 +390,6 @@ namespace SWIM.ViewModels
                 }
             }         
         }
-
-        private void OnPropertyChanged(string property)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(property));
-        }
-        
-        public event PropertyChangedEventHandler PropertyChanged;
     }
               
 }

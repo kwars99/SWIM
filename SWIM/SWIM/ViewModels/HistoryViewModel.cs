@@ -10,7 +10,7 @@ using Xamarin.Forms;
 
 namespace SWIM.ViewModels
 {
-    public class HistoryViewModel : INotifyPropertyChanged
+    public class HistoryViewModel : BaseViewModel
     {
         private List<Transaction> data = new List<Transaction>();
 
@@ -36,12 +36,5 @@ namespace SWIM.ViewModels
             data.Reverse();
             
         }
-
-        private void OnPropertyChanged(string v)
-        {
-            throw new NotImplementedException();
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
     }
 }

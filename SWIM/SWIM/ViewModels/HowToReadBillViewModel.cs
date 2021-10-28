@@ -12,19 +12,12 @@ using Xamarin.Forms;
 
 namespace SWIM.ViewModels
 {
-    public class HowToReadBillViewModel : INotifyPropertyChanged
+    public class HowToReadBillViewModel : BaseViewModel
     {
 
         public HowToReadBillViewModel()
         {
 
         }
-
-        private void OnPropertyChanged(string propertyName)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
     }
 }

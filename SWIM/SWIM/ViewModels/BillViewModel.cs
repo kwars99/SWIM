@@ -12,7 +12,7 @@ using Xamarin.Forms;
 
 namespace SWIM.ViewModels
 {
-    public class BillViewModel : INotifyPropertyChanged
+    public class BillViewModel : BaseViewModel
     {
         
         private List<Bill> data = new List<Bill>();
@@ -208,8 +208,6 @@ namespace SWIM.ViewModels
             //gets unpaid bill usage IDs
             string[] usageID = unpaid[0].UsageIDs.Split(',');
 
-            // for how many usage IDs there are
-            //     add 
             for (int i = 0; i < usageID.Length; i++)
             {
                 List<Usage> period = usageData.Where(x => x.UsageID == Int32.Parse(usageID[i])).ToList();
@@ -268,12 +266,5 @@ namespace SWIM.ViewModels
             var route = $"{nameof(PdfPage)}";
             await Shell.Current.GoToAsync(route);
         }
-
-        private void OnPropertyChanged(string propertyName)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
     }
 }

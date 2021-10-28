@@ -13,7 +13,7 @@ using Xamarin.Forms;
 
 namespace SWIM.ViewModels
 {
-    public class UsageViewModel : INotifyPropertyChanged
+    public class UsageViewModel : BaseViewModel
     {
         private const int NumOfEntries = 3;
 
@@ -253,13 +253,5 @@ namespace SWIM.ViewModels
             await Shell.Current.GoToAsync(route);
         }
 
-
-        private void OnPropertyChanged(string propertyName)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-
-
-        public event PropertyChangedEventHandler PropertyChanged;
     }
 }

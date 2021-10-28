@@ -14,7 +14,7 @@ using Xamarin.Forms;
 
 namespace SWIM.ViewModels
 {
-    public class PdfViewerModel : INotifyPropertyChanged
+    public class PdfViewerModel : BaseViewModel
     {
         private Stream m_pdfDocumentStream;
         private Command<object> saveCommand;
@@ -49,7 +49,7 @@ namespace SWIM.ViewModels
             set
             {
                 m_pdfDocumentStream = value;
-                NotifyPropertyChanged("PdfDocumentStream");
+                OnPropertyChanged("PdfDocumentStream");
             }
         }
 
@@ -71,22 +71,6 @@ namespace SWIM.ViewModels
             string filePath = DependencyService.Get<ISave>().Save(strm as MemoryStream);
             string message = "The PDF has been saved to " + filePath;
             DependencyService.Get<IAlertView>().Show(message);
-        }
-
-        /*
-        private void OnDocumentPrint(object obj)
-        {
-            Stream stream = //What to put here
-            DependencyService.Get<IPrintService>().Print(stream, "sample_bill.pdf");
-        }
-        */
-
-        private void NotifyPropertyChanged(string propertyName)
-        {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-            }
         }
     }
 }

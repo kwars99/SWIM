@@ -10,7 +10,7 @@ using Xamarin.Forms;
 
 namespace SWIM.ViewModels
 {
-    public class EnquiriesViewModel : INotifyPropertyChanged
+    public class EnquiriesViewModel : BaseViewModel
     {
         List<Enquiry> data = new List<Enquiry>();
         List<Enquiry> openEnquiries = new List<Enquiry>();
@@ -52,12 +52,5 @@ namespace SWIM.ViewModels
         {
             data = App.Database.GetEnquiryAsync();
         }
-
-        private void OnPropertyChanged(string propertyName)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
     }
 }

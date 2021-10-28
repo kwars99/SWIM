@@ -52,12 +52,12 @@
                                     Grid.Row="1" 
                                     Grid.Column="0"
                                     Text="Pay Bill"
-                                    Clicked="Button_Clicked"/>
+                                    Command="{Binding PayBillCommand}"/>
                             <Button Style="{StaticResource MainButtonStyle}"
                                     Grid.Row="1" 
                                     Grid.Column="2"
                                     Text="View Bill"
-                                    Clicked="Button_Clicked"/>
+                                    Command="{Binding ViewBillCommand}"/>
                         </Grid>
                     </StackLayout>
                 </Frame>
